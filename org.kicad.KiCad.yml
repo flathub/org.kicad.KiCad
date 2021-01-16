@@ -142,6 +142,7 @@ modules:
 - name: kicad
   buildsystem: cmake-ninja
   config-opts:
+  - -DCMAKE_BUILD_TYPE=Release
   - -DGLEW_INCLUDE_DIR=/app/include/GL
   - -DOCC_INCLUDE_DIR=/app/include/opencascade
   - -DOPENGL_glu_LIBRARY=/app/lib/libGLU.so
@@ -156,6 +157,8 @@ modules:
   - type: archive
     url: https://gitlab.com/kicad/code/kicad/-/archive/5.1.9/kicad-5.1.9.tar.gz
     sha256: 841be864b9dc5c761193c3ee9cbdbed6729952d7b38451aa8e1977bdfdb6081b
+  - type: patch
+    path: do-not-strip-executables.patch
   - type: patch
     path: fix-rectifier-demo-for-ngspice-32.patch
   - type: patch
