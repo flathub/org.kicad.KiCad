@@ -9,7 +9,7 @@ rename-icon: kicad
 finish-args:
 - --device=dri
 - --env=LD_LIBRARY_PATH=/app/lib
-- --env=KISYS3DMOD=/app/library-extensions/Packages3D/extra
+- --env=KISYS3DMOD=/app/extensions/Library/Packages3D/share/kicad/modules/packages3d
 - --filesystem=home
 - --share=ipc
 - --share=network
@@ -18,11 +18,11 @@ finish-args:
 add-extensions:
   org.kicad.KiCad.Library:
     version: '5.1'
-    directory: library-extensions
+    directory: extensions/Library
     autodelete: true
     no-autodownload: true
     subdirectories: true
-    merge-dirs: extra/template
+    merge-dirs: share/kicad/template
 
 cleanup:
 - /include
@@ -152,7 +152,7 @@ modules:
   - -DKICAD_USE_OCE=OFF
   - -DKICAD_SCRIPTING_WXPYTHON_PHOENIX=ON
   post-install:
-  - install -d /app/library-extensions
+  - install -d /app/extensions/Library
   sources:
   - type: archive
     url: https://gitlab.com/kicad/code/kicad/-/archive/5.1.9/kicad-5.1.9.tar.gz
