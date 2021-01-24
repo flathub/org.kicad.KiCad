@@ -62,14 +62,16 @@ modules:
     sha256: aeb26f80e80945e82ee93e5939baebdca47b9dee80a07d3144be1e1a6a66dd6a
 
 - name: wxWidgets
-  rm-configure: true
   cleanup:
   - /bin
+  config-opts:
+  - --with-opengl
+  rm-configure: true
   subdir: ext/wxWidgets
   sources:
   - type: archive
-    url: https://files.pythonhosted.org/packages/b9/8b/31267dd6d026a082faed35ec8d97522c0236f2e083bf15aff64d982215e1/wxPython-4.0.7.post2.tar.gz
-    sha256: 5a229e695b64f9864d30a5315e0c1e4ff5e02effede0a07f16e8d856737a0c4e
+    url: https://files.pythonhosted.org/packages/b0/4d/80d65c37ee60a479d338d27a2895fb15bbba27a3e6bb5b6d72bb28246e99/wxPython-4.1.1.tar.gz
+    sha256: 00e5e3180ac7f2852f342ad341d57c44e7e4326de0b550b9a5c4a8361b6c3528
   - type: script
     commands:
     - cp -p /usr/share/automake-*/config.{sub,guess} .
