@@ -9,6 +9,9 @@ rename-icon: kicad
 finish-args:
 - --device=dri
 - --env=LD_LIBRARY_PATH=/app/lib
+- --env=KICAD_TEMPLATE_PATH=/app/extensions/Library/share/kicad/template
+- --env=KICAD_SYMBOL_DIR=/app/extensions/Library/Symbols/share/kicad/library
+- --env=KISYSMOD=/app/extensions/Library/Footprints/share/kicad/modules
 - --env=KISYS3DMOD=/app/extensions/Library/Packages3D/share/kicad/modules/packages3d
 - --filesystem=home
 - --share=ipc
@@ -20,7 +23,7 @@ add-extensions:
     version: stable
     directory: extensions/Library
     autodelete: true
-    no-autodownload: true
+    no-autodownload: false
     subdirectories: true
     merge-dirs: share/kicad/template
 
@@ -185,24 +188,3 @@ modules:
   - type: archive
     url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-5.1.9.tar.gz
     sha256: 61571f260bba67e26b9f7456ad6eb5da7c3b406412f506e7857d0ca70ca66393
-
-- name: kicad-templates
-  buildsystem: cmake-ninja
-  sources:
-  - type: archive
-    url: https://gitlab.com/kicad/libraries/kicad-templates/-/archive/5.1.9/kicad-templates-5.1.9.tar.gz
-    sha256: 0c1bf3d2e6d8d1056a5da6c1f7a173551c154b4bdaddb86b6a34155b18e65da6
-
-- name: kicad-symbols
-  buildsystem: cmake-ninja
-  sources:
-  - type: archive
-    url: https://gitlab.com/kicad/libraries/kicad-symbols/-/archive/5.1.9/kicad-symbols-5.1.9.tar.gz
-    sha256: cdb033cc755cc66a087b44fff1d2b77bf2dd44311a02c81a516b8ca1fbd242a7
-
-- name: kicad-footprints
-  buildsystem: cmake-ninja
-  sources:
-  - type: archive
-    url: https://gitlab.com/kicad/libraries/kicad-footprints/-/archive/5.1.9/kicad-footprints-5.1.9.tar.gz
-    sha256: 415e014364d1c12584f115a4adfeec1b71e41e2cd7f4ae543237ee71b8ef41bd
