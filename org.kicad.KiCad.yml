@@ -9,7 +9,7 @@ rename-icon: kicad
 finish-args:
 - --device=dri
 - --env=LD_LIBRARY_PATH=/app/lib
-- --env=KICAD_TEMPLATE_PATH=/app/extensions/Library/share/kicad/template
+- --env=KICAD_TEMPLATE_DIR=/app/extensions/Library/share/kicad/template
 - --env=KICAD_SYMBOL_DIR=/app/extensions/Library/Symbols/share/kicad/library
 - --env=KISYSMOD=/app/extensions/Library/Footprints/share/kicad/modules
 - --env=KISYS3DMOD=/app/extensions/Library/Packages3D/share/kicad/modules/packages3d
