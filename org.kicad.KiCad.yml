@@ -119,8 +119,8 @@ modules:
   - -DINSTALL_TEST_CASES=OFF
   sources:
   - type: archive
-    url: https://github.com/tpaviot/oce/releases/download/official-upstream-packages/opencascade-7.5.0.tgz
-    sha256: d82d253aa6f43ce49111e84e04286dab4445eecba8efb5190973244b0c7fd211
+    url: https://github.com/tpaviot/oce/releases/download/official-upstream-packages/opencascade-7.5.1.snapshot.tar.gz
+    sha256: db6c38dbaddb3f95c4af4234b3f2972d4121b59b99bb07ded06fe4bd212b2aaa
 
 - name: ngspice
   cleanup:
