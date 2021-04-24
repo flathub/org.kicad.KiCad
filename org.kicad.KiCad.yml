@@ -172,9 +172,10 @@ modules:
   config-opts:
   - -DKICAD_I18N_UNIX_STRICT_PATH=ON
   sources:
-  - type: archive
-    url: https://gitlab.com/kicad/code/kicad-i18n/-/archive/5.1.9/kicad-i18n-5.1.9.tar.gz
-    sha256: f2cadcae1400bf483668ceccd190dff3d9dfd098307c146d273ed0bb01f4882f
+  - type: git
+    url: https://gitlab.com/kicad/code/kicad-i18n.git
+    branch: '5.1'
+    commit: 0ad3d7e469e31c8868ad83f90e22a9c18f16aa1f
 
 - name: kicad-doc
   build-commands:
