@@ -51,6 +51,41 @@ modules:
     url: https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip
     sha256: 37e2a3d62ea3322e43593c34bae29f57e3e251ea89f4067506c94043769ade4c
 
+- name: libXmu
+  cleanup:
+  - /share/doc
+  sources:
+  - type: archive
+    url: https://www.x.org/archive//individual/lib/libXmu-1.1.3.tar.gz
+    sha256: 5bd9d4ed1ceaac9ea023d86bf1c1632cd3b172dce4a193a72a94e1d9df87a62e
+
+- name: OCCT
+  buildsystem: cmake-ninja
+  cleanup:
+  - /bin
+  - /share/doc
+  config-opts:
+  - -DCMAKE_BUILD_TYPE=Release
+  - -DBUILD_LIBRARY_TYPE=Shared
+  - -DBUILD_Inspector=OFF
+  - -DBUILD_DOC_Overview=OFF
+  - -DBUILD_MODULE_ApplicationFramework=ON
+  - -DBUILD_MODULE_DataExchange=ON
+  - -DBUILD_MODULE_Draw=OFF
+  - -DBUILD_MODULE_FoundationClasses=ON
+  - -DBUILD_MODULE_ModelingAlgorithms=ON
+  - -DBUILD_MODULE_ModelingData=ON
+  - -DBUILD_MODULE_Visualization=ON
+  - -DUSE_VTK=OFF
+  - -DUSE_TBB=OFF
+  - -DINSTALL_FREETYPE=OFF
+  - -DINSTALL_SAMPLES=OFF
+  - -DINSTALL_TEST_CASES=OFF
+  sources:
+  - type: archive
+    url: https://github.com/tpaviot/oce/releases/download/official-upstream-packages/opencascade-7.5.1.snapshot.tar.gz
+    sha256: db6c38dbaddb3f95c4af4234b3f2972d4121b59b99bb07ded06fe4bd212b2aaa
+
 - name: boost
   buildsystem: simple
   build-commands:
@@ -86,41 +121,6 @@ modules:
   - type: archive
     url: https://sourceforge.net/projects/swig/files/swig/swig-4.0.2/swig-4.0.2.tar.gz
     sha256: d53be9730d8d58a16bf0cbd1f8ac0c0c3e1090573168bfa151b01eb47fa906fc
-
-- name: libXmu
-  cleanup:
-  - /share/doc
-  sources:
-  - type: archive
-    url: https://www.x.org/archive//individual/lib/libXmu-1.1.3.tar.gz
-    sha256: 5bd9d4ed1ceaac9ea023d86bf1c1632cd3b172dce4a193a72a94e1d9df87a62e
-
-- name: OCCT
-  buildsystem: cmake-ninja
-  cleanup:
-  - /bin
-  - /share/doc
-  config-opts:
-  - -DCMAKE_BUILD_TYPE=Release
-  - -DBUILD_LIBRARY_TYPE=Shared
-  - -DBUILD_Inspector=OFF
-  - -DBUILD_DOC_Overview=OFF
-  - -DBUILD_MODULE_ApplicationFramework=ON
-  - -DBUILD_MODULE_DataExchange=ON
-  - -DBUILD_MODULE_Draw=OFF
-  - -DBUILD_MODULE_FoundationClasses=ON
-  - -DBUILD_MODULE_ModelingAlgorithms=ON
-  - -DBUILD_MODULE_ModelingData=ON
-  - -DBUILD_MODULE_Visualization=ON
-  - -DUSE_VTK=OFF
-  - -DUSE_TBB=OFF
-  - -DINSTALL_FREETYPE=OFF
-  - -DINSTALL_SAMPLES=OFF
-  - -DINSTALL_TEST_CASES=OFF
-  sources:
-  - type: archive
-    url: https://github.com/tpaviot/oce/releases/download/official-upstream-packages/opencascade-7.5.1.snapshot.tar.gz
-    sha256: db6c38dbaddb3f95c4af4234b3f2972d4121b59b99bb07ded06fe4bd212b2aaa
 
 - name: ngspice
   cleanup:
