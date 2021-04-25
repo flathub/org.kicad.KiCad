@@ -4,8 +4,6 @@ runtime-version: '20.08'
 sdk: org.freedesktop.Sdk
 command: kicad
 rename-appdata-file: kicad.appdata.xml
-rename-desktop-file: kicad.desktop
-rename-icon: kicad
 finish-args:
 - --device=dri
 - --env=LD_LIBRARY_PATH=/app/lib
@@ -166,6 +164,8 @@ modules:
     path: fix-rectifier-demo-for-ngspice-32.patch
   - type: patch
     path: fix-screenshot-sizes-in-kicad.appdata.xml.in.patch
+  - type: patch
+    path: rename-icons-mime-and-desktop-files-for-flatpak.patch
   - type: shell
     commands:
     - sed -i '5s/org\.kicad_pcb\.kicad/org.kicad.KiCad/;96i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/appdata/kicad.appdata.xml.in

@@ -1,0 +1,631 @@
+From b5e70240d8d9f17d02e3cdd35ce92e5362c18e36 Mon Sep 17 00:00:00 2001
+From: Johannes Maibaum <jmaibaum@gmail.com>
+Date: Sat, 24 Apr 2021 15:02:03 +0200
+Subject: [PATCH] Rename icons, mime, and desktop files for flatpak
+
+---
+ resources/linux/appdata/kicad.appdata.xml.in        |   2 +-
+ ...top => org.kicad.KiCad.bitmap2component.desktop} |   3 ++-
+ .../{kicad.desktop => org.kicad.KiCad.desktop}      |   3 ++-
+ ...ema.desktop => org.kicad.KiCad.eeschema.desktop} |   3 ++-
+ ...iew.desktop => org.kicad.KiCad.gerbview.desktop} |   3 ++-
+ ...esktop => org.kicad.KiCad.pcbcalculator.desktop} |   3 ++-
+ ...cbnew.desktop => org.kicad.KiCad.pcbnew.desktop} |   3 ++-
+ ...ent.png => org.kicad.KiCad.bitmap2component.png} | Bin
+ .../{eeschema.png => org.kicad.KiCad.eeschema.png}  | Bin
+ .../{gerbview.png => org.kicad.KiCad.gerbview.png}  | Bin
+ ...ulator.png => org.kicad.KiCad.pcbcalculator.png} | Bin
+ .../apps/{pcbnew.png => org.kicad.KiCad.pcbnew.png} | Bin
+ .../128x128/apps/{kicad.png => org.kicad.KiCad.png} | Bin
+ ... => org.kicad.KiCad.application-x-kicad-pcb.png} | Bin
+ ...org.kicad.KiCad.application-x-kicad-project.png} | Bin
+ ...g.kicad.KiCad.application-x-kicad-schematic.png} | Bin
+ ...ent.png => org.kicad.KiCad.bitmap2component.png} | Bin
+ .../{eeschema.png => org.kicad.KiCad.eeschema.png}  | Bin
+ .../{gerbview.png => org.kicad.KiCad.gerbview.png}  | Bin
+ ...ulator.png => org.kicad.KiCad.pcbcalculator.png} | Bin
+ .../apps/{pcbnew.png => org.kicad.KiCad.pcbnew.png} | Bin
+ .../16x16/apps/{kicad.png => org.kicad.KiCad.png}   | Bin
+ ... => org.kicad.KiCad.application-x-kicad-pcb.png} | Bin
+ ...org.kicad.KiCad.application-x-kicad-project.png} | Bin
+ ...g.kicad.KiCad.application-x-kicad-schematic.png} | Bin
+ ...ent.png => org.kicad.KiCad.bitmap2component.png} | Bin
+ .../{eeschema.png => org.kicad.KiCad.eeschema.png}  | Bin
+ .../{gerbview.png => org.kicad.KiCad.gerbview.png}  | Bin
+ ...ulator.png => org.kicad.KiCad.pcbcalculator.png} | Bin
+ .../apps/{pcbnew.png => org.kicad.KiCad.pcbnew.png} | Bin
+ .../22x22/apps/{kicad.png => org.kicad.KiCad.png}   | Bin
+ ... => org.kicad.KiCad.application-x-kicad-pcb.png} | Bin
+ ...org.kicad.KiCad.application-x-kicad-project.png} | Bin
+ ...g.kicad.KiCad.application-x-kicad-schematic.png} | Bin
+ ...ent.png => org.kicad.KiCad.bitmap2component.png} | Bin
+ .../{eeschema.png => org.kicad.KiCad.eeschema.png}  | Bin
+ .../{gerbview.png => org.kicad.KiCad.gerbview.png}  | Bin
+ ...ulator.png => org.kicad.KiCad.pcbcalculator.png} | Bin
+ .../apps/{pcbnew.png => org.kicad.KiCad.pcbnew.png} | Bin
+ .../24x24/apps/{kicad.png => org.kicad.KiCad.png}   | Bin
+ ... => org.kicad.KiCad.application-x-kicad-pcb.png} | Bin
+ ...org.kicad.KiCad.application-x-kicad-project.png} | Bin
+ ...g.kicad.KiCad.application-x-kicad-schematic.png} | Bin
+ ...ent.png => org.kicad.KiCad.bitmap2component.png} | Bin
+ .../{eeschema.png => org.kicad.KiCad.eeschema.png}  | Bin
+ .../{gerbview.png => org.kicad.KiCad.gerbview.png}  | Bin
+ ...ulator.png => org.kicad.KiCad.pcbcalculator.png} | Bin
+ .../apps/{pcbnew.png => org.kicad.KiCad.pcbnew.png} | Bin
+ .../32x32/apps/{kicad.png => org.kicad.KiCad.png}   | Bin
+ ... => org.kicad.KiCad.application-x-kicad-pcb.png} | Bin
+ ...org.kicad.KiCad.application-x-kicad-project.png} | Bin
+ ...g.kicad.KiCad.application-x-kicad-schematic.png} | Bin
+ ...ent.png => org.kicad.KiCad.bitmap2component.png} | Bin
+ .../{eeschema.png => org.kicad.KiCad.eeschema.png}  | Bin
+ .../{gerbview.png => org.kicad.KiCad.gerbview.png}  | Bin
+ ...ulator.png => org.kicad.KiCad.pcbcalculator.png} | Bin
+ .../apps/{pcbnew.png => org.kicad.KiCad.pcbnew.png} | Bin
+ .../48x48/apps/{kicad.png => org.kicad.KiCad.png}   | Bin
+ ... => org.kicad.KiCad.application-x-kicad-pcb.png} | Bin
+ ...org.kicad.KiCad.application-x-kicad-project.png} | Bin
+ ...g.kicad.KiCad.application-x-kicad-schematic.png} | Bin
+ ...ent.png => org.kicad.KiCad.bitmap2component.png} | Bin
+ .../{eeschema.png => org.kicad.KiCad.eeschema.png}  | Bin
+ .../{gerbview.png => org.kicad.KiCad.gerbview.png}  | Bin
+ ...ulator.png => org.kicad.KiCad.pcbcalculator.png} | Bin
+ .../apps/{pcbnew.png => org.kicad.KiCad.pcbnew.png} | Bin
+ .../64x64/apps/{kicad.png => org.kicad.KiCad.png}   | Bin
+ ... => org.kicad.KiCad.application-x-kicad-pcb.png} | Bin
+ ...org.kicad.KiCad.application-x-kicad-project.png} | Bin
+ ...g.kicad.KiCad.application-x-kicad-schematic.png} | Bin
+ ...ent.svg => org.kicad.KiCad.bitmap2component.svg} |   0
+ .../{eeschema.svg => org.kicad.KiCad.eeschema.svg}  |   0
+ .../{gerbview.svg => org.kicad.KiCad.gerbview.svg}  |   0
+ ...ulator.svg => org.kicad.KiCad.pcbcalculator.svg} |   0
+ .../apps/{pcbnew.svg => org.kicad.KiCad.pcbnew.svg} |   0
+ .../apps/{kicad.svg => org.kicad.KiCad.svg}         |   0
+ ... => org.kicad.KiCad.application-x-kicad-pcb.svg} |   0
+ ...org.kicad.KiCad.application-x-kicad-project.svg} |   0
+ ...g.kicad.KiCad.application-x-kicad-schematic.svg} |   0
+ ...icad-gerbers.xml => org.kicad.KiCad-gerbers.xml} |   0
+ .../{kicad-kicad.xml => org.kicad.KiCad-kicad.xml}  |   3 +++
+ 81 files changed, 16 insertions(+), 7 deletions(-)
+ rename resources/linux/mime/applications/{bitmap2component.desktop => org.kicad.KiCad.bitmap2component.desktop} (84%)
+ rename resources/linux/mime/applications/{kicad.desktop => org.kicad.KiCad.desktop} (89%)
+ rename resources/linux/mime/applications/{eeschema.desktop => org.kicad.KiCad.eeschema.desktop} (89%)
+ rename resources/linux/mime/applications/{gerbview.desktop => org.kicad.KiCad.gerbview.desktop} (85%)
+ rename resources/linux/mime/applications/{pcbcalculator.desktop => org.kicad.KiCad.pcbcalculator.desktop} (82%)
+ rename resources/linux/mime/applications/{pcbnew.desktop => org.kicad.KiCad.pcbnew.desktop} (86%)
+ rename resources/linux/mime/icons/hicolor/128x128/apps/{bitmap2component.png => org.kicad.KiCad.bitmap2component.png} (100%)
+ rename resources/linux/mime/icons/hicolor/128x128/apps/{eeschema.png => org.kicad.KiCad.eeschema.png} (100%)
+ rename resources/linux/mime/icons/hicolor/128x128/apps/{gerbview.png => org.kicad.KiCad.gerbview.png} (100%)
+ rename resources/linux/mime/icons/hicolor/128x128/apps/{pcbcalculator.png => org.kicad.KiCad.pcbcalculator.png} (100%)
+ rename resources/linux/mime/icons/hicolor/128x128/apps/{pcbnew.png => org.kicad.KiCad.pcbnew.png} (100%)
+ rename resources/linux/mime/icons/hicolor/128x128/apps/{kicad.png => org.kicad.KiCad.png} (100%)
+ rename resources/linux/mime/icons/hicolor/128x128/mimetypes/{application-x-kicad-pcb.png => org.kicad.KiCad.application-x-kicad-pcb.png} (100%)
+ rename resources/linux/mime/icons/hicolor/128x128/mimetypes/{application-x-kicad-project.png => org.kicad.KiCad.application-x-kicad-project.png} (100%)
+ rename resources/linux/mime/icons/hicolor/128x128/mimetypes/{application-x-kicad-schematic.png => org.kicad.KiCad.application-x-kicad-schematic.png} (100%)
+ rename resources/linux/mime/icons/hicolor/16x16/apps/{bitmap2component.png => org.kicad.KiCad.bitmap2component.png} (100%)
+ rename resources/linux/mime/icons/hicolor/16x16/apps/{eeschema.png => org.kicad.KiCad.eeschema.png} (100%)
+ rename resources/linux/mime/icons/hicolor/16x16/apps/{gerbview.png => org.kicad.KiCad.gerbview.png} (100%)
+ rename resources/linux/mime/icons/hicolor/16x16/apps/{pcbcalculator.png => org.kicad.KiCad.pcbcalculator.png} (100%)
+ rename resources/linux/mime/icons/hicolor/16x16/apps/{pcbnew.png => org.kicad.KiCad.pcbnew.png} (100%)
+ rename resources/linux/mime/icons/hicolor/16x16/apps/{kicad.png => org.kicad.KiCad.png} (100%)
+ rename resources/linux/mime/icons/hicolor/16x16/mimetypes/{application-x-kicad-pcb.png => org.kicad.KiCad.application-x-kicad-pcb.png} (100%)
+ rename resources/linux/mime/icons/hicolor/16x16/mimetypes/{application-x-kicad-project.png => org.kicad.KiCad.application-x-kicad-project.png} (100%)
+ rename resources/linux/mime/icons/hicolor/16x16/mimetypes/{application-x-kicad-schematic.png => org.kicad.KiCad.application-x-kicad-schematic.png} (100%)
+ rename resources/linux/mime/icons/hicolor/22x22/apps/{bitmap2component.png => org.kicad.KiCad.bitmap2component.png} (100%)
+ rename resources/linux/mime/icons/hicolor/22x22/apps/{eeschema.png => org.kicad.KiCad.eeschema.png} (100%)
+ rename resources/linux/mime/icons/hicolor/22x22/apps/{gerbview.png => org.kicad.KiCad.gerbview.png} (100%)
+ rename resources/linux/mime/icons/hicolor/22x22/apps/{pcbcalculator.png => org.kicad.KiCad.pcbcalculator.png} (100%)
+ rename resources/linux/mime/icons/hicolor/22x22/apps/{pcbnew.png => org.kicad.KiCad.pcbnew.png} (100%)
+ rename resources/linux/mime/icons/hicolor/22x22/apps/{kicad.png => org.kicad.KiCad.png} (100%)
+ rename resources/linux/mime/icons/hicolor/22x22/mimetypes/{application-x-kicad-pcb.png => org.kicad.KiCad.application-x-kicad-pcb.png} (100%)
+ rename resources/linux/mime/icons/hicolor/22x22/mimetypes/{application-x-kicad-project.png => org.kicad.KiCad.application-x-kicad-project.png} (100%)
+ rename resources/linux/mime/icons/hicolor/22x22/mimetypes/{application-x-kicad-schematic.png => org.kicad.KiCad.application-x-kicad-schematic.png} (100%)
+ rename resources/linux/mime/icons/hicolor/24x24/apps/{bitmap2component.png => org.kicad.KiCad.bitmap2component.png} (100%)
+ rename resources/linux/mime/icons/hicolor/24x24/apps/{eeschema.png => org.kicad.KiCad.eeschema.png} (100%)
+ rename resources/linux/mime/icons/hicolor/24x24/apps/{gerbview.png => org.kicad.KiCad.gerbview.png} (100%)
+ rename resources/linux/mime/icons/hicolor/24x24/apps/{pcbcalculator.png => org.kicad.KiCad.pcbcalculator.png} (100%)
+ rename resources/linux/mime/icons/hicolor/24x24/apps/{pcbnew.png => org.kicad.KiCad.pcbnew.png} (100%)
+ rename resources/linux/mime/icons/hicolor/24x24/apps/{kicad.png => org.kicad.KiCad.png} (100%)
+ rename resources/linux/mime/icons/hicolor/24x24/mimetypes/{application-x-kicad-pcb.png => org.kicad.KiCad.application-x-kicad-pcb.png} (100%)
+ rename resources/linux/mime/icons/hicolor/24x24/mimetypes/{application-x-kicad-project.png => org.kicad.KiCad.application-x-kicad-project.png} (100%)
+ rename resources/linux/mime/icons/hicolor/24x24/mimetypes/{application-x-kicad-schematic.png => org.kicad.KiCad.application-x-kicad-schematic.png} (100%)
+ rename resources/linux/mime/icons/hicolor/32x32/apps/{bitmap2component.png => org.kicad.KiCad.bitmap2component.png} (100%)
+ rename resources/linux/mime/icons/hicolor/32x32/apps/{eeschema.png => org.kicad.KiCad.eeschema.png} (100%)
+ rename resources/linux/mime/icons/hicolor/32x32/apps/{gerbview.png => org.kicad.KiCad.gerbview.png} (100%)
+ rename resources/linux/mime/icons/hicolor/32x32/apps/{pcbcalculator.png => org.kicad.KiCad.pcbcalculator.png} (100%)
+ rename resources/linux/mime/icons/hicolor/32x32/apps/{pcbnew.png => org.kicad.KiCad.pcbnew.png} (100%)
+ rename resources/linux/mime/icons/hicolor/32x32/apps/{kicad.png => org.kicad.KiCad.png} (100%)
+ rename resources/linux/mime/icons/hicolor/32x32/mimetypes/{application-x-kicad-pcb.png => org.kicad.KiCad.application-x-kicad-pcb.png} (100%)
+ rename resources/linux/mime/icons/hicolor/32x32/mimetypes/{application-x-kicad-project.png => org.kicad.KiCad.application-x-kicad-project.png} (100%)
+ rename resources/linux/mime/icons/hicolor/32x32/mimetypes/{application-x-kicad-schematic.png => org.kicad.KiCad.application-x-kicad-schematic.png} (100%)
+ rename resources/linux/mime/icons/hicolor/48x48/apps/{bitmap2component.png => org.kicad.KiCad.bitmap2component.png} (100%)
+ rename resources/linux/mime/icons/hicolor/48x48/apps/{eeschema.png => org.kicad.KiCad.eeschema.png} (100%)
+ rename resources/linux/mime/icons/hicolor/48x48/apps/{gerbview.png => org.kicad.KiCad.gerbview.png} (100%)
+ rename resources/linux/mime/icons/hicolor/48x48/apps/{pcbcalculator.png => org.kicad.KiCad.pcbcalculator.png} (100%)
+ rename resources/linux/mime/icons/hicolor/48x48/apps/{pcbnew.png => org.kicad.KiCad.pcbnew.png} (100%)
+ rename resources/linux/mime/icons/hicolor/48x48/apps/{kicad.png => org.kicad.KiCad.png} (100%)
+ rename resources/linux/mime/icons/hicolor/48x48/mimetypes/{application-x-kicad-pcb.png => org.kicad.KiCad.application-x-kicad-pcb.png} (100%)
+ rename resources/linux/mime/icons/hicolor/48x48/mimetypes/{application-x-kicad-project.png => org.kicad.KiCad.application-x-kicad-project.png} (100%)
+ rename resources/linux/mime/icons/hicolor/48x48/mimetypes/{application-x-kicad-schematic.png => org.kicad.KiCad.application-x-kicad-schematic.png} (100%)
+ rename resources/linux/mime/icons/hicolor/64x64/apps/{bitmap2component.png => org.kicad.KiCad.bitmap2component.png} (100%)
+ rename resources/linux/mime/icons/hicolor/64x64/apps/{eeschema.png => org.kicad.KiCad.eeschema.png} (100%)
+ rename resources/linux/mime/icons/hicolor/64x64/apps/{gerbview.png => org.kicad.KiCad.gerbview.png} (100%)
+ rename resources/linux/mime/icons/hicolor/64x64/apps/{pcbcalculator.png => org.kicad.KiCad.pcbcalculator.png} (100%)
+ rename resources/linux/mime/icons/hicolor/64x64/apps/{pcbnew.png => org.kicad.KiCad.pcbnew.png} (100%)
+ rename resources/linux/mime/icons/hicolor/64x64/apps/{kicad.png => org.kicad.KiCad.png} (100%)
+ rename resources/linux/mime/icons/hicolor/64x64/mimetypes/{application-x-kicad-pcb.png => org.kicad.KiCad.application-x-kicad-pcb.png} (100%)
+ rename resources/linux/mime/icons/hicolor/64x64/mimetypes/{application-x-kicad-project.png => org.kicad.KiCad.application-x-kicad-project.png} (100%)
+ rename resources/linux/mime/icons/hicolor/64x64/mimetypes/{application-x-kicad-schematic.png => org.kicad.KiCad.application-x-kicad-schematic.png} (100%)
+ rename resources/linux/mime/icons/hicolor/scalable/apps/{bitmap2component.svg => org.kicad.KiCad.bitmap2component.svg} (100%)
+ rename resources/linux/mime/icons/hicolor/scalable/apps/{eeschema.svg => org.kicad.KiCad.eeschema.svg} (100%)
+ rename resources/linux/mime/icons/hicolor/scalable/apps/{gerbview.svg => org.kicad.KiCad.gerbview.svg} (100%)
+ rename resources/linux/mime/icons/hicolor/scalable/apps/{pcbcalculator.svg => org.kicad.KiCad.pcbcalculator.svg} (100%)
+ rename resources/linux/mime/icons/hicolor/scalable/apps/{pcbnew.svg => org.kicad.KiCad.pcbnew.svg} (100%)
+ rename resources/linux/mime/icons/hicolor/scalable/apps/{kicad.svg => org.kicad.KiCad.svg} (100%)
+ rename resources/linux/mime/icons/hicolor/scalable/mimetypes/{application-x-kicad-pcb.svg => org.kicad.KiCad.application-x-kicad-pcb.svg} (100%)
+ rename resources/linux/mime/icons/hicolor/scalable/mimetypes/{application-x-kicad-project.svg => org.kicad.KiCad.application-x-kicad-project.svg} (100%)
+ rename resources/linux/mime/icons/hicolor/scalable/mimetypes/{application-x-kicad-schematic.svg => org.kicad.KiCad.application-x-kicad-schematic.svg} (100%)
+ rename resources/linux/mime/mime/packages/{kicad-gerbers.xml => org.kicad.KiCad-gerbers.xml} (100%)
+ rename resources/linux/mime/mime/packages/{kicad-kicad.xml => org.kicad.KiCad-kicad.xml} (79%)
+
+diff --git a/resources/linux/appdata/kicad.appdata.xml.in b/resources/linux/appdata/kicad.appdata.xml.in
+index f50c4183c3..f573788f56 100644
+--- a/resources/linux/appdata/kicad.appdata.xml.in
++++ b/resources/linux/appdata/kicad.appdata.xml.in
+@@ -5,7 +5,7 @@
+   <id>org.kicad_pcb.kicad</id>
+   <name>KiCad</name>
+ 
+-  <launchable type="desktop-id">kicad.desktop</launchable>
++  <launchable type="desktop-id">org.kicad.KiCad.desktop</launchable>
+ 
+   <project_license>AGPL-3.0-or-later</project_license>
+   <metadata_license>CC-BY-SA-4.0</metadata_license>
+diff --git a/resources/linux/mime/applications/bitmap2component.desktop b/resources/linux/mime/applications/org.kicad.KiCad.bitmap2component.desktop
+similarity index 84%
+rename from resources/linux/mime/applications/bitmap2component.desktop
+rename to resources/linux/mime/applications/org.kicad.KiCad.bitmap2component.desktop
+index c5e04af8e4..d23f029d41 100644
+--- a/resources/linux/mime/applications/bitmap2component.desktop
++++ b/resources/linux/mime/applications/org.kicad.KiCad.bitmap2component.desktop
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Version=1.0
+ Terminal=false
+-Icon=bitmap2component
++Icon=org.kicad.KiCad.bitmap2component
+ Type=Application
+ Categories=Science;Electronics;
+ Exec=bitmap2component
+@@ -12,3 +12,4 @@ GenericName[zh_CN]=位图到元件转换器
+ Comment=Create a component from a bitmap for use with KiCad
+ Comment[it]=Crea un componente KiCad da un'immagine bitmap
+ Comment[zh_CN]=从位图创建用于 KiCad 的元件
++X-Flatpak-RenamedFrom=bitmap2component.desktop;
+diff --git a/resources/linux/mime/applications/kicad.desktop b/resources/linux/mime/applications/org.kicad.KiCad.desktop
+similarity index 89%
+rename from resources/linux/mime/applications/kicad.desktop
+rename to resources/linux/mime/applications/org.kicad.KiCad.desktop
+index 35f982c44f..71fec0df5e 100644
+--- a/resources/linux/mime/applications/kicad.desktop
++++ b/resources/linux/mime/applications/org.kicad.KiCad.desktop
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Version=1.0
+ Terminal=false
+-Icon=kicad
++Icon=org.kicad.KiCad
+ Type=Application
+ Categories=Science;Electronics;
+ Exec=kicad %f
+@@ -15,3 +15,4 @@ Comment[fr]=Suite logicielle de conception électronique
+ Comment[it]=Suite di progettazione circuiti elettronici
+ Comment[zh_CN]=电子设计自动化工具箱
+ X-Desktop-File-Install-Version=0.22
++X-Flatpak-RenamedFrom=kicad.desktop;
+diff --git a/resources/linux/mime/applications/eeschema.desktop b/resources/linux/mime/applications/org.kicad.KiCad.eeschema.desktop
+similarity index 89%
+rename from resources/linux/mime/applications/eeschema.desktop
+rename to resources/linux/mime/applications/org.kicad.KiCad.eeschema.desktop
+index e7cc30b95e..39a93c6cfc 100644
+--- a/resources/linux/mime/applications/eeschema.desktop
++++ b/resources/linux/mime/applications/org.kicad.KiCad.eeschema.desktop
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Version=1.0
+ Terminal=false
+-Icon=eeschema
++Icon=org.kicad.KiCad.eeschema
+ Type=Application
+ Categories=Science;Electronics;
+ Exec=eeschema %f
+@@ -15,3 +15,4 @@ Comment=KiCad electronic schematic design (standalone)
+ Comment[fr]=Dessiner des schémas électroniques (Standalone)
+ Comment[it]=Progettazione di schemi elettrici (Standalone)
+ Comment[zh_CN]=KiCad 电子原理图设计 (单机版)
++X-Flatpak-RenamedFrom=eeschema.desktop;
+diff --git a/resources/linux/mime/applications/gerbview.desktop b/resources/linux/mime/applications/org.kicad.KiCad.gerbview.desktop
+similarity index 85%
+rename from resources/linux/mime/applications/gerbview.desktop
+rename to resources/linux/mime/applications/org.kicad.KiCad.gerbview.desktop
+index 8b560f7265..37846470b1 100644
+--- a/resources/linux/mime/applications/gerbview.desktop
++++ b/resources/linux/mime/applications/org.kicad.KiCad.gerbview.desktop
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Version=1.0
+ Terminal=false
+-Icon=gerbview
++Icon=org.kicad.KiCad.gerbview
+ Type=Application
+ Categories=Science;Electronics;
+ Exec=gerbview
+@@ -13,3 +13,4 @@ GenericName[zh_CN]=Gerber 文件查看器
+ Comment=View Gerber files
+ Comment[it]=Visualizza file in formato Gerber
+ Comment[zh_CN]=查看 Gerber 文件
++X-Flatpak-RenamedFrom=gerbview.desktop;
+diff --git a/resources/linux/mime/applications/pcbcalculator.desktop b/resources/linux/mime/applications/org.kicad.KiCad.pcbcalculator.desktop
+similarity index 82%
+rename from resources/linux/mime/applications/pcbcalculator.desktop
+rename to resources/linux/mime/applications/org.kicad.KiCad.pcbcalculator.desktop
+index 7aa9bab308..a8fb1b4ff8 100644
+--- a/resources/linux/mime/applications/pcbcalculator.desktop
++++ b/resources/linux/mime/applications/org.kicad.KiCad.pcbcalculator.desktop
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Version=1.0
+ Terminal=false
+-Icon=pcbcalculator
++Icon=org.kicad.KiCad.pcbcalculator
+ Type=Application
+ Categories=Science;Electronics;
+ Exec=pcb_calculator
+@@ -11,3 +11,4 @@ GenericName[zh_CN]=PCB 计算器
+ Comment=Calculator for various electronics-related computations
+ Comment[it]=Calcolatore per CAD e varie grandezze elettroniche
+ Comment[zh_CN]=用于各种电子相关计算的计算器
++X-Flatpak-RenamedFrom=pcbcalculator.desktop;
+diff --git a/resources/linux/mime/applications/pcbnew.desktop b/resources/linux/mime/applications/org.kicad.KiCad.pcbnew.desktop
+similarity index 86%
+rename from resources/linux/mime/applications/pcbnew.desktop
+rename to resources/linux/mime/applications/org.kicad.KiCad.pcbnew.desktop
+index 6986ae6b9b..74326c13fd 100644
+--- a/resources/linux/mime/applications/pcbnew.desktop
++++ b/resources/linux/mime/applications/org.kicad.KiCad.pcbnew.desktop
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Version=1.0
+ Terminal=false
+-Icon=pcbnew
++Icon=org.kicad.KiCad.pcbnew
+ Type=Application
+ Categories=Science;Electronics;
+ Exec=pcbnew %f
+@@ -13,3 +13,4 @@ GenericName[zh_CN]=PCB 布局
+ Comment=KiCad printed circuit board layout (standalone)
+ Comment[it]=Disegno di circuiti stampati con KiCad (standalone)
+ Comment[zh_CN]=KiCad 印刷电路板布局 (单机版)
++X-Flatpak-RenamedFrom=pcbnew.desktop;
+diff --git a/resources/linux/mime/icons/hicolor/128x128/apps/bitmap2component.png b/resources/linux/mime/icons/hicolor/128x128/apps/org.kicad.KiCad.bitmap2component.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/128x128/apps/bitmap2component.png
+rename to resources/linux/mime/icons/hicolor/128x128/apps/org.kicad.KiCad.bitmap2component.png
+diff --git a/resources/linux/mime/icons/hicolor/128x128/apps/eeschema.png b/resources/linux/mime/icons/hicolor/128x128/apps/org.kicad.KiCad.eeschema.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/128x128/apps/eeschema.png
+rename to resources/linux/mime/icons/hicolor/128x128/apps/org.kicad.KiCad.eeschema.png
+diff --git a/resources/linux/mime/icons/hicolor/128x128/apps/gerbview.png b/resources/linux/mime/icons/hicolor/128x128/apps/org.kicad.KiCad.gerbview.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/128x128/apps/gerbview.png
+rename to resources/linux/mime/icons/hicolor/128x128/apps/org.kicad.KiCad.gerbview.png
+diff --git a/resources/linux/mime/icons/hicolor/128x128/apps/pcbcalculator.png b/resources/linux/mime/icons/hicolor/128x128/apps/org.kicad.KiCad.pcbcalculator.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/128x128/apps/pcbcalculator.png
+rename to resources/linux/mime/icons/hicolor/128x128/apps/org.kicad.KiCad.pcbcalculator.png
+diff --git a/resources/linux/mime/icons/hicolor/128x128/apps/pcbnew.png b/resources/linux/mime/icons/hicolor/128x128/apps/org.kicad.KiCad.pcbnew.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/128x128/apps/pcbnew.png
+rename to resources/linux/mime/icons/hicolor/128x128/apps/org.kicad.KiCad.pcbnew.png
+diff --git a/resources/linux/mime/icons/hicolor/128x128/apps/kicad.png b/resources/linux/mime/icons/hicolor/128x128/apps/org.kicad.KiCad.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/128x128/apps/kicad.png
+rename to resources/linux/mime/icons/hicolor/128x128/apps/org.kicad.KiCad.png
+diff --git a/resources/linux/mime/icons/hicolor/128x128/mimetypes/application-x-kicad-pcb.png b/resources/linux/mime/icons/hicolor/128x128/mimetypes/org.kicad.KiCad.application-x-kicad-pcb.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/128x128/mimetypes/application-x-kicad-pcb.png
+rename to resources/linux/mime/icons/hicolor/128x128/mimetypes/org.kicad.KiCad.application-x-kicad-pcb.png
+diff --git a/resources/linux/mime/icons/hicolor/128x128/mimetypes/application-x-kicad-project.png b/resources/linux/mime/icons/hicolor/128x128/mimetypes/org.kicad.KiCad.application-x-kicad-project.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/128x128/mimetypes/application-x-kicad-project.png
+rename to resources/linux/mime/icons/hicolor/128x128/mimetypes/org.kicad.KiCad.application-x-kicad-project.png
+diff --git a/resources/linux/mime/icons/hicolor/128x128/mimetypes/application-x-kicad-schematic.png b/resources/linux/mime/icons/hicolor/128x128/mimetypes/org.kicad.KiCad.application-x-kicad-schematic.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/128x128/mimetypes/application-x-kicad-schematic.png
+rename to resources/linux/mime/icons/hicolor/128x128/mimetypes/org.kicad.KiCad.application-x-kicad-schematic.png
+diff --git a/resources/linux/mime/icons/hicolor/16x16/apps/bitmap2component.png b/resources/linux/mime/icons/hicolor/16x16/apps/org.kicad.KiCad.bitmap2component.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/16x16/apps/bitmap2component.png
+rename to resources/linux/mime/icons/hicolor/16x16/apps/org.kicad.KiCad.bitmap2component.png
+diff --git a/resources/linux/mime/icons/hicolor/16x16/apps/eeschema.png b/resources/linux/mime/icons/hicolor/16x16/apps/org.kicad.KiCad.eeschema.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/16x16/apps/eeschema.png
+rename to resources/linux/mime/icons/hicolor/16x16/apps/org.kicad.KiCad.eeschema.png
+diff --git a/resources/linux/mime/icons/hicolor/16x16/apps/gerbview.png b/resources/linux/mime/icons/hicolor/16x16/apps/org.kicad.KiCad.gerbview.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/16x16/apps/gerbview.png
+rename to resources/linux/mime/icons/hicolor/16x16/apps/org.kicad.KiCad.gerbview.png
+diff --git a/resources/linux/mime/icons/hicolor/16x16/apps/pcbcalculator.png b/resources/linux/mime/icons/hicolor/16x16/apps/org.kicad.KiCad.pcbcalculator.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/16x16/apps/pcbcalculator.png
+rename to resources/linux/mime/icons/hicolor/16x16/apps/org.kicad.KiCad.pcbcalculator.png
+diff --git a/resources/linux/mime/icons/hicolor/16x16/apps/pcbnew.png b/resources/linux/mime/icons/hicolor/16x16/apps/org.kicad.KiCad.pcbnew.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/16x16/apps/pcbnew.png
+rename to resources/linux/mime/icons/hicolor/16x16/apps/org.kicad.KiCad.pcbnew.png
+diff --git a/resources/linux/mime/icons/hicolor/16x16/apps/kicad.png b/resources/linux/mime/icons/hicolor/16x16/apps/org.kicad.KiCad.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/16x16/apps/kicad.png
+rename to resources/linux/mime/icons/hicolor/16x16/apps/org.kicad.KiCad.png
+diff --git a/resources/linux/mime/icons/hicolor/16x16/mimetypes/application-x-kicad-pcb.png b/resources/linux/mime/icons/hicolor/16x16/mimetypes/org.kicad.KiCad.application-x-kicad-pcb.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/16x16/mimetypes/application-x-kicad-pcb.png
+rename to resources/linux/mime/icons/hicolor/16x16/mimetypes/org.kicad.KiCad.application-x-kicad-pcb.png
+diff --git a/resources/linux/mime/icons/hicolor/16x16/mimetypes/application-x-kicad-project.png b/resources/linux/mime/icons/hicolor/16x16/mimetypes/org.kicad.KiCad.application-x-kicad-project.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/16x16/mimetypes/application-x-kicad-project.png
+rename to resources/linux/mime/icons/hicolor/16x16/mimetypes/org.kicad.KiCad.application-x-kicad-project.png
+diff --git a/resources/linux/mime/icons/hicolor/16x16/mimetypes/application-x-kicad-schematic.png b/resources/linux/mime/icons/hicolor/16x16/mimetypes/org.kicad.KiCad.application-x-kicad-schematic.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/16x16/mimetypes/application-x-kicad-schematic.png
+rename to resources/linux/mime/icons/hicolor/16x16/mimetypes/org.kicad.KiCad.application-x-kicad-schematic.png
+diff --git a/resources/linux/mime/icons/hicolor/22x22/apps/bitmap2component.png b/resources/linux/mime/icons/hicolor/22x22/apps/org.kicad.KiCad.bitmap2component.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/22x22/apps/bitmap2component.png
+rename to resources/linux/mime/icons/hicolor/22x22/apps/org.kicad.KiCad.bitmap2component.png
+diff --git a/resources/linux/mime/icons/hicolor/22x22/apps/eeschema.png b/resources/linux/mime/icons/hicolor/22x22/apps/org.kicad.KiCad.eeschema.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/22x22/apps/eeschema.png
+rename to resources/linux/mime/icons/hicolor/22x22/apps/org.kicad.KiCad.eeschema.png
+diff --git a/resources/linux/mime/icons/hicolor/22x22/apps/gerbview.png b/resources/linux/mime/icons/hicolor/22x22/apps/org.kicad.KiCad.gerbview.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/22x22/apps/gerbview.png
+rename to resources/linux/mime/icons/hicolor/22x22/apps/org.kicad.KiCad.gerbview.png
+diff --git a/resources/linux/mime/icons/hicolor/22x22/apps/pcbcalculator.png b/resources/linux/mime/icons/hicolor/22x22/apps/org.kicad.KiCad.pcbcalculator.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/22x22/apps/pcbcalculator.png
+rename to resources/linux/mime/icons/hicolor/22x22/apps/org.kicad.KiCad.pcbcalculator.png
+diff --git a/resources/linux/mime/icons/hicolor/22x22/apps/pcbnew.png b/resources/linux/mime/icons/hicolor/22x22/apps/org.kicad.KiCad.pcbnew.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/22x22/apps/pcbnew.png
+rename to resources/linux/mime/icons/hicolor/22x22/apps/org.kicad.KiCad.pcbnew.png
+diff --git a/resources/linux/mime/icons/hicolor/22x22/apps/kicad.png b/resources/linux/mime/icons/hicolor/22x22/apps/org.kicad.KiCad.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/22x22/apps/kicad.png
+rename to resources/linux/mime/icons/hicolor/22x22/apps/org.kicad.KiCad.png
+diff --git a/resources/linux/mime/icons/hicolor/22x22/mimetypes/application-x-kicad-pcb.png b/resources/linux/mime/icons/hicolor/22x22/mimetypes/org.kicad.KiCad.application-x-kicad-pcb.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/22x22/mimetypes/application-x-kicad-pcb.png
+rename to resources/linux/mime/icons/hicolor/22x22/mimetypes/org.kicad.KiCad.application-x-kicad-pcb.png
+diff --git a/resources/linux/mime/icons/hicolor/22x22/mimetypes/application-x-kicad-project.png b/resources/linux/mime/icons/hicolor/22x22/mimetypes/org.kicad.KiCad.application-x-kicad-project.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/22x22/mimetypes/application-x-kicad-project.png
+rename to resources/linux/mime/icons/hicolor/22x22/mimetypes/org.kicad.KiCad.application-x-kicad-project.png
+diff --git a/resources/linux/mime/icons/hicolor/22x22/mimetypes/application-x-kicad-schematic.png b/resources/linux/mime/icons/hicolor/22x22/mimetypes/org.kicad.KiCad.application-x-kicad-schematic.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/22x22/mimetypes/application-x-kicad-schematic.png
+rename to resources/linux/mime/icons/hicolor/22x22/mimetypes/org.kicad.KiCad.application-x-kicad-schematic.png
+diff --git a/resources/linux/mime/icons/hicolor/24x24/apps/bitmap2component.png b/resources/linux/mime/icons/hicolor/24x24/apps/org.kicad.KiCad.bitmap2component.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/24x24/apps/bitmap2component.png
+rename to resources/linux/mime/icons/hicolor/24x24/apps/org.kicad.KiCad.bitmap2component.png
+diff --git a/resources/linux/mime/icons/hicolor/24x24/apps/eeschema.png b/resources/linux/mime/icons/hicolor/24x24/apps/org.kicad.KiCad.eeschema.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/24x24/apps/eeschema.png
+rename to resources/linux/mime/icons/hicolor/24x24/apps/org.kicad.KiCad.eeschema.png
+diff --git a/resources/linux/mime/icons/hicolor/24x24/apps/gerbview.png b/resources/linux/mime/icons/hicolor/24x24/apps/org.kicad.KiCad.gerbview.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/24x24/apps/gerbview.png
+rename to resources/linux/mime/icons/hicolor/24x24/apps/org.kicad.KiCad.gerbview.png
+diff --git a/resources/linux/mime/icons/hicolor/24x24/apps/pcbcalculator.png b/resources/linux/mime/icons/hicolor/24x24/apps/org.kicad.KiCad.pcbcalculator.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/24x24/apps/pcbcalculator.png
+rename to resources/linux/mime/icons/hicolor/24x24/apps/org.kicad.KiCad.pcbcalculator.png
+diff --git a/resources/linux/mime/icons/hicolor/24x24/apps/pcbnew.png b/resources/linux/mime/icons/hicolor/24x24/apps/org.kicad.KiCad.pcbnew.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/24x24/apps/pcbnew.png
+rename to resources/linux/mime/icons/hicolor/24x24/apps/org.kicad.KiCad.pcbnew.png
+diff --git a/resources/linux/mime/icons/hicolor/24x24/apps/kicad.png b/resources/linux/mime/icons/hicolor/24x24/apps/org.kicad.KiCad.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/24x24/apps/kicad.png
+rename to resources/linux/mime/icons/hicolor/24x24/apps/org.kicad.KiCad.png
+diff --git a/resources/linux/mime/icons/hicolor/24x24/mimetypes/application-x-kicad-pcb.png b/resources/linux/mime/icons/hicolor/24x24/mimetypes/org.kicad.KiCad.application-x-kicad-pcb.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/24x24/mimetypes/application-x-kicad-pcb.png
+rename to resources/linux/mime/icons/hicolor/24x24/mimetypes/org.kicad.KiCad.application-x-kicad-pcb.png
+diff --git a/resources/linux/mime/icons/hicolor/24x24/mimetypes/application-x-kicad-project.png b/resources/linux/mime/icons/hicolor/24x24/mimetypes/org.kicad.KiCad.application-x-kicad-project.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/24x24/mimetypes/application-x-kicad-project.png
+rename to resources/linux/mime/icons/hicolor/24x24/mimetypes/org.kicad.KiCad.application-x-kicad-project.png
+diff --git a/resources/linux/mime/icons/hicolor/24x24/mimetypes/application-x-kicad-schematic.png b/resources/linux/mime/icons/hicolor/24x24/mimetypes/org.kicad.KiCad.application-x-kicad-schematic.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/24x24/mimetypes/application-x-kicad-schematic.png
+rename to resources/linux/mime/icons/hicolor/24x24/mimetypes/org.kicad.KiCad.application-x-kicad-schematic.png
+diff --git a/resources/linux/mime/icons/hicolor/32x32/apps/bitmap2component.png b/resources/linux/mime/icons/hicolor/32x32/apps/org.kicad.KiCad.bitmap2component.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/32x32/apps/bitmap2component.png
+rename to resources/linux/mime/icons/hicolor/32x32/apps/org.kicad.KiCad.bitmap2component.png
+diff --git a/resources/linux/mime/icons/hicolor/32x32/apps/eeschema.png b/resources/linux/mime/icons/hicolor/32x32/apps/org.kicad.KiCad.eeschema.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/32x32/apps/eeschema.png
+rename to resources/linux/mime/icons/hicolor/32x32/apps/org.kicad.KiCad.eeschema.png
+diff --git a/resources/linux/mime/icons/hicolor/32x32/apps/gerbview.png b/resources/linux/mime/icons/hicolor/32x32/apps/org.kicad.KiCad.gerbview.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/32x32/apps/gerbview.png
+rename to resources/linux/mime/icons/hicolor/32x32/apps/org.kicad.KiCad.gerbview.png
+diff --git a/resources/linux/mime/icons/hicolor/32x32/apps/pcbcalculator.png b/resources/linux/mime/icons/hicolor/32x32/apps/org.kicad.KiCad.pcbcalculator.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/32x32/apps/pcbcalculator.png
+rename to resources/linux/mime/icons/hicolor/32x32/apps/org.kicad.KiCad.pcbcalculator.png
+diff --git a/resources/linux/mime/icons/hicolor/32x32/apps/pcbnew.png b/resources/linux/mime/icons/hicolor/32x32/apps/org.kicad.KiCad.pcbnew.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/32x32/apps/pcbnew.png
+rename to resources/linux/mime/icons/hicolor/32x32/apps/org.kicad.KiCad.pcbnew.png
+diff --git a/resources/linux/mime/icons/hicolor/32x32/apps/kicad.png b/resources/linux/mime/icons/hicolor/32x32/apps/org.kicad.KiCad.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/32x32/apps/kicad.png
+rename to resources/linux/mime/icons/hicolor/32x32/apps/org.kicad.KiCad.png
+diff --git a/resources/linux/mime/icons/hicolor/32x32/mimetypes/application-x-kicad-pcb.png b/resources/linux/mime/icons/hicolor/32x32/mimetypes/org.kicad.KiCad.application-x-kicad-pcb.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/32x32/mimetypes/application-x-kicad-pcb.png
+rename to resources/linux/mime/icons/hicolor/32x32/mimetypes/org.kicad.KiCad.application-x-kicad-pcb.png
+diff --git a/resources/linux/mime/icons/hicolor/32x32/mimetypes/application-x-kicad-project.png b/resources/linux/mime/icons/hicolor/32x32/mimetypes/org.kicad.KiCad.application-x-kicad-project.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/32x32/mimetypes/application-x-kicad-project.png
+rename to resources/linux/mime/icons/hicolor/32x32/mimetypes/org.kicad.KiCad.application-x-kicad-project.png
+diff --git a/resources/linux/mime/icons/hicolor/32x32/mimetypes/application-x-kicad-schematic.png b/resources/linux/mime/icons/hicolor/32x32/mimetypes/org.kicad.KiCad.application-x-kicad-schematic.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/32x32/mimetypes/application-x-kicad-schematic.png
+rename to resources/linux/mime/icons/hicolor/32x32/mimetypes/org.kicad.KiCad.application-x-kicad-schematic.png
+diff --git a/resources/linux/mime/icons/hicolor/48x48/apps/bitmap2component.png b/resources/linux/mime/icons/hicolor/48x48/apps/org.kicad.KiCad.bitmap2component.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/48x48/apps/bitmap2component.png
+rename to resources/linux/mime/icons/hicolor/48x48/apps/org.kicad.KiCad.bitmap2component.png
+diff --git a/resources/linux/mime/icons/hicolor/48x48/apps/eeschema.png b/resources/linux/mime/icons/hicolor/48x48/apps/org.kicad.KiCad.eeschema.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/48x48/apps/eeschema.png
+rename to resources/linux/mime/icons/hicolor/48x48/apps/org.kicad.KiCad.eeschema.png
+diff --git a/resources/linux/mime/icons/hicolor/48x48/apps/gerbview.png b/resources/linux/mime/icons/hicolor/48x48/apps/org.kicad.KiCad.gerbview.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/48x48/apps/gerbview.png
+rename to resources/linux/mime/icons/hicolor/48x48/apps/org.kicad.KiCad.gerbview.png
+diff --git a/resources/linux/mime/icons/hicolor/48x48/apps/pcbcalculator.png b/resources/linux/mime/icons/hicolor/48x48/apps/org.kicad.KiCad.pcbcalculator.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/48x48/apps/pcbcalculator.png
+rename to resources/linux/mime/icons/hicolor/48x48/apps/org.kicad.KiCad.pcbcalculator.png
+diff --git a/resources/linux/mime/icons/hicolor/48x48/apps/pcbnew.png b/resources/linux/mime/icons/hicolor/48x48/apps/org.kicad.KiCad.pcbnew.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/48x48/apps/pcbnew.png
+rename to resources/linux/mime/icons/hicolor/48x48/apps/org.kicad.KiCad.pcbnew.png
+diff --git a/resources/linux/mime/icons/hicolor/48x48/apps/kicad.png b/resources/linux/mime/icons/hicolor/48x48/apps/org.kicad.KiCad.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/48x48/apps/kicad.png
+rename to resources/linux/mime/icons/hicolor/48x48/apps/org.kicad.KiCad.png
+diff --git a/resources/linux/mime/icons/hicolor/48x48/mimetypes/application-x-kicad-pcb.png b/resources/linux/mime/icons/hicolor/48x48/mimetypes/org.kicad.KiCad.application-x-kicad-pcb.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/48x48/mimetypes/application-x-kicad-pcb.png
+rename to resources/linux/mime/icons/hicolor/48x48/mimetypes/org.kicad.KiCad.application-x-kicad-pcb.png
+diff --git a/resources/linux/mime/icons/hicolor/48x48/mimetypes/application-x-kicad-project.png b/resources/linux/mime/icons/hicolor/48x48/mimetypes/org.kicad.KiCad.application-x-kicad-project.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/48x48/mimetypes/application-x-kicad-project.png
+rename to resources/linux/mime/icons/hicolor/48x48/mimetypes/org.kicad.KiCad.application-x-kicad-project.png
+diff --git a/resources/linux/mime/icons/hicolor/48x48/mimetypes/application-x-kicad-schematic.png b/resources/linux/mime/icons/hicolor/48x48/mimetypes/org.kicad.KiCad.application-x-kicad-schematic.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/48x48/mimetypes/application-x-kicad-schematic.png
+rename to resources/linux/mime/icons/hicolor/48x48/mimetypes/org.kicad.KiCad.application-x-kicad-schematic.png
+diff --git a/resources/linux/mime/icons/hicolor/64x64/apps/bitmap2component.png b/resources/linux/mime/icons/hicolor/64x64/apps/org.kicad.KiCad.bitmap2component.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/64x64/apps/bitmap2component.png
+rename to resources/linux/mime/icons/hicolor/64x64/apps/org.kicad.KiCad.bitmap2component.png
+diff --git a/resources/linux/mime/icons/hicolor/64x64/apps/eeschema.png b/resources/linux/mime/icons/hicolor/64x64/apps/org.kicad.KiCad.eeschema.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/64x64/apps/eeschema.png
+rename to resources/linux/mime/icons/hicolor/64x64/apps/org.kicad.KiCad.eeschema.png
+diff --git a/resources/linux/mime/icons/hicolor/64x64/apps/gerbview.png b/resources/linux/mime/icons/hicolor/64x64/apps/org.kicad.KiCad.gerbview.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/64x64/apps/gerbview.png
+rename to resources/linux/mime/icons/hicolor/64x64/apps/org.kicad.KiCad.gerbview.png
+diff --git a/resources/linux/mime/icons/hicolor/64x64/apps/pcbcalculator.png b/resources/linux/mime/icons/hicolor/64x64/apps/org.kicad.KiCad.pcbcalculator.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/64x64/apps/pcbcalculator.png
+rename to resources/linux/mime/icons/hicolor/64x64/apps/org.kicad.KiCad.pcbcalculator.png
+diff --git a/resources/linux/mime/icons/hicolor/64x64/apps/pcbnew.png b/resources/linux/mime/icons/hicolor/64x64/apps/org.kicad.KiCad.pcbnew.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/64x64/apps/pcbnew.png
+rename to resources/linux/mime/icons/hicolor/64x64/apps/org.kicad.KiCad.pcbnew.png
+diff --git a/resources/linux/mime/icons/hicolor/64x64/apps/kicad.png b/resources/linux/mime/icons/hicolor/64x64/apps/org.kicad.KiCad.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/64x64/apps/kicad.png
+rename to resources/linux/mime/icons/hicolor/64x64/apps/org.kicad.KiCad.png
+diff --git a/resources/linux/mime/icons/hicolor/64x64/mimetypes/application-x-kicad-pcb.png b/resources/linux/mime/icons/hicolor/64x64/mimetypes/org.kicad.KiCad.application-x-kicad-pcb.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/64x64/mimetypes/application-x-kicad-pcb.png
+rename to resources/linux/mime/icons/hicolor/64x64/mimetypes/org.kicad.KiCad.application-x-kicad-pcb.png
+diff --git a/resources/linux/mime/icons/hicolor/64x64/mimetypes/application-x-kicad-project.png b/resources/linux/mime/icons/hicolor/64x64/mimetypes/org.kicad.KiCad.application-x-kicad-project.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/64x64/mimetypes/application-x-kicad-project.png
+rename to resources/linux/mime/icons/hicolor/64x64/mimetypes/org.kicad.KiCad.application-x-kicad-project.png
+diff --git a/resources/linux/mime/icons/hicolor/64x64/mimetypes/application-x-kicad-schematic.png b/resources/linux/mime/icons/hicolor/64x64/mimetypes/org.kicad.KiCad.application-x-kicad-schematic.png
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/64x64/mimetypes/application-x-kicad-schematic.png
+rename to resources/linux/mime/icons/hicolor/64x64/mimetypes/org.kicad.KiCad.application-x-kicad-schematic.png
+diff --git a/resources/linux/mime/icons/hicolor/scalable/apps/bitmap2component.svg b/resources/linux/mime/icons/hicolor/scalable/apps/org.kicad.KiCad.bitmap2component.svg
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/scalable/apps/bitmap2component.svg
+rename to resources/linux/mime/icons/hicolor/scalable/apps/org.kicad.KiCad.bitmap2component.svg
+diff --git a/resources/linux/mime/icons/hicolor/scalable/apps/eeschema.svg b/resources/linux/mime/icons/hicolor/scalable/apps/org.kicad.KiCad.eeschema.svg
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/scalable/apps/eeschema.svg
+rename to resources/linux/mime/icons/hicolor/scalable/apps/org.kicad.KiCad.eeschema.svg
+diff --git a/resources/linux/mime/icons/hicolor/scalable/apps/gerbview.svg b/resources/linux/mime/icons/hicolor/scalable/apps/org.kicad.KiCad.gerbview.svg
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/scalable/apps/gerbview.svg
+rename to resources/linux/mime/icons/hicolor/scalable/apps/org.kicad.KiCad.gerbview.svg
+diff --git a/resources/linux/mime/icons/hicolor/scalable/apps/pcbcalculator.svg b/resources/linux/mime/icons/hicolor/scalable/apps/org.kicad.KiCad.pcbcalculator.svg
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/scalable/apps/pcbcalculator.svg
+rename to resources/linux/mime/icons/hicolor/scalable/apps/org.kicad.KiCad.pcbcalculator.svg
+diff --git a/resources/linux/mime/icons/hicolor/scalable/apps/pcbnew.svg b/resources/linux/mime/icons/hicolor/scalable/apps/org.kicad.KiCad.pcbnew.svg
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/scalable/apps/pcbnew.svg
+rename to resources/linux/mime/icons/hicolor/scalable/apps/org.kicad.KiCad.pcbnew.svg
+diff --git a/resources/linux/mime/icons/hicolor/scalable/apps/kicad.svg b/resources/linux/mime/icons/hicolor/scalable/apps/org.kicad.KiCad.svg
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/scalable/apps/kicad.svg
+rename to resources/linux/mime/icons/hicolor/scalable/apps/org.kicad.KiCad.svg
+diff --git a/resources/linux/mime/icons/hicolor/scalable/mimetypes/application-x-kicad-pcb.svg b/resources/linux/mime/icons/hicolor/scalable/mimetypes/org.kicad.KiCad.application-x-kicad-pcb.svg
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/scalable/mimetypes/application-x-kicad-pcb.svg
+rename to resources/linux/mime/icons/hicolor/scalable/mimetypes/org.kicad.KiCad.application-x-kicad-pcb.svg
+diff --git a/resources/linux/mime/icons/hicolor/scalable/mimetypes/application-x-kicad-project.svg b/resources/linux/mime/icons/hicolor/scalable/mimetypes/org.kicad.KiCad.application-x-kicad-project.svg
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/scalable/mimetypes/application-x-kicad-project.svg
+rename to resources/linux/mime/icons/hicolor/scalable/mimetypes/org.kicad.KiCad.application-x-kicad-project.svg
+diff --git a/resources/linux/mime/icons/hicolor/scalable/mimetypes/application-x-kicad-schematic.svg b/resources/linux/mime/icons/hicolor/scalable/mimetypes/org.kicad.KiCad.application-x-kicad-schematic.svg
+similarity index 100%
+rename from resources/linux/mime/icons/hicolor/scalable/mimetypes/application-x-kicad-schematic.svg
+rename to resources/linux/mime/icons/hicolor/scalable/mimetypes/org.kicad.KiCad.application-x-kicad-schematic.svg
+diff --git a/resources/linux/mime/mime/packages/kicad-gerbers.xml b/resources/linux/mime/mime/packages/org.kicad.KiCad-gerbers.xml
+similarity index 100%
+rename from resources/linux/mime/mime/packages/kicad-gerbers.xml
+rename to resources/linux/mime/mime/packages/org.kicad.KiCad-gerbers.xml
+diff --git a/resources/linux/mime/mime/packages/kicad-kicad.xml b/resources/linux/mime/mime/packages/org.kicad.KiCad-kicad.xml
+similarity index 79%
+rename from resources/linux/mime/mime/packages/kicad-kicad.xml
+rename to resources/linux/mime/mime/packages/org.kicad.KiCad-kicad.xml
+index 0c3e024f1e..8787edc5bc 100644
+--- a/resources/linux/mime/mime/packages/kicad-kicad.xml
++++ b/resources/linux/mime/mime/packages/org.kicad.KiCad-kicad.xml
+@@ -5,17 +5,20 @@
+ 		<comment>KiCad Project</comment>
+ 		<comment xml:lang="fr">Projet KiCad</comment>
+ 		<glob pattern="*.pro"/>
++		<generic-icon name="org.kicad.KiCad.application-x-kicad-project"/>
+ 	</mime-type>
+ 	<mime-type type="application/x-kicad-schematic">
+ 		<sub-class-of type="text/plain"/>
+ 		<comment>KiCad Schematic</comment>
+ 		<comment xml:lang="fr">Schéma électronique KiCad</comment>
+ 		<glob pattern="*.sch"/>
++		<generic-icon name="org.kicad.KiCad.application-x-kicad-schematic"/>
+ 	</mime-type>
+ 	<mime-type type="application/x-kicad-pcb">
+ 		<sub-class-of type="text/plain"/>
+ 		<comment>KiCad Printed Circuit Board</comment>
+ 		<comment xml:lang="fr">Circuit imprimé KiCad</comment>
+ 		<glob pattern="*.kicad_pcb"/>
++		<generic-icon name="org.kicad.KiCad.application-x-kicad-pcb"/>
+ 	</mime-type>
+ </mime-info>
+-- 
+2.30.2
+
