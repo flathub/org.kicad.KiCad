@@ -156,16 +156,12 @@ modules:
   - install -d /app/extensions/Library
   sources:
   - type: archive
-    url: https://gitlab.com/kicad/code/kicad/-/archive/5.1.9/kicad-5.1.9.tar.gz
-    sha256: 841be864b9dc5c761193c3ee9cbdbed6729952d7b38451aa8e1977bdfdb6081b
+    url: https://gitlab.com/kicad/code/kicad/-/archive/5.1.10/kicad-5.1.10.tar.gz
+    sha256: 296341f30ada2c7f4a1c54720eab425835a93349527d4bf08f73f280d19695ed
   - type: patch
-    path: do-not-strip-executables.patch
-  - type: patch
-    path: fix-rectifier-demo-for-ngspice-32.patch
-  - type: patch
-    path: fix-screenshot-sizes-in-kicad.appdata.xml.in.patch
-  - type: patch
-    path: rename-icons-mime-and-desktop-files-for-flatpak.patch
+    paths:
+    - patches/do-not-strip-executables.patch
+    - patches/rename-icons-mime-and-desktop-files-for-flatpak.patch
   - type: shell
     commands:
     - sed -i '5s/org\.kicad_pcb\.kicad/org.kicad.KiCad/;96i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/appdata/kicad.appdata.xml.in
@@ -176,9 +172,10 @@ modules:
   config-opts:
   - -DKICAD_I18N_UNIX_STRICT_PATH=ON
   sources:
-  - type: archive
-    url: https://gitlab.com/kicad/code/kicad-i18n/-/archive/5.1.9/kicad-i18n-5.1.9.tar.gz
-    sha256: f2cadcae1400bf483668ceccd190dff3d9dfd098307c146d273ed0bb01f4882f
+  - type: git
+    url: https://gitlab.com/kicad/code/kicad-i18n.git
+    branch: '5.1'
+    commit: 0ad3d7e469e31c8868ad83f90e22a9c18f16aa1f
 
 - name: kicad-doc
   build-commands:
@@ -186,5 +183,5 @@ modules:
   buildsystem: simple
   sources:
   - type: archive
-    url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-5.1.9.tar.gz
-    sha256: 61571f260bba67e26b9f7456ad6eb5da7c3b406412f506e7857d0ca70ca66393
+    url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-5.1.10.tar.gz
+    sha256: 73d986b7a9d5d777e4bf9bc7594e43568e067cd33466940957b5a513d9affd03
