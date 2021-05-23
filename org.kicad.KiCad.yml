@@ -91,7 +91,7 @@ modules:
   - ./b2 -j $FLATPAK_BUILDER_N_JOBS install
   sources:
   - type: archive
-    url: https://dl.bintray.com/boostorg/release/1.76.0/source/boost_1_76_0.tar.gz
+    url: https://downloads.sourceforge.net/project/boost/boost/1.76.0/boost_1_76_0.tar.gz
     sha256: 7bd7ddceec1a1dfdcbdb3e609b60d01739c38390a5f956385a12f3122049f0ca
 
 - name: wxWidgets
