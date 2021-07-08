@@ -16,8 +16,8 @@ modules:
     url: https://files.pythonhosted.org/packages/66/03/818876390c7ff4484d5a05398a618cfdaf0a2b9abb3a7c7ccd59fe181008/numpy-1.21.0.zip
     sha256: e80fe25cba41c124d04c662f33f6364909b985f2eb5998aaa5ae4b9587242cce
   - type: file
-    url: https://files.pythonhosted.org/packages/dc/c2/72349bb3a995fda8f4a064ee5dc92903b21886f27be4f5f1ed8c7b7174e4/Pillow-8.3.0.tar.gz
-    sha256: 803606e206f3e366eea46b1e7ab4dac74cfac770d04de9c35319814e11e47c46
+    url: https://files.pythonhosted.org/packages/8f/7d/1e9c2d8989c209edfd10f878da1af956059a1caab498e5bc34fa11b83f71/Pillow-8.3.1.tar.gz
+    sha256: 2cac53839bfc5cece8fdbe7f084d5e3ee61e1303cccc86511d351adcb9e2c792
   - type: file
     url: https://files.pythonhosted.org/packages/b9/8b/31267dd6d026a082faed35ec8d97522c0236f2e083bf15aff64d982215e1/wxPython-4.0.7.post2.tar.gz
     sha256: 5a229e695b64f9864d30a5315e0c1e4ff5e02effede0a07f16e8d856737a0c4e
