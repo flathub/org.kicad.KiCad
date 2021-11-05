@@ -156,8 +156,8 @@ modules:
   - install -d /app/extensions/Library
   sources:
   - type: archive
-    url: https://gitlab.com/kicad/code/kicad/-/archive/5.1.11/kicad-5.1.11.tar.gz
-    sha256: 32751a375bb117d51c07dde29cf3eea01cd9ff77336740e2728cb5f36bb48374
+    url: https://gitlab.com/kicad/code/kicad/-/archive/5.1.12/kicad-5.1.12.tar.gz
+    sha256: 101cc025e55cb3cc047debe5e4b1ac1fa116ceed147fef1bc275d8e21f76aa3f
   - type: patch
     paths:
     - patches/do-not-strip-executables.patch
@@ -183,5 +183,5 @@ modules:
   buildsystem: simple
   sources:
   - type: archive
-    url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-5.1.11.tar.gz
-    sha256: 3ce13d43c29e9eab502575b765a9be077e4d478b6e9d829c01739a7575a83512
+    url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-5.1.12.tar.gz
+    sha256: 8bf34f46758cf631f81f18490310ae7673e343da5eedc5c53192375ee1744479
