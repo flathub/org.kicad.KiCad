@@ -1,16 +1,13 @@
 app-id: org.kicad.KiCad
+branch: beta
 runtime: org.freedesktop.Platform
 runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
 command: kicad
-rename-appdata-file: kicad.appdata.xml
+rename-appdata-file: org.kicad.kicad.metainfo.xml
 finish-args:
 - --device=dri
 - --env=LD_LIBRARY_PATH=/app/lib
-- --env=KICAD_TEMPLATE_DIR=/app/extensions/Library/share/kicad/template
-- --env=KICAD_SYMBOL_DIR=/app/extensions/Library/Symbols/share/kicad/library
-- --env=KISYSMOD=/app/extensions/Library/Footprints/share/kicad/modules
-- --env=KISYS3DMOD=/app/extensions/Library/Packages3D/share/kicad/modules/packages3d
 - --filesystem=home
 - --share=ipc
 - --share=network
@@ -18,12 +15,12 @@ finish-args:
 
 add-extensions:
   org.kicad.KiCad.Library:
-    version: stable
+    version: beta
     directory: extensions/Library
     autodelete: true
     no-autodownload: false
     subdirectories: true
-    merge-dirs: share/kicad/template
+    merge-dirs: template;symbols;footprints;3dmodels
 
 cleanup:
 - /include
@@ -38,7 +35,6 @@ cleanup:
 
 modules:
 - shared-modules/glu/glu-9.json
-- shared-modules/glew/glew.json
 
 - name: glm
   buildsystem: simple
@@ -95,14 +91,14 @@ modules:
     sha256: 5347464af5b14ac54bb945dc68f1dd7c56f0dad7262816b956138fc53bcc0131
 
 - name: wxWidgets
-  rm-configure: true
   cleanup:
   - /bin
-  subdir: ext/wxWidgets
+  config-opts:
+  - --with-opengl
   sources:
   - type: archive
-    url: https://files.pythonhosted.org/packages/b9/8b/31267dd6d026a082faed35ec8d97522c0236f2e083bf15aff64d982215e1/wxPython-4.0.7.post2.tar.gz
-    sha256: 5a229e695b64f9864d30a5315e0c1e4ff5e02effede0a07f16e8d856737a0c4e
+    url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.5/wxWidgets-3.1.5.tar.bz2
+    sha256: d7b3666de33aa5c10ea41bb9405c40326e1aeb74ee725bb88f90f1d50270a224
   - type: script
     commands:
     - cp -p /usr/share/automake-*/config.{sub,guess} .
@@ -143,39 +139,51 @@ modules:
 - name: kicad
   buildsystem: cmake-ninja
   config-opts:
-  - -DCMAKE_BUILD_TYPE=Release
-  - -DGLEW_INCLUDE_DIR=/app/include/GL
+  - -DCMAKE_BUILD_TYPE=RelWithDebInfo
   - -DOCC_INCLUDE_DIR=/app/include/opencascade
   - -DOPENGL_glu_LIBRARY=/app/lib/libGLU.so
   - -DKICAD_BUILD_QA_TESTS=OFF
-  - -DKICAD_SCRIPTING_PYTHON3=ON
+  - -DKICAD_BUILD_I18N=ON
+  - -DKICAD_USE_EGL=ON
   - -DKICAD_USE_OCC=ON
   - -DKICAD_USE_OCE=OFF
-  - -DKICAD_SCRIPTING_WXPYTHON_PHOENIX=ON
+  - -DKICAD_LIBRARY_DATA=/app/extensions/Library
   post-install:
-  - install -d /app/extensions/Library
+  - for f in $FLATPAK_DEST/share/applications/*.desktop; do
+      desktop_name="$(basename $f)";
+      desktop_app_name="${desktop_name%.desktop}";
+      app_name="${desktop_app_name#org.kicad.}";
+      if [ "$app_name" = "kicad" ]; then
+        desktop-file-edit --set-icon="${FLATPAK_ID}" --set-key=X-Flatpak-RenamedFrom --set-value="${desktop_name};" "$f";
+        mv $FLATPAK_DEST/share/applications/{org.kicad.kicad,$FLATPAK_ID}.desktop;
+      else
+        desktop-file-edit --set-icon="${FLATPAK_ID}.${app_name}" --set-key=X-Flatpak-RenamedFrom --set-value="${desktop_name};" "$f";
+        mv $FLATPAK_DEST/share/applications/{org.kicad,$FLATPAK_ID}.${app_name}.desktop;
+      fi;
+    done;
+    unset desktop_name desktop_app_name app_name
+  - sed -i "s/\(application-x-kicad-.\+\)/$FLATPAK_ID.\1/" $FLATPAK_DEST/share/mime/packages/kicad-kicad.xml
+  - mv $FLATPAK_DEST/share/mime/packages/{kicad,$FLATPAK_ID}-kicad.xml
+  - mv $FLATPAK_DEST/share/mime/packages/{kicad,$FLATPAK_ID}-gerbers.xml
+  - cd $FLATPAK_DEST/share/icons/hicolor;
+    for d in */{apps,mimetypes}; do
+      for f in ${d}/*; do
+        name="$(basename $f)";
+        suffix="${name##*.}";
+        if [[ "$name" == kicad.* ]];
+          then mv "$f" "${d}/${FLATPAK_ID}.${suffix}";
+          else mv "$f" "${d}/${FLATPAK_ID}.${name}";
+        fi;
+      done;
+    done;
+    unset name suffix
   sources:
   - type: archive
-    url: https://gitlab.com/kicad/code/kicad/-/archive/5.1.12/kicad-5.1.12.tar.gz
-    sha256: 101cc025e55cb3cc047debe5e4b1ac1fa116ceed147fef1bc275d8e21f76aa3f
-  - type: patch
-    paths:
-    - patches/do-not-strip-executables.patch
-    - patches/rename-icons-mime-and-desktop-files-for-flatpak.patch
+    url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.0-rc1/kicad-6.0.0-rc1.tar.gz
+    sha256: a1fbed57f09361a367c3670b0c802f80877eaadf8c750dd6f981802bdfec5d09
   - type: shell
     commands:
-    - sed -i '5s/org\.kicad_pcb\.kicad/org.kicad.KiCad/;96i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/appdata/kicad.appdata.xml.in
-
-- name: kicad-i18n
-  builddir: true
-  buildsystem: cmake-ninja
-  config-opts:
-  - -DKICAD_I18N_UNIX_STRICT_PATH=ON
-  sources:
-  - type: git
-    url: https://gitlab.com/kicad/code/kicad-i18n.git
-    branch: '5.1'
-    commit: 0ad3d7e469e31c8868ad83f90e22a9c18f16aa1f
+    - sed -i '86i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
 
 - name: kicad-doc
   build-commands:
