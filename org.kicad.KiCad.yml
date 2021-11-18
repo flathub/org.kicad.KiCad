@@ -183,7 +183,7 @@ modules:
     sha256: a1fbed57f09361a367c3670b0c802f80877eaadf8c750dd6f981802bdfec5d09
   - type: shell
     commands:
-    - sed -i '86i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
+    - sed -i '5s/org\.kicad\.kicad/org.kicad.KiCad/;86i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
 
 - name: kicad-doc
   build-commands:
