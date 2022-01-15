@@ -76,8 +76,8 @@ modules:
   - -DINSTALL_TEST_CASES=OFF
   sources:
   - type: archive
-    url: https://github.com/tpaviot/oce/releases/download/official-upstream-packages/opencascade-7.5.1.snapshot.tar.gz
-    sha256: db6c38dbaddb3f95c4af4234b3f2972d4121b59b99bb07ded06fe4bd212b2aaa
+    url: https://github.com/Open-Cascade-SAS/OCCT/archive/refs/tags/V7_6_0.tar.gz
+    sha256: 73f8f71be02c1d9a977e854bcc9202502184d339f1f212c19797a5f23baefabe
 
 - name: boost
   buildsystem: simple
