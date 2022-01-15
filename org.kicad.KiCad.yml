@@ -178,8 +178,8 @@ modules:
     unset name suffix
   sources:
   - type: archive
-    url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.0/kicad-6.0.0.tar.gz
-    sha256: 022b3f5f2a7caa198df7e564a8efa4d93381be494e664d35170132bdd28d9617
+    url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.1/kicad-6.0.1.tar.gz
+    sha256: 946173455db986cc79050a8c1983193690f14eb538785b21c1584d5999b864e4
   - type: shell
     commands:
     - sed -i 's/org\.kicad\.kicad/org.kicad.KiCad/g' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
