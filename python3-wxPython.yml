@@ -19,11 +19,11 @@ modules:
   - /bin
   sources:
   - type: file
-    url: https://files.pythonhosted.org/packages/0a/c8/a62767a6b374a0dfb02d2a0456e5f56a372cdd1689dbc6ffb6bf1ddedbc0/numpy-1.22.1.zip
-    sha256: e348ccf5bc5235fc405ab19d53bec215bb373300e5523c7b476cc0da8a5e9973
+    url: https://files.pythonhosted.org/packages/e9/6c/c0a8130fe198f27bab92f1b28631e0cc2572295f6b7a31e87efe7448aa1c/numpy-1.22.2.zip
+    sha256: 076aee5a3763d41da6bef9565fdf3cb987606f567cd8b104aded2b38b7b47abf
   - type: file
-    url: https://files.pythonhosted.org/packages/b0/43/3e286c93b9fa20e233d53532cc419b5aad8a468d91065dbef4c846058834/Pillow-9.0.0.tar.gz
-    sha256: ee6e2963e92762923956fe5d3479b1fdc3b76c83f290aad131a2f98c3df0593e
+    url: https://files.pythonhosted.org/packages/03/a3/f61a9a7ff7969cdef2a6e0383a346eb327495d20d25a2de5a088dbb543a6/Pillow-9.0.1.tar.gz
+    sha256: 6c8bc8238a7dfdaf7a75f5ec5a663f4173f8c367e5a39f87e720495e1eed75fa
   - type: file
     url: https://files.pythonhosted.org/packages/b0/4d/80d65c37ee60a479d338d27a2895fb15bbba27a3e6bb5b6d72bb28246e99/wxPython-4.1.1.tar.gz
     sha256: 00e5e3180ac7f2852f342ad341d57c44e7e4326de0b550b9a5c4a8361b6c3528
