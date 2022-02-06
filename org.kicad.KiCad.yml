@@ -183,13 +183,15 @@ modules:
   - type: shell
     commands:
     - sed -i 's/org\.kicad\.kicad/org.kicad.KiCad/g' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
-    #- sed -i '86i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
+    - sed -i '86i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
 
-#- name: kicad-doc
-#  build-commands:
-#  - find . -type f -exec install -Dm644 "{}" "${FLATPAK_DEST}/{}" \;
-#  buildsystem: simple
-#  sources:
-#  - type: archive
-#    url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-5.1.12.tar.gz
-#    sha256: 8bf34f46758cf631f81f18490310ae7673e343da5eedc5c53192375ee1744479
+- name: kicad-doc
+  build-commands:
+  # Only install HTML docs
+  - find . -type f -name '*.pdf' -execdir rm {} \;
+  - find . -type f -exec install -Dm644 "{}" "${FLATPAK_DEST}/{}" \;
+  buildsystem: simple
+  sources:
+  - type: archive
+    url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.1.tar.gz
+    sha256: 6093c99cfde827fb42fc351ef301f0dcad805f0c256ef02a0e82d9daafc238d3
