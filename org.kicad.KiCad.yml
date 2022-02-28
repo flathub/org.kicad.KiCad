@@ -76,8 +76,8 @@ modules:
   - -DINSTALL_TEST_CASES=OFF
   sources:
   - type: archive
-    url: https://github.com/Open-Cascade-SAS/OCCT/archive/refs/tags/V7_6_0.tar.gz
-    sha256: 73f8f71be02c1d9a977e854bcc9202502184d339f1f212c19797a5f23baefabe
+    url: https://github.com/Open-Cascade-SAS/OCCT/archive/refs/tags/V7_6_1.tar.gz
+    sha256: 48969bf9130966a30b370b335133f87e8614b7cbc077b0df9d895bbefc5cfeae
 
 - name: boost
   buildsystem: simple
