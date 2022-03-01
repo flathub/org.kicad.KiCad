@@ -194,4 +194,4 @@ modules:
   sources:
   - type: archive
     url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.2.tar.gz
-    sha256: b45e222d9921df2be17810b11279a4105438d959723d9f072debba5bdc32bf0b
+    sha256: a8be2b4fec78783be1c4653f6571ff431f659fd58daf6f74a0427c4472d56b29
