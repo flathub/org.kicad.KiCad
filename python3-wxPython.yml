@@ -2,39 +2,40 @@ name: python3-wxPython
 buildsystem: simple
 build-commands: []
 modules:
-- name: python3-wxPython
-  buildsystem: simple
-  build-commands:
+  - name: python3-wxPython
+    buildsystem: simple
+    build-commands:
   # Patch wxPython-4.1.1 to build with wxWidgets-3.1.5
-  - tar xf wxPython-4.1.1.tar.gz
-  - rm wxPython-4.1.1.tar.gz
-  - patch -p0 <fix-wxpython-4.1.1-on-wxwidgets-3.1.5.patch
-  - tar czf wxPython-4.1.1.tar.gz wxPython-4.1.1
+      - tar xf wxPython-4.1.1.tar.gz
+      - rm wxPython-4.1.1.tar.gz
+      - patch -p0 <fix-wxpython-4.1.1-on-wxwidgets-3.1.5.patch
+      - tar czf wxPython-4.1.1.tar.gz wxPython-4.1.1
   # Now install the modules
-  - pip3 install --exists-action=i --no-index --no-build-isolation --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} "wxPython"
-  build-options:
-    env:
-      WXPYTHON_BUILD_ARGS: --use_syswx
-  cleanup:
-  - /bin
-  sources:
-  - type: file
-    url: https://files.pythonhosted.org/packages/e9/6c/c0a8130fe198f27bab92f1b28631e0cc2572295f6b7a31e87efe7448aa1c/numpy-1.22.2.zip
-    sha256: 076aee5a3763d41da6bef9565fdf3cb987606f567cd8b104aded2b38b7b47abf
-    x-checker-data:
-      type: pypi
-      name: numpy
-  - type: file
-    url: https://files.pythonhosted.org/packages/03/a3/f61a9a7ff7969cdef2a6e0383a346eb327495d20d25a2de5a088dbb543a6/Pillow-9.0.1.tar.gz
-    sha256: 6c8bc8238a7dfdaf7a75f5ec5a663f4173f8c367e5a39f87e720495e1eed75fa
-    x-checker-data:
-      type: pypi
-      name: Pillow
-  - type: file
-    url: https://files.pythonhosted.org/packages/b0/4d/80d65c37ee60a479d338d27a2895fb15bbba27a3e6bb5b6d72bb28246e99/wxPython-4.1.1.tar.gz
-    sha256: 00e5e3180ac7f2852f342ad341d57c44e7e4326de0b550b9a5c4a8361b6c3528
-    x-checker-data:
-      type: pypi
-      name: wxPython
-  - type: file
-    path: patches/fix-wxpython-4.1.1-on-wxwidgets-3.1.5.patch
+      - pip3 install --exists-action=i --no-index --no-build-isolation --find-links="file://${PWD}"
+        --prefix=${FLATPAK_DEST} "wxPython"
+    build-options:
+      env:
+        WXPYTHON_BUILD_ARGS: --use_syswx
+    cleanup:
+      - /bin
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/64/4a/b008d1f8a7b9f5206ecf70a53f84e654707e7616a771d84c05151a4713e9/numpy-1.22.3.zip
+        sha256: dbc7601a3b7472d559dc7b933b18b4b66f9aa7452c120e87dfb33d02008c8a18
+        x-checker-data:
+          type: pypi
+          name: numpy
+      - type: file
+        url: https://files.pythonhosted.org/packages/03/a3/f61a9a7ff7969cdef2a6e0383a346eb327495d20d25a2de5a088dbb543a6/Pillow-9.0.1.tar.gz
+        sha256: 6c8bc8238a7dfdaf7a75f5ec5a663f4173f8c367e5a39f87e720495e1eed75fa
+        x-checker-data:
+          type: pypi
+          name: Pillow
+      - type: file
+        url: https://files.pythonhosted.org/packages/b0/4d/80d65c37ee60a479d338d27a2895fb15bbba27a3e6bb5b6d72bb28246e99/wxPython-4.1.1.tar.gz
+        sha256: 00e5e3180ac7f2852f342ad341d57c44e7e4326de0b550b9a5c4a8361b6c3528
+        x-checker-data:
+          type: pypi
+          name: wxPython
+      - type: file
+        path: patches/fix-wxpython-4.1.1-on-wxwidgets-3.1.5.patch
