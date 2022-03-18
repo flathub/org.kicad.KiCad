@@ -107,6 +107,7 @@ modules:
   - /bin
   config-opts:
   - --with-opengl
+  - --disable-glcanvasegl
   sources:
   - type: archive
     url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.5/wxWidgets-3.1.5.tar.bz2
@@ -170,7 +171,7 @@ modules:
   - -DOPENGL_glu_LIBRARY=/app/lib/libGLU.so
   - -DKICAD_BUILD_QA_TESTS=OFF
   - -DKICAD_BUILD_I18N=ON
-  - -DKICAD_USE_EGL=ON
+  - -DKICAD_USE_EGL=OFF
   - -DKICAD_USE_OCC=ON
   - -DKICAD_USE_OCE=OFF
   - -DKICAD_LIBRARY_DATA=/app/extensions/Library
