@@ -34,6 +34,7 @@ cleanup:
 
 modules:
 - shared-modules/glu/glu-9.json
+- shared-modules/glew/glew.json
 
 - name: glm
   buildsystem: simple
@@ -167,6 +168,7 @@ modules:
   buildsystem: cmake-ninja
   config-opts:
   - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+  - -DGLEW_INCLUDE_DIR=/app/include/GL
   - -DOCC_INCLUDE_DIR=/app/include/opencascade
   - -DOPENGL_glu_LIBRARY=/app/lib/libGLU.so
   - -DKICAD_BUILD_QA_TESTS=OFF
