@@ -5,12 +5,12 @@ sdk: org.freedesktop.Sdk
 command: kicad
 rename-appdata-file: org.kicad.kicad.metainfo.xml
 finish-args:
-- --device=dri
-- --env=LD_LIBRARY_PATH=/app/lib
-- --filesystem=home
-- --share=ipc
-- --share=network
-- --socket=x11
+  - --device=dri
+  - --env=LD_LIBRARY_PATH=/app/lib
+  - --filesystem=home
+  - --share=ipc
+  - --share=network
+  - --socket=x11
 
 add-extensions:
   org.kicad.KiCad.Library:
@@ -22,209 +22,195 @@ add-extensions:
     merge-dirs: template;symbols;footprints;3dmodels
 
 cleanup:
-- /include
-- /lib/cmake
-- /lib/pkgconfig
-- /lib/wx
-- /lib64
-- /share/aclocal
-- /share/bakefile
-- '*.la'
-- '*.a'
+  - /include
+  - /lib/cmake
+  - /lib/pkgconfig
+  - /lib/wx
+  - /lib64
+  - /share/aclocal
+  - /share/bakefile
+  - '*.la'
+  - '*.a'
 
 modules:
-- shared-modules/glu/glu-9.json
-- shared-modules/glew/glew.json
+  - shared-modules/glu/glu-9.json
+  - shared-modules/glew/glew.json
 
-- name: glm
-  buildsystem: simple
-  build-commands:
-  - cp -r glm /app/include
-  sources:
-  - type: archive
-    url: https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip
-    sha256: 37e2a3d62ea3322e43593c34bae29f57e3e251ea89f4067506c94043769ade4c
-    x-checker-data:
-      type: anitya
-      project-id: 1181
-      url-template: https://github.com/g-truc/glm/releases/download/$version/glm-$version.zip
+  - name: glm
+    buildsystem: simple
+    build-commands:
+      - cp -r glm /app/include
+    sources:
+      - type: archive
+        url: https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip
+        sha256: 37e2a3d62ea3322e43593c34bae29f57e3e251ea89f4067506c94043769ade4c
+        x-checker-data:
+          type: anitya
+          project-id: 1181
+          url-template: https://github.com/g-truc/glm/releases/download/$version/glm-$version.zip
 
-- name: libXmu
-  cleanup:
-  - /share/doc
-  sources:
-  - type: archive
-    url: https://www.x.org/archive//individual/lib/libXmu-1.1.3.tar.gz
-    sha256: 5bd9d4ed1ceaac9ea023d86bf1c1632cd3b172dce4a193a72a94e1d9df87a62e
-    x-checker-data:
-      type: anitya
-      project-id: 1785
-      url-template: https://www.x.org/archive//individual/lib/libXmu-$version.tar.gz
+  - name: libXmu
+    cleanup:
+      - /share/doc
+    sources:
+      - type: archive
+        url: https://www.x.org/archive//individual/lib/libXmu-1.1.3.tar.gz
+        sha256: 5bd9d4ed1ceaac9ea023d86bf1c1632cd3b172dce4a193a72a94e1d9df87a62e
+        x-checker-data:
+          type: anitya
+          project-id: 1785
+          url-template: https://www.x.org/archive//individual/lib/libXmu-$version.tar.gz
 
-- name: OCCT
-  buildsystem: cmake-ninja
-  cleanup:
-  - /bin
-  - /share/doc
-  config-opts:
-  - -DCMAKE_BUILD_TYPE=Release
-  - -DBUILD_LIBRARY_TYPE=Shared
-  - -DBUILD_Inspector=OFF
-  - -DBUILD_DOC_Overview=OFF
-  - -DBUILD_MODULE_ApplicationFramework=ON
-  - -DBUILD_MODULE_DataExchange=ON
-  - -DBUILD_MODULE_Draw=OFF
-  - -DBUILD_MODULE_FoundationClasses=ON
-  - -DBUILD_MODULE_ModelingAlgorithms=ON
-  - -DBUILD_MODULE_ModelingData=ON
-  - -DBUILD_MODULE_Visualization=ON
-  - -DUSE_VTK=OFF
-  - -DUSE_TBB=OFF
-  - -DINSTALL_FREETYPE=OFF
-  - -DINSTALL_SAMPLES=OFF
-  - -DINSTALL_TEST_CASES=OFF
-  sources:
-  - type: archive
-    url: https://github.com/Open-Cascade-SAS/OCCT/archive/refs/tags/V7_6_1.tar.gz
-    sha256: 48969bf9130966a30b370b335133f87e8614b7cbc077b0df9d895bbefc5cfeae
+  - name: OCCT
+    buildsystem: cmake-ninja
+    cleanup:
+      - /bin
+      - /share/doc
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_LIBRARY_TYPE=Shared
+      - -DBUILD_Inspector=OFF
+      - -DBUILD_DOC_Overview=OFF
+      - -DBUILD_MODULE_ApplicationFramework=ON
+      - -DBUILD_MODULE_DataExchange=ON
+      - -DBUILD_MODULE_Draw=OFF
+      - -DBUILD_MODULE_FoundationClasses=ON
+      - -DBUILD_MODULE_ModelingAlgorithms=ON
+      - -DBUILD_MODULE_ModelingData=ON
+      - -DBUILD_MODULE_Visualization=ON
+      - -DUSE_VTK=OFF
+      - -DUSE_TBB=OFF
+      - -DINSTALL_FREETYPE=OFF
+      - -DINSTALL_SAMPLES=OFF
+      - -DINSTALL_TEST_CASES=OFF
+    sources:
+      - type: archive
+        url: https://github.com/Open-Cascade-SAS/OCCT/archive/refs/tags/V7_6_1.tar.gz
+        sha256: 48969bf9130966a30b370b335133f87e8614b7cbc077b0df9d895bbefc5cfeae
 
-- name: boost
-  buildsystem: simple
-  build-commands:
-  - ./bootstrap.sh --prefix=/app --with-libraries=context,date_time,filesystem,iostreams,locale,program_options,regex,system,thread,test
-  - ./b2 -j $FLATPAK_BUILDER_N_JOBS install
-  sources:
-  - type: archive
-    url: https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.tar.gz
-    sha256: 94ced8b72956591c4775ae2207a9763d3600b30d9d7446562c552f0a14a63be7
-    x-checker-data:
-      type: anitya
-      project-id: 6845
-      stable-only: true
-      url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${version0}_${version1}_${version2}.tar.gz
+  - name: boost
+    buildsystem: simple
+    build-commands:
+      - ./bootstrap.sh --prefix=/app --with-libraries=context,date_time,filesystem,iostreams,locale,program_options,regex,system,thread,test
+      - ./b2 -j $FLATPAK_BUILDER_N_JOBS install
+    sources:
+      - type: archive
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.gz
+        sha256: 273f1be93238a068aba4f9735a4a2b003019af067b9c183ed227780b8f36062c
+        x-checker-data:
+          type: anitya
+          project-id: 6845
+          stable-only: true
+          url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${version0}_${version1}_${version2}.tar.gz
 
-- name: wxWidgets
-  cleanup:
-  - /bin
-  config-opts:
-  - --with-opengl
-  - --disable-glcanvasegl
-  sources:
-  - type: archive
-    url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.5/wxWidgets-3.1.5.tar.bz2
-    sha256: d7b3666de33aa5c10ea41bb9405c40326e1aeb74ee725bb88f90f1d50270a224
-    x-checker-data:
-      type: anitya
-      project-id: 5150
-      url-template: https://github.com/wxWidgets/wxWidgets/releases/download/v$version/wxWidgets-$version.tar.bz2
-  - type: script
-    commands:
-    - cp -p /usr/share/automake-*/config.{sub,guess} .
-    - autoconf -f -B build/autoconf_prepend-include
+  - name: wxWidgets
+    cleanup:
+      - /bin
+    config-opts:
+      - --with-opengl
+      - --disable-glcanvasegl
+    sources:
+      - type: archive
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.5/wxWidgets-3.1.5.tar.bz2
+        sha256: d7b3666de33aa5c10ea41bb9405c40326e1aeb74ee725bb88f90f1d50270a224
+        x-checker-data:
+          type: anitya
+          project-id: 5150
+          url-template: https://github.com/wxWidgets/wxWidgets/releases/download/v$version/wxWidgets-$version.tar.bz2
+      - type: script
+        commands:
+          - cp -p /usr/share/automake-*/config.{sub,guess} .
+          - autoconf -f -B build/autoconf_prepend-include
 
-- python3-wxPython.yml
+  - python3-wxPython.yml
 
-- name: swig
-  buildsystem: autotools
-  cleanup:
-  - /bin
-  - /share
-  sources:
-  - type: archive
-    url: https://sourceforge.net/projects/swig/files/swig/swig-4.0.2/swig-4.0.2.tar.gz
-    sha256: d53be9730d8d58a16bf0cbd1f8ac0c0c3e1090573168bfa151b01eb47fa906fc
-    x-checker-data:
-      type: anitya
-      project-id: 4919
-      stable-only: true
-      url-template: https://sourceforge.net/projects/swig/files/swig/swig-$version/swig-$version.tar.gz
+  - name: swig
+    buildsystem: autotools
+    cleanup:
+      - /bin
+      - /share
+    sources:
+      - type: archive
+        url: https://sourceforge.net/projects/swig/files/swig/swig-4.0.2/swig-4.0.2.tar.gz
+        sha256: d53be9730d8d58a16bf0cbd1f8ac0c0c3e1090573168bfa151b01eb47fa906fc
+        x-checker-data:
+          type: anitya
+          project-id: 4919
+          stable-only: true
+          url-template: https://sourceforge.net/projects/swig/files/swig/swig-$version/swig-$version.tar.gz
 
-- name: ngspice
-  cleanup:
-  - /bin
-  - /share/man
-  config-opts:
-  - --disable-silent-rules
-  - --enable-xspice
-  - --enable-cider
-  - --enable-openmp
-  - --with-ngshared
-  rm-configure: true
-  sources:
-  - type: archive
-    url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/36/ngspice-36.tar.gz
-    sha256: 4f818287efba245341046635b757ae81f879549b326a4316b5f6e697aa517f8c
-    x-checker-data:
-      type: anitya
-      project-id: 20590
-      stable-only: true
-      url-template: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/$version/ngspice-$version.tar.gz
-  - type: script
-    commands:
-    - cp -p /usr/share/automake-*/config.{sub,guess} .
-    - autoconf -f -B build/autoconf_prepend-include
+  - name: ngspice
+    cleanup:
+      - /bin
+      - /share/man
+    config-opts:
+      - --disable-silent-rules
+      - --enable-xspice
+      - --enable-cider
+      - --enable-openmp
+      - --with-ngshared
+    rm-configure: true
+    sources:
+      - type: archive
+        url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/36/ngspice-36.tar.gz
+        sha256: 4f818287efba245341046635b757ae81f879549b326a4316b5f6e697aa517f8c
+        x-checker-data:
+          type: anitya
+          project-id: 20590
+          stable-only: true
+          url-template: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/$version/ngspice-$version.tar.gz
+      - type: script
+        commands:
+          - cp -p /usr/share/automake-*/config.{sub,guess} .
+          - autoconf -f -B build/autoconf_prepend-include
 
-- name: kicad
-  buildsystem: cmake-ninja
-  config-opts:
-  - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-  - -DGLEW_INCLUDE_DIR=/app/include/GL
-  - -DOCC_INCLUDE_DIR=/app/include/opencascade
-  - -DOPENGL_glu_LIBRARY=/app/lib/libGLU.so
-  - -DKICAD_BUILD_QA_TESTS=OFF
-  - -DKICAD_BUILD_I18N=ON
-  - -DKICAD_USE_EGL=OFF
-  - -DKICAD_USE_OCC=ON
-  - -DKICAD_USE_OCE=OFF
-  - -DKICAD_LIBRARY_DATA=/app/extensions/Library
-  post-install:
-  - for f in $FLATPAK_DEST/share/applications/*.desktop; do
-      desktop_name="$(basename $f)";
-      desktop_app_name="${desktop_name%.desktop}";
-      app_name="${desktop_app_name#org.kicad.}";
-      if [ "$app_name" = "kicad" ]; then
-        desktop-file-edit --set-icon="${FLATPAK_ID}" --set-key=X-Flatpak-RenamedFrom --set-value="${desktop_name};" "$f";
-        mv $FLATPAK_DEST/share/applications/{org.kicad.kicad,$FLATPAK_ID}.desktop;
-      else
-        desktop-file-edit --set-icon="${FLATPAK_ID}.${app_name}" --set-key=X-Flatpak-RenamedFrom --set-value="${desktop_name};" "$f";
-        mv $FLATPAK_DEST/share/applications/{org.kicad,$FLATPAK_ID}.${app_name}.desktop;
-      fi;
-    done;
-    unset desktop_name desktop_app_name app_name
-  - sed -i "s/\(application-x-kicad-.\+\)/$FLATPAK_ID.\1/" $FLATPAK_DEST/share/mime/packages/kicad-kicad.xml
-  - mv $FLATPAK_DEST/share/mime/packages/{kicad,$FLATPAK_ID}-kicad.xml
-  - mv $FLATPAK_DEST/share/mime/packages/{kicad,$FLATPAK_ID}-gerbers.xml
-  - cd $FLATPAK_DEST/share/icons/hicolor;
-    for d in */{apps,mimetypes}; do
-      for f in ${d}/*; do
-        name="$(basename $f)";
-        suffix="${name##*.}";
-        if [[ "$name" == kicad.* ]];
-          then mv "$f" "${d}/${FLATPAK_ID}.${suffix}";
-          else mv "$f" "${d}/${FLATPAK_ID}.${name}";
-        fi;
-      done;
-    done;
-    unset name suffix
-  sources:
-  - type: archive
-    url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.4/kicad-6.0.4.tar.gz
-    sha256: 45d351be84b582821d8a9a590bab5ccd53f9c477950c97295634f209772d5c33
+  - name: kicad
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DGLEW_INCLUDE_DIR=/app/include/GL
+      - -DOCC_INCLUDE_DIR=/app/include/opencascade
+      - -DOPENGL_glu_LIBRARY=/app/lib/libGLU.so
+      - -DKICAD_BUILD_QA_TESTS=OFF
+      - -DKICAD_BUILD_I18N=ON
+      - -DKICAD_USE_EGL=OFF
+      - -DKICAD_USE_OCC=ON
+      - -DKICAD_USE_OCE=OFF
+      - -DKICAD_LIBRARY_DATA=/app/extensions/Library
+    post-install:
+      - for f in $FLATPAK_DEST/share/applications/*.desktop; do desktop_name="$(basename
+        $f)"; desktop_app_name="${desktop_name%.desktop}"; app_name="${desktop_app_name#org.kicad.}";
+        if [ "$app_name" = "kicad" ]; then desktop-file-edit --set-icon="${FLATPAK_ID}"
+        --set-key=X-Flatpak-RenamedFrom --set-value="${desktop_name};" "$f"; mv $FLATPAK_DEST/share/applications/{org.kicad.kicad,$FLATPAK_ID}.desktop;
+        else desktop-file-edit --set-icon="${FLATPAK_ID}.${app_name}" --set-key=X-Flatpak-RenamedFrom
+        --set-value="${desktop_name};" "$f"; mv $FLATPAK_DEST/share/applications/{org.kicad,$FLATPAK_ID}.${app_name}.desktop;
+        fi; done; unset desktop_name desktop_app_name app_name
+      - sed -i "s/\(application-x-kicad-.\+\)/$FLATPAK_ID.\1/" $FLATPAK_DEST/share/mime/packages/kicad-kicad.xml
+      - mv $FLATPAK_DEST/share/mime/packages/{kicad,$FLATPAK_ID}-kicad.xml
+      - mv $FLATPAK_DEST/share/mime/packages/{kicad,$FLATPAK_ID}-gerbers.xml
+      - cd $FLATPAK_DEST/share/icons/hicolor; for d in */{apps,mimetypes}; do for
+        f in ${d}/*; do name="$(basename $f)"; suffix="${name##*.}"; if [[ "$name"
+        == kicad.* ]]; then mv "$f" "${d}/${FLATPAK_ID}.${suffix}"; else mv "$f" "${d}/${FLATPAK_ID}.${name}";
+        fi; done; done; unset name suffix
+    sources:
+      - type: archive
+        url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.4/kicad-6.0.4.tar.gz
+        sha256: 45d351be84b582821d8a9a590bab5ccd53f9c477950c97295634f209772d5c33
     # To be removed with KiCad 6.0.5 stable release
-  - type: patch
-    path: patches/fix-stock-templates-path-for-flatpak.patch
-  - type: shell
-    commands:
-    - sed -i 's/org\.kicad\.kicad/org.kicad.KiCad/g' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
-    - sed -i '86i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
+      - type: patch
+        path: patches/fix-stock-templates-path-for-flatpak.patch
+      - type: shell
+        commands:
+          - sed -i 's/org\.kicad\.kicad/org.kicad.KiCad/g' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
+          - sed -i '86i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
 
-- name: kicad-doc
-  build-commands:
+  - name: kicad-doc
+    build-commands:
   # Only install HTML docs
-  - find . -type f -name '*.pdf' -execdir rm {} \;
-  - find . -type f -exec install -Dm644 "{}" "${FLATPAK_DEST}/{}" \;
-  buildsystem: simple
-  sources:
-  - type: archive
-    url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.4.tar.gz
-    sha256: f5c66c961070342e061341503df986ce1a2365bae18de6605fe08ef4a18b0f12
+      - find . -type f -name '*.pdf' -execdir rm {} \;
+      - find . -type f -exec install -Dm644 "{}" "${FLATPAK_DEST}/{}" \;
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.4.tar.gz
+        sha256: f5c66c961070342e061341503df986ce1a2365bae18de6605fe08ef4a18b0f12
