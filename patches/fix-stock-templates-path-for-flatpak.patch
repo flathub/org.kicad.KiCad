@@ -1,0 +1,64 @@
+From 496d0491e52a83bc18f8cacdfa42bcc19ef4e1ff Mon Sep 17 00:00:00 2001
+From: Johannes Maibaum <jmaibaum@gmail.com>
+Date: Thu, 24 Mar 2022 21:36:21 +0100
+Subject: [PATCH] Fix stock templates path for flatpak
+
+Commit ad251b7b8c86ea3c0153fe823c3716db3f6d63ed broke the template path
+lookup for flatpak via `PATHS::GetStockTemplatesPath()`. Fix this by
+using `::GetStockEDALibraryPath()` in all EDA Library related path
+lookup functions.
+
+`GetStockEDALibraryPath()` effectively does the same as
+`GetStockDataPath()`, but it takes care to check the
+`KICAD_LIBRARY_DATA` build config, which is being used by flatpak to
+point to the flatpak EDA Library extensions in
+`/app/extensions/Library/`.
+
+Closes #11174
+---
+ common/paths.cpp | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/common/paths.cpp b/common/paths.cpp
+index abf9cf0844..a725caaa43 100644
+--- a/common/paths.cpp
++++ b/common/paths.cpp
+@@ -203,7 +203,7 @@ wxString PATHS::GetStockSymbolsPath()
+ {
+     wxString path;
+ 
+-    path = GetStockDataPath() + wxT( "/symbols" );
++    path = GetStockEDALibraryPath() + wxT( "/symbols" );
+ 
+     return path;
+ }
+@@ -213,7 +213,7 @@ wxString PATHS::GetStockFootprintsPath()
+ {
+     wxString path;
+ 
+-    path = GetStockDataPath() + wxT( "/footprints" );
++    path = GetStockEDALibraryPath() + wxT( "/footprints" );
+ 
+     return path;
+ }
+@@ -223,7 +223,7 @@ wxString PATHS::GetStock3dmodelsPath()
+ {
+     wxString path;
+ 
+-    path = GetStockDataPath() + wxT( "/3dmodels" );
++    path = GetStockEDALibraryPath() + wxT( "/3dmodels" );
+ 
+     return path;
+ }
+@@ -243,7 +243,7 @@ wxString PATHS::GetStockTemplatesPath()
+ {
+     wxString path;
+ 
+-    path = GetStockDataPath() + wxT( "/template" );
++    path = GetStockEDALibraryPath() + wxT( "/template" );
+ 
+     return path;
+ }
+-- 
+2.35.1
+
