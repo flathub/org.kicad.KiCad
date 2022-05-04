@@ -194,9 +194,9 @@ modules:
         fi; done; done; unset name suffix
     sources:
       - type: archive
-        url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.4/kicad-6.0.4.tar.gz
-        sha256: 45d351be84b582821d8a9a590bab5ccd53f9c477950c97295634f209772d5c33
-    # To be removed with KiCad 6.0.5 stable release
+        url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.5/kicad-6.0.5.tar.gz
+        sha256: 4bea4d329995d0fe7a0253f25be136ddbff3cdcfde2e21eef834a1dfe37f6157
+      # To be removed with KiCad 6.0.6 stable release
       - type: patch
         path: patches/fix-stock-templates-path-for-flatpak.patch
       - type: shell
@@ -212,5 +212,5 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.4.tar.gz
-        sha256: f5c66c961070342e061341503df986ce1a2365bae18de6605fe08ef4a18b0f12
+        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.5.tar.gz
+        sha256: 9e2959f0410e1262c868274d9a4dbddcf96113915fe288364066919661e31a7b
