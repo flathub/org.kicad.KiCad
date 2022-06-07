@@ -111,8 +111,8 @@ modules:
       - --disable-glcanvasegl
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.5/wxWidgets-3.1.5.tar.bz2
-        sha256: d7b3666de33aa5c10ea41bb9405c40326e1aeb74ee725bb88f90f1d50270a224
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.7/wxWidgets-3.1.7.tar.bz2
+        sha256: 3d666e47d86192f085c84089b850c90db7a73a5d26b684b617298d89dce84f19
         x-checker-data:
           type: anitya
           project-id: 5150
