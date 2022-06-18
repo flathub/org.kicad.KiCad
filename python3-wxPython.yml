@@ -11,7 +11,7 @@ modules:
       - patch -p0 <fix-wxpython-4.1.1-on-wxwidgets-3.1.5.patch
       - tar czf wxPython-4.1.1.tar.gz wxPython-4.1.1
   # Now install the modules
-      - pip3 install --exists-action=i --no-index --no-build-isolation --find-links="file://${PWD}"
+      - pip3 install --verbose --exists-action=i --no-index --no-build-isolation --find-links="file://${PWD}"
         --prefix=${FLATPAK_DEST} "wxPython"
     build-options:
       env:
@@ -20,8 +20,8 @@ modules:
       - /bin
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/64/4a/b008d1f8a7b9f5206ecf70a53f84e654707e7616a771d84c05151a4713e9/numpy-1.22.3.zip
-        sha256: dbc7601a3b7472d559dc7b933b18b4b66f9aa7452c120e87dfb33d02008c8a18
+        url: https://files.pythonhosted.org/packages/f6/d8/ab692a75f584d13c6542c3994f75def5bce52ded9399f52e230fe402819d/numpy-1.22.4.zip
+        sha256: 425b390e4619f58d8526b3dcf656dde069133ae5c240229821f01b5f44ea07af
         x-checker-data:
           type: pypi
           name: numpy
