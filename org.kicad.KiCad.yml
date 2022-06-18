@@ -84,9 +84,13 @@ modules:
       - -DINSTALL_SAMPLES=OFF
       - -DINSTALL_TEST_CASES=OFF
     sources:
-      - type: archive
-        url: https://github.com/Open-Cascade-SAS/OCCT/archive/refs/tags/V7_6_1.tar.gz
-        sha256: 48969bf9130966a30b370b335133f87e8614b7cbc077b0df9d895bbefc5cfeae
+      - type: git
+        url: https://github.com/Open-Cascade-SAS/OCCT
+        commit: bb368e271e24f63078129283148ce83db6b9670a
+        tag: V7_6_2
+        x-checker-data:
+          type: git
+          tag-pattern: ^V([\d_]+)$
 
   - name: boost
     buildsystem: simple
