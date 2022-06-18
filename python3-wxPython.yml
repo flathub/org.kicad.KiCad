@@ -5,17 +5,19 @@ modules:
   - name: python3-wxPython
     buildsystem: simple
     build-commands:
-  # Patch wxPython-4.1.1 to build with wxWidgets-3.1.5
-      - tar xf wxPython-4.1.1.tar.gz
-      - rm wxPython-4.1.1.tar.gz
-      - patch -p0 <fix-wxpython-4.1.1-on-wxwidgets-3.1.5.patch
-      - tar czf wxPython-4.1.1.tar.gz wxPython-4.1.1
-  # Now install the modules
+      # Zip up a self-created wxPython-4.2.0a1.zip to contain ./bin/waf-2.0.22
+      # and ./ext/wxWidgets (populated by recursive git clone), and modify
+      # setup.py to also run codegen.
+      - cp waf-2.0.22 wxPython/bin/
+      - patch -dwxPython -p1 <0001_wxPython_Run-codegen-via-setup.py.patch
+      - tar czf wxPython-4.2.0a1.tar.gz wxPython
+      # Now install the modules
       - pip3 install --verbose --exists-action=i --no-index --no-build-isolation --find-links="file://${PWD}"
-        --prefix=${FLATPAK_DEST} "wxPython"
+        --prefix=${FLATPAK_DEST} wxPython
     build-options:
       env:
-        WXPYTHON_BUILD_ARGS: --use_syswx
+        DOXYGEN: /app/bin/doxygen
+        WXPYTHON_BUILD_ARGS: --use_syswx --nodoc
     cleanup:
       - /bin
     sources:
@@ -31,11 +33,17 @@ modules:
         x-checker-data:
           type: pypi
           name: Pillow
+      - type: git
+        url: https://github.com/wxWidgets/Phoenix.git
+        commit: edf1cf070b6cd927227d86abb2658b772ec36061
+        dest: wxPython
+        # Disable data checker until we have a new official release of wxPython
+        #x-checker-data:
+        #  type: pypi
+        #  name: wxPython
+      # We need to modify the wxPython source until they finally release a new version
       - type: file
-        url: https://files.pythonhosted.org/packages/b0/4d/80d65c37ee60a479d338d27a2895fb15bbba27a3e6bb5b6d72bb28246e99/wxPython-4.1.1.tar.gz
-        sha256: 00e5e3180ac7f2852f342ad341d57c44e7e4326de0b550b9a5c4a8361b6c3528
-        x-checker-data:
-          type: pypi
-          name: wxPython
+        url: https://waf.io/waf-2.0.22
+        sha256: 0a09ad26a2cfc69fa26ab871cb558165b60374b5a653ff556a0c6aca63a00df1
       - type: file
-        path: patches/fix-wxpython-4.1.1-on-wxwidgets-3.1.5.patch
+        path: patches/0001_wxPython_Run-codegen-via-setup.py.patch

@@ -115,8 +115,8 @@ modules:
       - --disable-glcanvasegl
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.5/wxWidgets-3.1.5.tar.bz2
-        sha256: d7b3666de33aa5c10ea41bb9405c40326e1aeb74ee725bb88f90f1d50270a224
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.0-rc1/wxWidgets-3.2.0-rc1.tar.bz2
+        sha256: bac1698acbbbcbb7bd9feb775e2874ef48fdd63e6e141f558395f0db78c5dc3f
         x-checker-data:
           type: anitya
           project-id: 5150
@@ -125,6 +125,19 @@ modules:
         commands:
           - cp -p /usr/share/automake-*/config.{sub,guess} .
           - autoconf -f -B build/autoconf_prepend-include
+
+  - python3-attrdict.yaml
+  - python3-sip.yaml
+
+  - name: doxygen
+    buildsystem: cmake
+    cleanup:
+      - /bin
+      - /share
+    sources:
+      - type: archive
+        url: https://www.doxygen.nl/files/doxygen-1.9.4.src.tar.gz
+        md5: 85174faa6e3a5a471fa5ede8ff528d06
 
   - python3-wxPython.yml
 
