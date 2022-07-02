@@ -1,0 +1,45 @@
+From 5a7e1c9a4074633259255dce0779cbedce5b9da2 Mon Sep 17 00:00:00 2001
+From: Johannes Maibaum <jmaibaum@gmail.com>
+Date: Sat, 2 Jul 2022 13:57:16 +0200
+Subject: [PATCH] Run codegen via setup.py
+
+---
+ setup.py | 20 ++++++++++++++------
+ 1 file changed, 14 insertions(+), 6 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index 3c32ca77..70ffa7db 100644
+--- a/setup.py
++++ b/setup.py
+@@ -126,14 +126,22 @@ class wx_build(orig_build):
+     def run(self):
+         if not self.skip_build:
+             # Run build.py to do the actual building of the extension modules
+-            msg('WARNING: Building this way assumes that all generated files have been \n'
+-                'generated already.  If that is not the case then use build.py directly \n'
+-                'to generate the source and perform the build stage.  You can use \n'
+-                '--skip-build with the bdist_* or install commands to avoid this \n'
+-                'message and the wxWidgets and Phoenix build steps in the future.\n')
++            #msg('WARNING: Building this way assumes that all generated files have been \n'
++            #    'generated already.  If that is not the case then use build.py directly \n'
++            #    'to generate the source and perform the build stage.  You can use \n'
++            #    '--skip-build with the bdist_* or install commands to avoid this \n'
++            #    'message and the wxWidgets and Phoenix build steps in the future.\n')
+
+             # Use the same Python that is running this script.
+-            cmd = ['"{}"'.format(sys.executable), '-u', 'build.py', 'build']
++            cmd = [
++                '"{}"'.format(sys.executable),
++                '-u',
++                'build.py',
++                'dox',
++                'etg',
++                'sip',
++                'build'
++            ]
+             cmd = ' '.join(cmd)
+             runcmd(cmd)
+
+--
+2.36.1
+

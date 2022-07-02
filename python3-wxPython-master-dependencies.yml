@@ -1,0 +1,80 @@
+name: python3-wxPython-master-dependencies
+buildsystem: simple
+build-commands: []
+cleanup:
+  - /bin
+modules:
+  - name: doxygen
+    buildsystem: cmake
+    sources:
+      - type: archive
+        url: https://www.doxygen.nl/files/doxygen-1.9.4.src.tar.gz
+        sha256: a15e9cd8c0d02b7888bc8356eac200222ecff1defd32f3fe05257d81227b1f37
+        x-checker-data:
+          type: html
+          url: https://www.doxygen.nl/download.html
+          version-pattern: The latest version of doxygen is ([\d\.-]*)
+          url-template: https://www.doxygen.nl/files/doxygen-$version.src.tar.gz
+
+  - name: python3-attrdict
+    buildsystem: simple
+    build-commands:
+      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
+        --prefix=${FLATPAK_DEST} "attrdict" --no-build-isolation
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/3f/72/614aae677d28e81a5bf830fadcf580803876ef76e0306902d3ca5790cd9a/attrdict-2.0.1.tar.gz
+        sha256: 35c90698b55c683946091177177a9e9c0713a0860f0e049febd72649ccd77b70
+        x-checker-data:
+          type: pypi
+          name: attrdict
+
+  - name: python3-flit_core
+    buildsystem: simple
+    build-commands:
+      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
+        --prefix=${FLATPAK_DEST} "flit_core" --no-build-isolation
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/15/d1/d8798b83e953fd6f86ca9b50f93eec464a9305b0661469c8234e61095481/flit_core-3.7.1.tar.gz
+        sha256: 14955af340c43035dbfa96b5ee47407e377ee337f69e70f73064940d27d0a44f
+        x-checker-data:
+          type: pypi
+          name: flit_core
+
+  - name: python3-sip
+    buildsystem: simple
+    build-commands:
+      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
+        --prefix=${FLATPAK_DEST} "sip" --no-build-isolation
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/71/22/207523d16464c40a0310d2d4d8926daffa00ac1f5b1576170a32db749636/pyparsing-3.0.9.tar.gz
+        sha256: 2b020ecf7d21b687f219b71ecad3631f644a47f01403fa1d1036b0c6416d70fb
+        x-checker-data:
+          type: pypi
+          name: pyparsing
+      - type: file
+        url: https://files.pythonhosted.org/packages/be/ba/1f744cdc819428fc6b5084ec34d9b30660f6f9daaf70eead706e3203ec3c/toml-0.10.2.tar.gz
+        sha256: b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f
+        x-checker-data:
+          type: pypi
+          name: toml
+      - type: file
+        url: https://files.pythonhosted.org/packages/e5/69/882ee5c9d017149285cab114ebeab373308ef0f874fcdac9beb90e0ac4da/ply-3.11.tar.gz
+        sha256: 00c7c1aaa88358b9c765b6d3000c6eec0ba42abca5351b095321aef446081da3
+        x-checker-data:
+          type: pypi
+          name: ply
+      - type: file
+        url: https://files.pythonhosted.org/packages/df/9e/d1a7217f69310c1db8fdf8ab396229f55a699ce34a203691794c5d1cad0c/packaging-21.3.tar.gz
+        sha256: dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb
+        x-checker-data:
+          type: pypi
+          name: packaging
+      - type: file
+        url: https://files.pythonhosted.org/packages/5b/cb/c27c925ae07bd03a2597fa1db17bfc2a4ac57da61aeb90f8ec98ffbb975b/sip-6.6.2.tar.gz
+        sha256: 0e3efac1c5dfd8e525ae57140927df26993e13f58b89d1577c314f4105bfd90d
+        x-checker-data:
+          type: pypi
+          name: sip
