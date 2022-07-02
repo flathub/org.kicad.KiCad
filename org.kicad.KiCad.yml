@@ -126,19 +126,7 @@ modules:
           - cp -p /usr/share/automake-*/config.{sub,guess} .
           - autoconf -f -B build/autoconf_prepend-include
 
-  - python3-attrdict.yaml
-  - python3-sip.yaml
-
-  - name: doxygen
-    buildsystem: cmake
-    cleanup:
-      - /bin
-      - /share
-    sources:
-      - type: archive
-        url: https://www.doxygen.nl/files/doxygen-1.9.4.src.tar.gz
-        md5: 85174faa6e3a5a471fa5ede8ff528d06
-
+  - python3-wxPython-master-dependencies.yml
   - python3-wxPython.yml
 
   - name: swig
