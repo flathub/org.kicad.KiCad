@@ -41,25 +41,25 @@ modules:
     build-commands:
       - cp -r glm /app/include
     sources:
-      - type: archive
-        url: https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip
-        sha256: 37e2a3d62ea3322e43593c34bae29f57e3e251ea89f4067506c94043769ade4c
+      - type: git
+        url: https://github.com/g-truc/glm
+        tag: 0.9.9.8
+        commit: bf71a834948186f4097caa076cd2663c69a10e1e
         x-checker-data:
-          type: anitya
-          project-id: 1181
-          url-template: https://github.com/g-truc/glm/releases/download/$version/glm-$version.zip
+          type: git
+          tag-pattern: ^([\d\.]+)$
 
   - name: libXmu
     cleanup:
       - /share/doc
     sources:
-      - type: archive
-        url: https://www.x.org/archive//individual/lib/libXmu-1.1.3.tar.gz
-        sha256: 5bd9d4ed1ceaac9ea023d86bf1c1632cd3b172dce4a193a72a94e1d9df87a62e
+      - type: git
+        url: https://gitlab.freedesktop.org/xorg/lib/libxmu.git
+        tag: libXmu-1.1.3
+        commit: e9efe2d027b4c46cf6834cc532222f8ad1d1d3c3
         x-checker-data:
-          type: anitya
-          project-id: 1785
-          url-template: https://www.x.org/archive//individual/lib/libXmu-$version.tar.gz
+          type: git
+          tag-pattern: ^libXmu-([\d\.]+)$
 
   - name: OCCT
     buildsystem: cmake-ninja
@@ -102,9 +102,9 @@ modules:
         url: https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.gz
         sha256: 273f1be93238a068aba4f9735a4a2b003019af067b9c183ed227780b8f36062c
         x-checker-data:
-          type: anitya
-          project-id: 6845
-          stable-only: true
+          type: html
+          url: https://www.boost.org/users/download/
+          version-pattern: Version ([\d\.]+)
           url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${version0}_${version1}_${version2}.tar.gz
 
   - name: wxWidgets
@@ -118,8 +118,9 @@ modules:
         url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.0/wxWidgets-3.2.0.tar.bz2
         sha256: 356e9b55f1ae3d58ae1fed61478e9b754d46b820913e3bfbc971c50377c1903a
         x-checker-data:
-          type: anitya
-          project-id: 5150
+          type: html
+          url: https://wxwidgets.org/downloads
+          version-pattern: 'Latest Stable Release: ([\d\.]+)'
           url-template: https://github.com/wxWidgets/wxWidgets/releases/download/v$version/wxWidgets-$version.tar.bz2
       - type: script
         commands:
@@ -139,9 +140,9 @@ modules:
         url: https://sourceforge.net/projects/swig/files/swig/swig-4.0.2/swig-4.0.2.tar.gz
         sha256: d53be9730d8d58a16bf0cbd1f8ac0c0c3e1090573168bfa151b01eb47fa906fc
         x-checker-data:
-          type: anitya
-          project-id: 4919
-          stable-only: true
+          type: html
+          url: https://www.swig.org/download.html
+          version-pattern: The latest release is <a href=".+">swig-([\d\.]+)</a>
           url-template: https://sourceforge.net/projects/swig/files/swig/swig-$version/swig-$version.tar.gz
 
   - name: ngspice
@@ -160,9 +161,9 @@ modules:
         url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/37/ngspice-37.tar.gz
         sha256: 9beea6741a36a36a70f3152a36c82b728ee124c59a495312796376b30c8becbe
         x-checker-data:
-          type: anitya
-          project-id: 20590
-          stable-only: true
+          type: html
+          url: https://ngspice.sourceforge.io/download.html
+          version-pattern: <strong>ngspice-([\d]+)</strong>
           url-template: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/$version/ngspice-$version.tar.gz
       - type: script
         commands:
@@ -199,6 +200,11 @@ modules:
       - type: archive
         url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.7/kicad-6.0.7.tar.gz
         sha256: a72e88b15f360d76ea7427923a5073db5e34b5f8cfc4be389cfc24b12a71e7f9
+        x-checker-data:
+          type: html
+          url: https://www.kicad.org/download/source/
+          version-pattern: "Current Version: <strong>([\\d\\.]+)</strong>"
+          url-template: https://gitlab.com/kicad/code/kicad/-/archive/$version/kicad-$version.tar.gz
       - type: shell
         commands:
           - sed -i 's/org\.kicad\.kicad/org.kicad.KiCad/g' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
@@ -214,3 +220,8 @@ modules:
       - type: archive
         url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.7.tar.gz
         sha256: 470b741e55f80c828d6fe607b503d9e9d27081bf871ec52092d0ba7e1a0c9b2c
+        x-checker-data:
+          type: html
+          url: https://www.kicad.org/download/source/
+          version-pattern: "Current Version: <strong>([\\d\\.]+)</strong>"
+          url-template: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-$version.tar.gz
