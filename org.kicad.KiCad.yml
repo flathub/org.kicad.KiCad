@@ -178,8 +178,6 @@ modules:
       - -DKICAD_BUILD_QA_TESTS=OFF
       - -DKICAD_BUILD_I18N=ON
       - -DKICAD_USE_EGL=OFF
-      - -DKICAD_USE_OCC=ON
-      - -DKICAD_USE_OCE=OFF
       - -DKICAD_LIBRARY_DATA=/app/extensions/Library
     post-install:
       - for f in $FLATPAK_DEST/share/applications/*.desktop; do desktop_name="$(basename
