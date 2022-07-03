@@ -1,11 +1,11 @@
 name: python3-wxPython-master-dependencies
 buildsystem: simple
 build-commands: []
-cleanup:
-  - /bin
 modules:
   - name: doxygen
     buildsystem: cmake
+    cleanup:
+      - /bin
     sources:
       - type: archive
         url: https://www.doxygen.nl/files/doxygen-1.9.4.src.tar.gz
@@ -21,6 +21,8 @@ modules:
     build-commands:
       - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
         --prefix=${FLATPAK_DEST} "attrdict" --no-build-isolation
+    cleanup:
+      - /lib
     sources:
       - type: file
         url: https://files.pythonhosted.org/packages/3f/72/614aae677d28e81a5bf830fadcf580803876ef76e0306902d3ca5790cd9a/attrdict-2.0.1.tar.gz
@@ -34,6 +36,8 @@ modules:
     build-commands:
       - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
         --prefix=${FLATPAK_DEST} "flit_core" --no-build-isolation
+    cleanup:
+      - /lib
     sources:
       - type: file
         url: https://files.pythonhosted.org/packages/15/d1/d8798b83e953fd6f86ca9b50f93eec464a9305b0661469c8234e61095481/flit_core-3.7.1.tar.gz
@@ -47,6 +51,9 @@ modules:
     build-commands:
       - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
         --prefix=${FLATPAK_DEST} "sip" --no-build-isolation
+    cleanup:
+      - /bin
+      - /lib
     sources:
       - type: file
         url: https://files.pythonhosted.org/packages/71/22/207523d16464c40a0310d2d4d8926daffa00ac1f5b1576170a32db749636/pyparsing-3.0.9.tar.gz
