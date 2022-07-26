@@ -197,8 +197,8 @@ modules:
         fi; done; done; unset name suffix
     sources:
       - type: archive
-        url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.6/kicad-6.0.6.tar.gz
-        sha256: 8f903eeef385d2406ac3fa2ab74da3581b310be2d2fcae258ad2115b73828a0a
+        url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.7/kicad-6.0.7.tar.gz
+        sha256: a72e88b15f360d76ea7427923a5073db5e34b5f8cfc4be389cfc24b12a71e7f9
       - type: shell
         commands:
           - sed -i 's/org\.kicad\.kicad/org.kicad.KiCad/g' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
@@ -212,5 +212,5 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.6.tar.gz
-        sha256: 508174319a013de097d756cce9af66b48c81c2da30329dc3ebe1cbf2742029b1
+        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.7.tar.gz
+        sha256: 470b741e55f80c828d6fe607b503d9e9d27081bf871ec52092d0ba7e1a0c9b2c
