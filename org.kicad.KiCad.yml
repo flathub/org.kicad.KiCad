@@ -99,8 +99,8 @@ modules:
       - ./b2 -j $FLATPAK_BUILDER_N_JOBS install
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.gz
-        sha256: 273f1be93238a068aba4f9735a4a2b003019af067b9c183ed227780b8f36062c
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.gz
+        sha256: 4b2136f98bdd1f5857f1c3dea9ac2018effe65286cf251534b6ae20cc45e1847
         x-checker-data:
           type: html
           url: https://www.boost.org/users/download/
@@ -202,7 +202,7 @@ modules:
         x-checker-data:
           type: html
           url: https://www.kicad.org/download/source/
-          version-pattern: "Current Version: <strong>([\\d\\.]+)</strong>"
+          version-pattern: 'Current Version: <strong>([\d\.]+)</strong>'
           url-template: https://gitlab.com/kicad/code/kicad/-/archive/$version/kicad-$version.tar.gz
       - type: shell
         commands:
@@ -222,5 +222,5 @@ modules:
         x-checker-data:
           type: html
           url: https://www.kicad.org/download/source/
-          version-pattern: "Current Version: <strong>([\\d\\.]+)</strong>"
+          version-pattern: 'Current Version: <strong>([\d\.]+)</strong>'
           url-template: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-$version.tar.gz
