@@ -2,20 +2,20 @@ name: python3-wxPython
 buildsystem: simple
 build-commands: []
 modules:
-  - name: python3-attrdict
+  - name: python3-attrdict3
     buildsystem: simple
     build-commands:
       - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
-        --prefix=${FLATPAK_DEST} "attrdict" --no-build-isolation
+        --prefix=${FLATPAK_DEST} attrdict3 --no-build-isolation
     cleanup:
       - /lib
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/3f/72/614aae677d28e81a5bf830fadcf580803876ef76e0306902d3ca5790cd9a/attrdict-2.0.1.tar.gz
-        sha256: 35c90698b55c683946091177177a9e9c0713a0860f0e049febd72649ccd77b70
+        url: https://files.pythonhosted.org/packages/9b/a9/c3f5f498295317c8be62bbe5d1adc1a2864db1720b2a0b4a39e0448d51e4/attrdict3-2.0.2.tar.gz
+        sha256: 004c171ca1120cc1755701db99d7fa4944afb1e68950434efdaa542513335fe8
         x-checker-data:
           type: pypi
-          name: attrdict
+          name: attrdict3
   - name: python3-wxPython
     buildsystem: simple
     build-commands:
