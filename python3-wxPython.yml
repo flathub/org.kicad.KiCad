@@ -23,6 +23,7 @@ modules:
         --prefix=${FLATPAK_DEST} wxPython
     build-options:
       env:
+        SETUPTOOLS_USE_DISTUTILS: stdlib
         WXPYTHON_BUILD_ARGS: --use_syswx --nodoc
     cleanup:
       - /bin
