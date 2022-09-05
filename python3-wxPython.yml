@@ -2,24 +2,24 @@ name: python3-wxPython
 buildsystem: simple
 build-commands: []
 modules:
-  - name: python3-attrdict
+  - name: python3-attrdict3
     buildsystem: simple
     build-commands:
       - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
-        --prefix=${FLATPAK_DEST} "attrdict" --no-build-isolation
+        --prefix=${FLATPAK_DEST} attrdict3 --no-build-isolation
     cleanup:
       - /lib
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/3f/72/614aae677d28e81a5bf830fadcf580803876ef76e0306902d3ca5790cd9a/attrdict-2.0.1.tar.gz
-        sha256: 35c90698b55c683946091177177a9e9c0713a0860f0e049febd72649ccd77b70
+        url: https://files.pythonhosted.org/packages/9b/a9/c3f5f498295317c8be62bbe5d1adc1a2864db1720b2a0b4a39e0448d51e4/attrdict3-2.0.2.tar.gz
+        sha256: 004c171ca1120cc1755701db99d7fa4944afb1e68950434efdaa542513335fe8
         x-checker-data:
           type: pypi
-          name: attrdict
+          name: attrdict3
   - name: python3-wxPython
     buildsystem: simple
     build-commands:
-      - pip3 install --verbose --exists-action=i --no-index --no-build-isolation --find-links="file://${PWD}"
+      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
         --prefix=${FLATPAK_DEST} wxPython
     build-options:
       env:
@@ -27,6 +27,31 @@ modules:
     cleanup:
       - /bin
     sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/a8/e7/1440b0d19054a5616e9e5beeaa22f68485aa9de20d187f04e52880b7ae7a/setuptools-59.2.0.tar.gz
+        sha256: 157d21de9d055ab9e8ea3186d91e7f4f865e11f42deafa952d90842671fc2576
+        x-checker-data:
+          name: setuptools
+          type: pypi
+          versions:
+            ==: '59.2.0'
+      - type: file
+        url: https://files.pythonhosted.org/packages/4e/be/8139f127b4db2f79c8b117c80af56a3078cc4824b5b94250c7f81a70e03b/wheel-0.37.0.tar.gz
+        sha256: e2ef7239991699e3355d54f8e968a21bb940a1dbf34a4d226741e64462516fad
+        x-checker-data:
+          name: wheel
+          type: pypi
+          versions:
+            ==: '0.37.0'
+      - type: file
+        url: https://files.pythonhosted.org/packages/4c/76/1e41fbb365ad20b6efab2e61b0f4751518444c953b390f9b2d36cf97eea0/Cython-0.29.32.tar.gz
+        sha256: 8733cf4758b79304f2a4e39ebfac5e92341bce47bcceb26c1254398b2f8c1af7
+        x-checker-data:
+          name: Cython
+          type: pypi
+          versions:
+            '>=': '0.29.30'
+            <: '3.0'
       - type: file
         url: https://files.pythonhosted.org/packages/f4/66/17b8e95770478436bf968353c89683ce6f9e14d92e0d4fb3111c09ba18d2/numpy-1.23.2.tar.gz
         sha256: b78d00e48261fbbd04aa0d7427cf78d18401ee0abd89c7559bbf422e5b1c7d01
