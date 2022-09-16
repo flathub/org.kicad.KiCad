@@ -181,6 +181,8 @@ modules:
       - -DKICAD_USE_EGL=OFF
       - -DKICAD_LIBRARY_DATA=/app/extensions/Library
     post-install:
+      - install pip3 /app/bin/pip3
+      - install python /app/bin/python
       - >
         for f in $FLATPAK_DEST/share/applications/*.desktop; do
           desktop_name="$(basename $f)";
@@ -225,6 +227,18 @@ modules:
         commands:
           - sed -i 's/org\.kicad\.kicad/org.kicad.KiCad/g' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
           - sed -i '86i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
+      - type: script
+        dest-filename: pip3
+        commands:
+          - export PYTHONUSERBASE="$XDG_DATA_HOME/python"
+          - export PATH="$XDG_DATA_HOME/python/bin":$PATH
+          - exec /usr/bin/pip3 "$@"
+      - type: script
+        dest-filename: python
+        commands:
+          - export PYTHONUSERBASE="$XDG_DATA_HOME/python"
+          - export PATH="$XDG_DATA_HOME/python/bin":$PATH
+          - exec /usr/bin/python "$@"
 
   - name: kicad-doc
     build-commands:
