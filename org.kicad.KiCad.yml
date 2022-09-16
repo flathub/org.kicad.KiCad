@@ -181,20 +181,37 @@ modules:
       - -DKICAD_USE_EGL=OFF
       - -DKICAD_LIBRARY_DATA=/app/extensions/Library
     post-install:
-      - for f in $FLATPAK_DEST/share/applications/*.desktop; do desktop_name="$(basename
-        $f)"; desktop_app_name="${desktop_name%.desktop}"; app_name="${desktop_app_name#org.kicad.}";
-        if [ "$app_name" = "kicad" ]; then desktop-file-edit --set-icon="${FLATPAK_ID}"
-        --set-key=X-Flatpak-RenamedFrom --set-value="${desktop_name};" "$f"; mv $FLATPAK_DEST/share/applications/{org.kicad.kicad,$FLATPAK_ID}.desktop;
-        else desktop-file-edit --set-icon="${FLATPAK_ID}.${app_name}" --set-key=X-Flatpak-RenamedFrom
-        --set-value="${desktop_name};" "$f"; mv $FLATPAK_DEST/share/applications/{org.kicad,$FLATPAK_ID}.${app_name}.desktop;
-        fi; done; unset desktop_name desktop_app_name app_name
+      - >
+        for f in $FLATPAK_DEST/share/applications/*.desktop; do
+          desktop_name="$(basename $f)";
+          desktop_app_name="${desktop_name%.desktop}";
+          app_name="${desktop_app_name#org.kicad.}";
+          if [ "$app_name" = "kicad" ]; then
+            desktop-file-edit --set-icon="${FLATPAK_ID}" --set-key=X-Flatpak-RenamedFrom --set-value="${desktop_name};" "$f";
+            mv $FLATPAK_DEST/share/applications/{org.kicad.kicad,$FLATPAK_ID}.desktop;
+          else
+            desktop-file-edit --set-icon="${FLATPAK_ID}.${app_name}" --set-key=X-Flatpak-RenamedFrom --set-value="${desktop_name};" "$f";
+            mv $FLATPAK_DEST/share/applications/{org.kicad,$FLATPAK_ID}.${app_name}.desktop;
+          fi;
+        done;
+        unset desktop_name desktop_app_name app_name
       - sed -i "s/\(application-x-kicad-.\+\)/$FLATPAK_ID.\1/" $FLATPAK_DEST/share/mime/packages/kicad-kicad.xml
       - mv $FLATPAK_DEST/share/mime/packages/{kicad,$FLATPAK_ID}-kicad.xml
       - mv $FLATPAK_DEST/share/mime/packages/{kicad,$FLATPAK_ID}-gerbers.xml
-      - cd $FLATPAK_DEST/share/icons/hicolor; for d in */{apps,mimetypes}; do for
-        f in ${d}/*; do name="$(basename $f)"; suffix="${name##*.}"; if [[ "$name"
-        == kicad.* ]]; then mv "$f" "${d}/${FLATPAK_ID}.${suffix}"; else mv "$f" "${d}/${FLATPAK_ID}.${name}";
-        fi; done; done; unset name suffix
+      - >
+        cd $FLATPAK_DEST/share/icons/hicolor;
+        for d in */{apps,mimetypes}; do
+          for f in ${d}/*; do
+            name="$(basename $f)";
+            suffix="${name##*.}";
+            if [[ "$name" == kicad.* ]]; then
+              mv "$f" "${d}/${FLATPAK_ID}.${suffix}";
+            else
+              mv "$f" "${d}/${FLATPAK_ID}.${name}";
+            fi;
+          done;
+        done;
+        unset name suffix
     sources:
       - type: archive
         url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.7/kicad-6.0.7.tar.gz
