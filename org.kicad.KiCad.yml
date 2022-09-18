@@ -6,7 +6,6 @@ command: kicad
 rename-appdata-file: org.kicad.kicad.metainfo.xml
 finish-args:
   - --device=dri
-  - --env=LD_LIBRARY_PATH=/app/lib
   - --filesystem=home
   - --share=ipc
   - --share=network
