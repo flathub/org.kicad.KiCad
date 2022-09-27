@@ -217,8 +217,8 @@ modules:
         unset name suffix
     sources:
       - type: archive
-        url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.7/kicad-6.0.7.tar.gz
-        sha256: a72e88b15f360d76ea7427923a5073db5e34b5f8cfc4be389cfc24b12a71e7f9
+        url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.8/kicad-6.0.8.tar.gz
+        sha256: 99cc4706adac11347d252d781cf2436910f039dbdda494ef26db56e48edb9f16
         x-checker-data:
           type: html
           url: https://www.kicad.org/download/source/
