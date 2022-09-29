@@ -190,10 +190,12 @@ modules:
           desktop_app_name="${desktop_name%.desktop}";
           app_name="${desktop_app_name#org.kicad.}";
           if [ "$app_name" = "kicad" ]; then
-            desktop-file-edit --set-icon="${FLATPAK_ID}" --set-key=X-Flatpak-RenamedFrom --set-value="${desktop_name};" "$f";
+            desktop-file-edit --set-icon="${FLATPAK_ID}" --set-key=X-Flatpak-RenamedFrom
+        --set-value="${desktop_name};" "$f";
             mv $FLATPAK_DEST/share/applications/{org.kicad.kicad,$FLATPAK_ID}.desktop;
           else
-            desktop-file-edit --set-icon="${FLATPAK_ID}.${app_name}" --set-key=X-Flatpak-RenamedFrom --set-value="${desktop_name};" "$f";
+            desktop-file-edit --set-icon="${FLATPAK_ID}.${app_name}" --set-key=X-Flatpak-RenamedFrom
+        --set-value="${desktop_name};" "$f";
             mv $FLATPAK_DEST/share/applications/{org.kicad,$FLATPAK_ID}.${app_name}.desktop;
           fi;
         done;
@@ -217,8 +219,8 @@ modules:
         unset name suffix
     sources:
       - type: archive
-        url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.8/kicad-6.0.8.tar.gz
-        sha256: 99cc4706adac11347d252d781cf2436910f039dbdda494ef26db56e48edb9f16
+        url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.7/kicad-6.0.7.tar.gz
+        sha256: a72e88b15f360d76ea7427923a5073db5e34b5f8cfc4be389cfc24b12a71e7f9
         x-checker-data:
           type: html
           url: https://www.kicad.org/download/source/
@@ -249,8 +251,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.8.tar.gz
-        sha256: aa73e3ca67d806a127fdf3ec4220593cc7eaa19157af024d641ab5233bf786de
+        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.7.tar.gz
+        sha256: 470b741e55f80c828d6fe607b503d9e9d27081bf871ec52092d0ba7e1a0c9b2c
         x-checker-data:
           type: html
           url: https://www.kicad.org/download/source/
