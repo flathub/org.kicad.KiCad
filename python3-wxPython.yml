@@ -34,7 +34,7 @@ modules:
           name: setuptools
           type: pypi
           versions:
-            ==: '59.2.0'
+            ==: 59.2.0
       - type: file
         url: https://files.pythonhosted.org/packages/4e/be/8139f127b4db2f79c8b117c80af56a3078cc4824b5b94250c7f81a70e03b/wheel-0.37.0.tar.gz
         sha256: e2ef7239991699e3355d54f8e968a21bb940a1dbf34a4d226741e64462516fad
@@ -42,7 +42,7 @@ modules:
           name: wheel
           type: pypi
           versions:
-            ==: '0.37.0'
+            ==: 0.37.0
       - type: file
         url: https://files.pythonhosted.org/packages/4c/76/1e41fbb365ad20b6efab2e61b0f4751518444c953b390f9b2d36cf97eea0/Cython-0.29.32.tar.gz
         sha256: 8733cf4758b79304f2a4e39ebfac5e92341bce47bcceb26c1254398b2f8c1af7
@@ -50,17 +50,17 @@ modules:
           name: Cython
           type: pypi
           versions:
-            '>=': '0.29.30'
+            '>=': 0.29.30
             <: '3.0'
       - type: file
-        url: https://files.pythonhosted.org/packages/0a/88/f4f0c7a982efdf7bf22f283acf6009b29a9cc5835b684a49f8d3a4adb22f/numpy-1.23.3.tar.gz
-        sha256: 51bf49c0cd1d52be0a240aa66f3458afc4b95d8993d2d04f0d91fa60c10af6cd
+        url: https://files.pythonhosted.org/packages/64/8e/9929b64e146d240507edaac2185cd5516f00b133be5b39250d253be25a64/numpy-1.23.4.tar.gz
+        sha256: ed2cc92af0efad20198638c69bb0fc2870a58dabfba6eb722c933b48556c686c
         x-checker-data:
           type: pypi
           name: numpy
       - type: file
-        url: https://files.pythonhosted.org/packages/8c/92/2975b464d9926dc667020ed1abfa6276e68c3571dcb77e43347e15ee9eed/Pillow-9.2.0.tar.gz
-        sha256: 75e636fd3e0fb872693f23ccb8a5ff2cd578801251f3a4f6854c6a5d437d3c04
+        url: https://files.pythonhosted.org/packages/16/11/da8d395299ca166aa56d9436e26fe8440e5443471de16ccd9a1d06f5993a/Pillow-9.3.0.tar.gz
+        sha256: c935a22a557a560108d780f9a0fc426dd7459940dc54faa49d83249c8d3e760f
         x-checker-data:
           type: pypi
           name: Pillow
