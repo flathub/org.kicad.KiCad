@@ -217,8 +217,8 @@ modules:
         unset name suffix
     sources:
       - type: archive
-        url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.8/kicad-6.0.8.tar.gz
-        sha256: 99cc4706adac11347d252d781cf2436910f039dbdda494ef26db56e48edb9f16
+        url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.9/kicad-6.0.9.tar.gz
+        sha256: 40c2180c4da0be5116356dd4ce55dea097d650647a83843b72da5e291aa388b0
         x-checker-data:
           type: html
           url: https://www.kicad.org/download/source/
@@ -249,8 +249,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.8.tar.gz
-        sha256: aa73e3ca67d806a127fdf3ec4220593cc7eaa19157af024d641ab5233bf786de
+        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.9.tar.gz
+        sha256: b3764df3c0f9ad3da43011597b0eb97e4cd69663207aec3e131d96495314c653
         x-checker-data:
           type: html
           url: https://www.kicad.org/download/source/
