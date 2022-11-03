@@ -127,6 +127,7 @@ modules:
           - autoconf -f -B build/autoconf_prepend-include
 
   - python3-wxPython.yml
+  - python3-requests.yml
 
   - name: swig
     buildsystem: autotools
