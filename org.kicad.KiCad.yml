@@ -136,8 +136,8 @@ modules:
       - /share
     sources:
       - type: archive
-        url: https://sourceforge.net/projects/swig/files/swig/swig-4.1.0/swig-4.1.0.tar.gz
-        sha256: d6a9a8094e78f7cfb6f80a73cc271e1fe388c8638ed22668622c2c646df5bb3d
+        url: https://sourceforge.net/projects/swig/files/swig/swig-4.1.1/swig-4.1.1.tar.gz
+        sha256: 2af08aced8fcd65cdb5cc62426768914bedc735b1c250325203716f78e39ac9b
         x-checker-data:
           type: html
           url: https://www.swig.org/download.html
@@ -191,10 +191,12 @@ modules:
           desktop_app_name="${desktop_name%.desktop}";
           app_name="${desktop_app_name#org.kicad.}";
           if [ "$app_name" = "kicad" ]; then
-            desktop-file-edit --set-icon="${FLATPAK_ID}" --set-key=X-Flatpak-RenamedFrom --set-value="${desktop_name};" "$f";
+            desktop-file-edit --set-icon="${FLATPAK_ID}" --set-key=X-Flatpak-RenamedFrom
+        --set-value="${desktop_name};" "$f";
             mv $FLATPAK_DEST/share/applications/{org.kicad.kicad,$FLATPAK_ID}.desktop;
           else
-            desktop-file-edit --set-icon="${FLATPAK_ID}.${app_name}" --set-key=X-Flatpak-RenamedFrom --set-value="${desktop_name};" "$f";
+            desktop-file-edit --set-icon="${FLATPAK_ID}.${app_name}" --set-key=X-Flatpak-RenamedFrom
+        --set-value="${desktop_name};" "$f";
             mv $FLATPAK_DEST/share/applications/{org.kicad,$FLATPAK_ID}.${app_name}.desktop;
           fi;
         done;
