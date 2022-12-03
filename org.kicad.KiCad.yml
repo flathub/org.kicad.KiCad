@@ -191,10 +191,18 @@ modules:
           desktop_app_name="${desktop_name%.desktop}";
           app_name="${desktop_app_name#org.kicad.}";
           if [ "$app_name" = "kicad" ]; then
-            desktop-file-edit --set-icon="${FLATPAK_ID}" --set-key=X-Flatpak-RenamedFrom --set-value="${desktop_name};" "$f";
+            desktop-file-edit \
+              --set-icon="${FLATPAK_ID}" \
+              --set-key=X-Flatpak-RenamedFrom \
+              --set-value="${desktop_name};" \
+              "$f";
             mv $FLATPAK_DEST/share/applications/{org.kicad.kicad,$FLATPAK_ID}.desktop;
           else
-            desktop-file-edit --set-icon="${FLATPAK_ID}.${app_name}" --set-key=X-Flatpak-RenamedFrom --set-value="${desktop_name};" "$f";
+            desktop-file-edit \
+              --set-icon="${FLATPAK_ID}.${app_name}" \
+              --set-key=X-Flatpak-RenamedFrom \
+              --set-value="${desktop_name};" \
+              "$f";
             mv $FLATPAK_DEST/share/applications/{org.kicad,$FLATPAK_ID}.${app_name}.desktop;
           fi;
         done;
