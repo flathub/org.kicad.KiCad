@@ -225,14 +225,15 @@ modules:
         done;
         unset name suffix
     sources:
-      - type: archive
-        url: https://gitlab.com/kicad/code/kicad/-/archive/6.0.9/kicad-6.0.9.tar.gz
-        sha256: 40c2180c4da0be5116356dd4ce55dea097d650647a83843b72da5e291aa388b0
+      - type: git
+        url: https://gitlab.com/kicad/code/kicad.git
+        commit: b29f91cc1569c31a96e7e20541e9f35c1c762cd0
+        tag: 6.0.9
         x-checker-data:
-          type: html
-          url: https://www.kicad.org/download/source/
-          version-pattern: 'Current Version: <strong>([\d\.]+)</strong>'
-          url-template: https://gitlab.com/kicad/code/kicad/-/archive/$version/kicad-$version.tar.gz
+          type: git
+          tag-pattern: ^([\d\.]+)$
+          versions:
+            <: 6.99.0
       - type: shell
         commands:
           - sed -i 's/org\.kicad\.kicad/org.kicad.KiCad/g' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
