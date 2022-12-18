@@ -171,6 +171,7 @@ modules:
 
   - name: kicad
     buildsystem: cmake-ninja
+    subdir: kicad-git
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DGLEW_INCLUDE_DIR=/app/include/GL
@@ -181,10 +182,13 @@ modules:
       - -DKICAD_USE_EGL=OFF
       - -DKICAD_LIBRARY_DATA=/app/extensions/Library
     post-install:
-      - install pip3 /app/bin/pip3.10
+      - install ../kicad-extra/pip3 /app/bin/pip3.10
       - ln -s /app/bin/pip3.10 /app/bin/pip3
       - ln -s /app/bin/pip3 /app/bin/pip
-      - install python /app/bin/python
+      - install ../kicad-extra/python /app/bin/python
+      - >
+        sed -i "s/org\.kicad\.kicad/$FLATPAK_ID/g" \
+          $FLATPAK_DEST/share/appdata/org.kicad.KiCad.metainfo.xml
       - >
         for f in $FLATPAK_DEST/share/applications/*.desktop; do
           desktop_name="$(basename $f)";
@@ -226,6 +230,7 @@ modules:
         unset name suffix
     sources:
       - type: git
+        dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
         commit: 38e09789e55844e40d328f030d8d8a84d5c20e41
         tag: 6.0.10
@@ -234,17 +239,18 @@ modules:
           tag-pattern: ^([\d\.]+)$
           versions:
             <: 6.99.0
-      - type: shell
-        commands:
-          - sed -i 's/org\.kicad\.kicad/org.kicad.KiCad/g' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
-          - sed -i '86i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
+      #- type: shell
+      #  commands:
+      #    - sed -i '86i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
       - type: script
+        dest: kicad-extra
         dest-filename: pip3
         commands:
           - export PYTHONUSERBASE="$XDG_DATA_HOME/python"
           - export PATH="$XDG_DATA_HOME/python/bin":$PATH
           - exec /usr/bin/pip3 "$@"
       - type: script
+        dest: kicad-extra
         dest-filename: python
         commands:
           - export PYTHONUSERBASE="$XDG_DATA_HOME/python"
@@ -253,7 +259,7 @@ modules:
 
   - name: kicad-doc
     build-commands:
-  # Only install HTML docs
+      # Only install HTML docs
       - find . -type f -name '*.pdf' -execdir rm {} \;
       - find . -type f -exec install -Dm644 "{}" "${FLATPAK_DEST}/{}" \;
     buildsystem: simple
