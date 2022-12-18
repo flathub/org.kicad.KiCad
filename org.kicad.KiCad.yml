@@ -259,8 +259,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.9.tar.gz
-        sha256: b3764df3c0f9ad3da43011597b0eb97e4cd69663207aec3e131d96495314c653
+        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.10.tar.gz
+        sha256: 15aa790890b7880ba94d773e2b8bb1a6421134c8b62f2e05c94307fb2ac2defa
         x-checker-data:
           type: html
           url: https://www.kicad.org/download/source/
