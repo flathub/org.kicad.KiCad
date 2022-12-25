@@ -236,6 +236,7 @@ modules:
             <: 6.99.0
       - type: shell
         commands:
+          - rm -rf .git/
           - sed -i 's/org\.kicad\.kicad/org.kicad.KiCad/g' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
           - sed -i '86i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
       - type: script
