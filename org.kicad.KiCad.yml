@@ -1,4 +1,5 @@
 app-id: org.kicad.KiCad
+branch: beta
 runtime: org.freedesktop.Sdk
 runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
@@ -13,7 +14,7 @@ finish-args:
 
 add-extensions:
   org.kicad.KiCad.Library:
-    version: stable
+    version: beta
     directory: extensions/Library
     autodelete: true
     no-autodownload: false
@@ -169,6 +170,19 @@ modules:
           - cp -p /usr/share/automake-*/config.{sub,guess} .
           - autoconf -f -B build/autoconf_prepend-include
 
+  - name: unixodbc
+    sources:
+      - type: git
+        url: https://github.com/lurcher/unixODBC.git
+        tag: 2.3.11
+        commit: 6c8071b1bef4e4991e7b3023a1c1c712168a818e
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\d\.]+)$
+      - type: script
+        commands:
+          - autoreconf -fi
+
   - name: kicad
     buildsystem: cmake-ninja
     config-opts:
@@ -227,18 +241,16 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 38e09789e55844e40d328f030d8d8a84d5c20e41
-        tag: 6.0.10
+        commit: 490fef9fd47b60e19bd7608e6a52c37a21333453
+        tag: 7.0.0-rc1
         x-checker-data:
           type: git
-          tag-pattern: ^([\d\.]+)$
-          versions:
-            <: 6.99.0
+          tag-pattern: ^([\d\.]+[-rc\d]+)$
       - type: shell
         commands:
           - rm -rf .git/
           - sed -i 's/org\.kicad\.kicad/org.kicad.KiCad/g' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
-          - sed -i '86i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
+          #- sed -i '86i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
       - type: script
         dest-filename: pip3
         commands:
@@ -252,18 +264,18 @@ modules:
           - export PATH="$XDG_DATA_HOME/python/bin":$PATH
           - exec /usr/bin/python "$@"
 
-  - name: kicad-doc
-    build-commands:
-  # Only install HTML docs
-      - find . -type f -name '*.pdf' -execdir rm {} \;
-      - find . -type f -exec install -Dm644 "{}" "${FLATPAK_DEST}/{}" \;
-    buildsystem: simple
-    sources:
-      - type: archive
-        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.10.tar.gz
-        sha256: 15aa790890b7880ba94d773e2b8bb1a6421134c8b62f2e05c94307fb2ac2defa
-        x-checker-data:
-          type: html
-          url: https://www.kicad.org/download/source/
-          version-pattern: 'Current Version: <strong>([\d\.]+)</strong>'
-          url-template: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-$version.tar.gz
+  #- name: kicad-doc
+  #  build-commands:
+  #    # Only install HTML docs
+  #    - find . -type f -name '*.pdf' -execdir rm {} \;
+  #    - find . -type f -exec install -Dm644 "{}" "${FLATPAK_DEST}/{}" \;
+  #  buildsystem: simple
+  #  sources:
+  #    - type: archive
+  #      url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.10.tar.gz
+  #      sha256: 15aa790890b7880ba94d773e2b8bb1a6421134c8b62f2e05c94307fb2ac2defa
+  #      x-checker-data:
+  #        type: html
+  #        url: https://www.kicad.org/download/source/
+  #        version-pattern: 'Current Version: <strong>([\d\.]+)</strong>'
+  #        url-template: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-$version.tar.gz
