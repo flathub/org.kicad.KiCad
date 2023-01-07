@@ -2,30 +2,71 @@ name: python3-wxPython
 buildsystem: simple
 build-commands: []
 modules:
-- name: python3-wxPython
-  buildsystem: simple
-  build-commands:
-  # Patch wxPython-4.1.1 to build with wxWidgets-3.1.5
-  - tar xf wxPython-4.1.1.tar.gz
-  - rm wxPython-4.1.1.tar.gz
-  - patch -p0 <fix-wxpython-4.1.1-on-wxwidgets-3.1.5.patch
-  - tar czf wxPython-4.1.1.tar.gz wxPython-4.1.1
-  # Now install the modules
-  - pip3 install --exists-action=i --no-index --no-build-isolation --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} "wxPython"
-  build-options:
-    env:
-      WXPYTHON_BUILD_ARGS: --use_syswx
-  cleanup:
-  - /bin
-  sources:
-  - type: file
-    url: https://files.pythonhosted.org/packages/fb/48/b0708ebd7718a8933f0d3937513ef8ef2f4f04529f1f66ca86d873043921/numpy-1.21.4.zip
-    sha256: e6c76a87633aa3fa16614b61ccedfae45b91df2767cf097aa9c933932a7ed1e0
-  - type: file
-    url: https://files.pythonhosted.org/packages/7d/2a/2fc11b54e2742db06297f7fa7f420a0e3069fdcf0e4b57dfec33f0b08622/Pillow-8.4.0.tar.gz
-    sha256: b8e2f83c56e141920c39464b852de3719dfbfb6e3c99a2d8da0edf4fb33176ed
-  - type: file
-    url: https://files.pythonhosted.org/packages/b0/4d/80d65c37ee60a479d338d27a2895fb15bbba27a3e6bb5b6d72bb28246e99/wxPython-4.1.1.tar.gz
-    sha256: 00e5e3180ac7f2852f342ad341d57c44e7e4326de0b550b9a5c4a8361b6c3528
-  - type: file
-    path: patches/fix-wxpython-4.1.1-on-wxwidgets-3.1.5.patch
+  - name: python3-attrdict3
+    buildsystem: simple
+    build-commands:
+      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
+        --prefix=${FLATPAK_DEST} attrdict3 --no-build-isolation
+    cleanup:
+      - /lib
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/9b/a9/c3f5f498295317c8be62bbe5d1adc1a2864db1720b2a0b4a39e0448d51e4/attrdict3-2.0.2.tar.gz
+        sha256: 004c171ca1120cc1755701db99d7fa4944afb1e68950434efdaa542513335fe8
+        x-checker-data:
+          type: pypi
+          name: attrdict3
+  - name: python3-wxPython
+    buildsystem: simple
+    build-commands:
+      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
+        --prefix=${FLATPAK_DEST} wxPython
+    build-options:
+      env:
+        WXPYTHON_BUILD_ARGS: --use_syswx --nodoc
+    cleanup:
+      - /bin
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/a8/e7/1440b0d19054a5616e9e5beeaa22f68485aa9de20d187f04e52880b7ae7a/setuptools-59.2.0.tar.gz
+        sha256: 157d21de9d055ab9e8ea3186d91e7f4f865e11f42deafa952d90842671fc2576
+        x-checker-data:
+          name: setuptools
+          type: pypi
+          versions:
+            ==: 59.2.0
+      - type: file
+        url: https://files.pythonhosted.org/packages/4e/be/8139f127b4db2f79c8b117c80af56a3078cc4824b5b94250c7f81a70e03b/wheel-0.37.0.tar.gz
+        sha256: e2ef7239991699e3355d54f8e968a21bb940a1dbf34a4d226741e64462516fad
+        x-checker-data:
+          name: wheel
+          type: pypi
+          versions:
+            ==: 0.37.0
+      - type: file
+        url: https://files.pythonhosted.org/packages/dc/f6/e8e302f9942cbebede88b1a0c33d0be3a738c3ac37abae87254d58ffc51c/Cython-0.29.33.tar.gz
+        sha256: 5040764c4a4d2ce964a395da24f0d1ae58144995dab92c6b96f44c3f4d72286a
+        x-checker-data:
+          name: Cython
+          type: pypi
+          versions:
+            '>=': 0.29.30
+            <: '3.0'
+      - type: file
+        url: https://files.pythonhosted.org/packages/ce/b8/c170db50ec49d5845bd771bc5549fe734ee73083c5c52791915f95d8e2bc/numpy-1.24.1.tar.gz
+        sha256: 2386da9a471cc00a1f47845e27d916d5ec5346ae9696e01a8a34760858fe9dd2
+        x-checker-data:
+          type: pypi
+          name: numpy
+      - type: file
+        url: https://files.pythonhosted.org/packages/bc/07/830784e061fb94d67649f3e438ff63cfb902dec6d48ac75aeaaac7c7c30e/Pillow-9.4.0.tar.gz
+        sha256: a1c2d7780448eb93fbcc3789bf3916aa5720d942e37945f4056680317f1cd23e
+        x-checker-data:
+          type: pypi
+          name: Pillow
+      - type: file
+        url: https://files.pythonhosted.org/packages/d9/33/b616c7ed4742be6e0d111ca375b41379607dc7cc7ac7ff6aead7a5a0bf53/wxPython-4.2.0.tar.gz
+        sha256: 663cebc4509d7e5d113518865fe274f77f95434c5d57bc386ed58d65ceed86c7
+        x-checker-data:
+          type: pypi
+          name: wxPython
