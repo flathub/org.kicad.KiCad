@@ -169,6 +169,19 @@ modules:
           - cp -p /usr/share/automake-*/config.{sub,guess} .
           - autoconf -f -B build/autoconf_prepend-include
 
+  - name: unixodbc
+    sources:
+      - type: git
+        url: https://github.com/lurcher/unixODBC.git
+        tag: 2.3.11
+        commit: 6c8071b1bef4e4991e7b3023a1c1c712168a818e
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\d\.]+)$
+      - type: script
+        commands:
+          - autoreconf -fi
+
   - name: kicad
     buildsystem: cmake-ninja
     config-opts:
@@ -227,13 +240,13 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: cdf04d55821ea53f821678025b0fd85e9552fbac
-        tag: 6.0.11
+        commit: 490fef9fd47b60e19bd7608e6a52c37a21333453
+        tag: 7.0.0-rc1
         x-checker-data:
           type: git
           tag-pattern: ^([\d\.]+)$
           versions:
-            <: 6.99.0
+            <: 7.99.0
       - type: shell
         commands:
           - rm -rf .git/
@@ -254,7 +267,7 @@ modules:
 
   - name: kicad-doc
     build-commands:
-  # Only install HTML docs
+      # Only install HTML docs
       - find . -type f -name '*.pdf' -execdir rm {} \;
       - find . -type f -exec install -Dm644 "{}" "${FLATPAK_DEST}/{}" \;
     buildsystem: simple
