@@ -20,7 +20,7 @@ add-extensions:
     no-autodownload: false
     subdirectories: true
     merge-dirs: template;symbols;footprints;3dmodels
-  org.kicad.KiCad.Nightly.ODBCDriver:
+  org.kicad.KiCad.ODBCDriver:
     version: beta
     directory: extensions/ODBCDriver
     autodelete: true
