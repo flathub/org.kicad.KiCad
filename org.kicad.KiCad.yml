@@ -128,8 +128,8 @@ modules:
       - --disable-glcanvasegl
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.1/wxWidgets-3.2.1.tar.bz2
-        sha256: c229976bb413eb88e45cb5dfb68b27890d450149c09b331abd751e7ae0f5fa66
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.2/wxWidgets-3.2.2.tar.bz2
+        sha256: 8edf18672b7bc0996ee6b7caa2bee017a9be604aad1ee471e243df7471f5db5d
         x-checker-data:
           type: html
           url: https://wxwidgets.org/downloads
@@ -345,8 +345,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-7.0.0.tar.gz
-        sha256: 04cad356fd19b46e70eaa6e3365d94c326e4237d80c09394208fd4662e756465
+        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.11.tar.gz
+        sha256: 141ef958e8cfd8daf489c8e61b245df64e971bd0b30b2a32857b3210c22f3f4a
         x-checker-data:
           type: html
           url: https://www.kicad.org/download/source/
