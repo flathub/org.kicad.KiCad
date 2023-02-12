@@ -2,7 +2,7 @@ app-id: org.kicad.KiCad
 runtime: org.freedesktop.Sdk
 runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
-command: kicad
+command: kicad-startup
 rename-appdata-file: org.kicad.kicad.metainfo.xml
 finish-args:
   - --device=dri
@@ -19,9 +19,16 @@ add-extensions:
     no-autodownload: false
     subdirectories: true
     merge-dirs: template;symbols;footprints;3dmodels
+  org.kicad.KiCad.ODBCDriver:
+    version: stable
+    directory: extensions/ODBCDriver
+    autodelete: true
+    no-autodownload: true
+    subdirectories: true
+    add-ld-path: lib
+    merge-dirs: lib;template
 
 cleanup:
-  - /include
   - /lib/cmake
   - /lib/pkgconfig
   - /lib/wx
@@ -39,6 +46,8 @@ modules:
     buildsystem: simple
     build-commands:
       - cp -r glm /app/include
+    cleanup:
+      - /include
     sources:
       - type: git
         url: https://github.com/g-truc/glm
@@ -50,6 +59,7 @@ modules:
 
   - name: libXmu
     cleanup:
+      - /include
       - /share/doc
     sources:
       - type: git
@@ -64,6 +74,7 @@ modules:
     buildsystem: cmake-ninja
     cleanup:
       - /bin
+      - /include
       - /share/doc
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
@@ -96,6 +107,8 @@ modules:
     build-commands:
       - ./bootstrap.sh --prefix=/app --with-libraries=context,date_time,filesystem,iostreams,locale,program_options,regex,system,thread,test
       - ./b2 -j $FLATPAK_BUILDER_N_JOBS install
+    cleanup:
+      - /include
     sources:
       - type: archive
         url: https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.gz
@@ -109,6 +122,7 @@ modules:
   - name: wxWidgets
     cleanup:
       - /bin
+      - /include
     config-opts:
       - --with-opengl
       - --disable-glcanvasegl
@@ -147,6 +161,7 @@ modules:
   - name: ngspice
     cleanup:
       - /bin
+      - /include
       - /share/man
     config-opts:
       - --disable-silent-rules
@@ -169,6 +184,19 @@ modules:
           - cp -p /usr/share/automake-*/config.{sub,guess} .
           - autoconf -f -B build/autoconf_prepend-include
 
+  - name: unixodbc
+    sources:
+      - type: git
+        url: https://github.com/lurcher/unixODBC.git
+        tag: 2.3.11
+        commit: 6c8071b1bef4e4991e7b3023a1c1c712168a818e
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\d\.]+)$
+      - type: script
+        commands:
+          - autoreconf -fi
+
   - name: kicad
     buildsystem: cmake-ninja
     config-opts:
@@ -181,6 +209,10 @@ modules:
       - -DKICAD_USE_EGL=OFF
       - -DKICAD_LIBRARY_DATA=/app/extensions/Library
     post-install:
+      - install kicad-startup /app/bin/kicad-startup
+      - install eeschema-startup /app/bin/eeschema-startup
+      - install pcbnew-startup /app/bin/pcbnew-startup
+      - install -d /app/extensions/ODBCDriver
       - install pip3 /app/bin/pip3.10
       - ln -s /app/bin/pip3.10 /app/bin/pip3
       - ln -s /app/bin/pip3 /app/bin/pip
@@ -193,6 +225,8 @@ modules:
           if [ "$app_name" = "kicad" ]; then
             desktop-file-edit \
               --set-icon="${FLATPAK_ID}" \
+              --set-key=Exec \
+              --set-value="kicad-startup %f" \
               --set-key=X-Flatpak-RenamedFrom \
               --set-value="${desktop_name};" \
               "$f";
@@ -203,6 +237,12 @@ modules:
               --set-key=X-Flatpak-RenamedFrom \
               --set-value="${desktop_name};" \
               "$f";
+            if [[ "$app_name" =~ ^(eeschema|pcbnew)$ ]]; then
+              desktop-file-edit \
+                --set-key=Exec \
+                --set-value="${app_name}-startup %f" \
+                "$f";
+            fi;
             mv $FLATPAK_DEST/share/applications/{org.kicad,$FLATPAK_ID}.${app_name}.desktop;
           fi;
         done;
@@ -227,13 +267,13 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: cdf04d55821ea53f821678025b0fd85e9552fbac
-        tag: 6.0.11
+        commit: 0677b11a926d2eeabe5194c48dfef7076d022a33
+        tag: 7.0.0
         x-checker-data:
           type: git
           tag-pattern: ^([\d\.]+)$
           versions:
-            <: 6.99.0
+            <: 7.99.0
       - type: shell
         commands:
           - rm -rf .git/
@@ -251,17 +291,62 @@ modules:
           - export PYTHONUSERBASE="$XDG_DATA_HOME/python"
           - export PATH="$XDG_DATA_HOME/python/bin":$PATH
           - exec /usr/bin/python "$@"
+      - type: script
+        dest-filename: kicad-startup
+        commands:
+          - mkdir -p ${XDG_CONFIG_HOME}/unixodbc
+          - export ODBCSYSINI=${XDG_CONFIG_HOME}/unixodbc
+          # Remove config file, and recreate it from all available templates.
+          # This handles uninstallation of ODBCDriver extensions.
+          - rm -f ${ODBCSYSINI}/odbcinst.ini
+          # Install available ODBC drivers
+          - >
+            for template in /app/extensions/ODBCDriver/template/*.ini; do
+              test -f "$template" || continue;
+              odbcinst -i -d -f "$template" >/dev/null;
+            done
+          - exec /app/bin/kicad "$@"
+      - type: script
+        dest-filename: eeschema-startup
+        commands:
+          - mkdir -p ${XDG_CONFIG_HOME}/unixodbc
+          - export ODBCSYSINI=${XDG_CONFIG_HOME}/unixodbc
+          # Remove config file, and recreate it from all available templates.
+          # This handles uninstallation of ODBCDriver extensions.
+          - rm -f ${ODBCSYSINI}/odbcinst.ini
+          # Install available ODBC drivers
+          - >
+            for template in /app/extensions/ODBCDriver/template/*.ini; do
+              test -f "$template" || continue;
+              odbcinst -i -d -f "$template" >/dev/null;
+            done
+          - exec /app/bin/eeschema "$@"
+      - type: script
+        dest-filename: pcbnew-startup
+        commands:
+          - mkdir -p ${XDG_CONFIG_HOME}/unixodbc
+          - export ODBCSYSINI=${XDG_CONFIG_HOME}/unixodbc
+          # Remove config file, and recreate it from all available templates.
+          # This handles uninstallation of ODBCDriver extensions.
+          - rm -f ${ODBCSYSINI}/odbcinst.ini
+          # Install available ODBC drivers
+          - >
+            for template in /app/extensions/ODBCDriver/template/*.ini; do
+              test -f "$template" || continue;
+              odbcinst -i -d -f "$template" >/dev/null;
+            done
+          - exec /app/bin/pcbnew "$@"
 
   - name: kicad-doc
     build-commands:
-  # Only install HTML docs
+      # Only install HTML docs
       - find . -type f -name '*.pdf' -execdir rm {} \;
       - find . -type f -exec install -Dm644 "{}" "${FLATPAK_DEST}/{}" \;
     buildsystem: simple
     sources:
       - type: archive
-        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.11.tar.gz
-        sha256: 141ef958e8cfd8daf489c8e61b245df64e971bd0b30b2a32857b3210c22f3f4a
+        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-7.0.0.tar.gz
+        sha256: 04cad356fd19b46e70eaa6e3365d94c326e4237d80c09394208fd4662e756465
         x-checker-data:
           type: html
           url: https://www.kicad.org/download/source/
