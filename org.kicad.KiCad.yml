@@ -267,8 +267,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 0677b11a926d2eeabe5194c48dfef7076d022a33
-        tag: 7.0.0
+        commit: 3f5d3fa0c628567a944aa56a5d0fd03ac7809cf7
+        tag: 7.0.1
         x-checker-data:
           type: git
           tag-pattern: ^([\d\.]+)$
