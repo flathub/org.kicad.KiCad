@@ -267,8 +267,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 0677b11a926d2eeabe5194c48dfef7076d022a33
-        tag: 7.0.0
+        commit: 3f5d3fa0c628567a944aa56a5d0fd03ac7809cf7
+        tag: 7.0.1
         x-checker-data:
           type: git
           tag-pattern: ^([\d\.]+)$
@@ -336,10 +336,10 @@ modules:
               odbcinst -i -d -f "$template" >/dev/null;
             done
           - exec /app/bin/pcbnew "$@"
-      - type: patch
-        paths:
-          - patches/0001-Support-subrelease-field-in-wxWidgets-cmake-detectio.patch
-          - patches/0002-Relax-wxPython-version-mismatch-check-to-major.minor.patch
+
+
+
+
 
   - name: kicad-doc
     build-commands:
@@ -349,10 +349,10 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-7.0.0.tar.gz
-        sha256: 04cad356fd19b46e70eaa6e3365d94c326e4237d80c09394208fd4662e756465
-        x-checker-data:
-          type: html
-          url: https://www.kicad.org/download/source/
-          version-pattern: 'Current Version: <strong>([\d\.]+)</strong>'
-          url-template: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-$version.tar.gz
+        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-7.0.1.tar.gz
+        sha256: 05dd54cc3cc9dd60e60deb67c4bd7d877f41f3cdba3423f006e713e4a79f9868
+       
+    
+  
+
+
