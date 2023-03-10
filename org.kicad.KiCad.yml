@@ -336,10 +336,10 @@ modules:
               odbcinst -i -d -f "$template" >/dev/null;
             done
           - exec /app/bin/pcbnew "$@"
-      - type: patch
-        paths:
-          - patches/0001-Support-subrelease-field-in-wxWidgets-cmake-detectio.patch
-          - patches/0002-Relax-wxPython-version-mismatch-check-to-major.minor.patch
+
+
+
+
 
   - name: kicad-doc
     build-commands:
