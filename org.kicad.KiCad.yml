@@ -200,6 +200,7 @@ modules:
           - autoreconf -fi
 
   - name: kicad
+    builddir: true
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
@@ -211,14 +212,17 @@ modules:
       - -DKICAD_USE_EGL=OFF
       - -DKICAD_LIBRARY_DATA=/app/extensions/Library
     post-install:
-      - install kicad-startup /app/bin/kicad-startup
-      - install eeschema-startup /app/bin/eeschema-startup
-      - install pcbnew-startup /app/bin/pcbnew-startup
-      - install -d /app/extensions/ODBCDriver
-      - install pip3 /app/bin/pip3.10
+      - install ../../flatpak-extra/kicad-startup /app/bin/kicad-startup
+      - install ../../flatpak-extra/eeschema-startup /app/bin/eeschema-startup
+      - install ../../flatpak-extra/pcbnew-startup /app/bin/pcbnew-startup
+      - install ../../flatpak-extra/pip3 /app/bin/pip3.10
+      - install ../../flatpak-extra/python /app/bin/python
       - ln -s /app/bin/pip3.10 /app/bin/pip3
       - ln -s /app/bin/pip3 /app/bin/pip
-      - install python /app/bin/python
+      - install -d /app/extensions/ODBCDriver
+      - >
+        sed -i "s/org\.kicad\.kicad/$FLATPAK_ID/g" \
+          $FLATPAK_DEST/share/appdata/org.kicad.KiCad.metainfo.xml
       - >
         for f in $FLATPAK_DEST/share/applications/*.desktop; do
           desktop_name="$(basename $f)";
@@ -266,8 +270,10 @@ modules:
           done;
         done;
         unset name suffix
+    subdir: kicad-git
     sources:
       - type: git
+        dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
         commit: ff2da496afbee472f00831821812d98526fb71b8
         tag: 7.0.6
@@ -276,24 +282,25 @@ modules:
           tag-pattern: ^([\d\.]+)$
           versions:
             <: 7.99.0
-      - type: shell
-        commands:
-          - rm -rf .git/
-          - sed -i 's/org\.kicad\.kicad/org.kicad.KiCad/g' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
-          - sed -i '86i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
+      #- type: shell
+      #  commands:
+      #    - sed -i '86i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
       - type: script
+        dest: flatpak-extra
         dest-filename: pip3
         commands:
           - export PYTHONUSERBASE="$XDG_DATA_HOME/python"
           - export PATH="$XDG_DATA_HOME/python/bin":$PATH
           - exec /usr/bin/pip3 "$@"
       - type: script
+        dest: flatpak-extra
         dest-filename: python
         commands:
           - export PYTHONUSERBASE="$XDG_DATA_HOME/python"
           - export PATH="$XDG_DATA_HOME/python/bin":$PATH
           - exec /usr/bin/python "$@"
       - type: script
+        dest: flatpak-extra
         dest-filename: kicad-startup
         commands:
           - mkdir -p ${XDG_CONFIG_HOME}/unixodbc
@@ -309,6 +316,7 @@ modules:
             done
           - exec /app/bin/kicad "$@"
       - type: script
+        dest: flatpak-extra
         dest-filename: eeschema-startup
         commands:
           - mkdir -p ${XDG_CONFIG_HOME}/unixodbc
@@ -324,6 +332,7 @@ modules:
             done
           - exec /app/bin/eeschema "$@"
       - type: script
+        dest: flatpak-extra
         dest-filename: pcbnew-startup
         commands:
           - mkdir -p ${XDG_CONFIG_HOME}/unixodbc
