@@ -172,8 +172,8 @@ modules:
     rm-configure: true
     sources:
       - type: archive
-        url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/39/ngspice-39.tar.gz
-        sha256: bf94e811eaad8aaf05821d036a9eb5f8a65d21d30e1cab12701885e09618d771
+        url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/40/ngspice-40.tar.gz
+        sha256: e303ca7bc0f594e2d6aa84f68785423e6bf0c8dad009bb20be4d5742588e890d
         x-checker-data:
           type: html
           url: https://ngspice.sourceforge.io/download.html
