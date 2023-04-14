@@ -111,8 +111,8 @@ modules:
       - /include
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.gz
-        sha256: 205666dea9f6a7cfed87c7a6dfbeb52a2c1b9de55712c9c1a87735d7181452b6
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.gz
+        sha256: 66a469b6e608a51f8347236f4912e27dc5c60c60d7d53ae9bfe4683316c6f04c
         x-checker-data:
           type: html
           url: https://www.boost.org/users/download/
@@ -267,8 +267,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 3f5d3fa0c628567a944aa56a5d0fd03ac7809cf7
-        tag: 7.0.1
+        commit: 582732918d178b2221f2bab05aa20c1222d2373c
+        tag: 7.0.2
         x-checker-data:
           type: git
           tag-pattern: ^([\d\.]+)$
