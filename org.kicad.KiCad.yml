@@ -139,6 +139,8 @@ modules:
         commands:
           - cp -p /usr/share/automake-*/config.{sub,guess} .
           - autoconf -f -B build/autoconf_prepend-include
+      - type: patch
+        path: patches/0001_wxWidgets_Replace-gtk_combo_box_text_insert_text-with-direct-model-insertion.patch
 
   - python3-wxPython.yml
   - python3-requests.yml
