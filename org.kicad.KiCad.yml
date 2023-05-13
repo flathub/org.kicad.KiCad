@@ -349,3 +349,8 @@ modules:
       - type: archive
         url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-7.0.2.tar.gz
         sha256: e97f0848226101591973c2447377585d0a578acccd605e4d8f9b37a24c1b19bc
+        x-checker-data:
+          type: html
+          url: https://kicad-downloads.s3.cern.ch
+          version-pattern: docs/kicad-doc-([\d.]+).tar.gz
+          url-template: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-$version.tar.gz
