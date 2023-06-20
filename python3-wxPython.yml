@@ -36,16 +36,16 @@ modules:
           versions:
             ==: 59.2.0
       - type: file
-        url: https://files.pythonhosted.org/packages/4e/be/8139f127b4db2f79c8b117c80af56a3078cc4824b5b94250c7f81a70e03b/wheel-0.37.0.tar.gz
-        sha256: e2ef7239991699e3355d54f8e968a21bb940a1dbf34a4d226741e64462516fad
+        url: https://files.pythonhosted.org/packages/7a/b0/29c0c8c6f8cebeb0de4c17bc44365cba0b35cb4246e4a27a7e12ecf92d73/wheel-0.38.1.tar.gz
+        sha256: ea041edf63f4ccba53ad6e035427997b3bb10ee88a4cd014ae82aeb9eea77bb9
         x-checker-data:
           name: wheel
           type: pypi
           versions:
-            ==: 0.37.0
+            ==: 0.38.1
       - type: file
-        url: https://files.pythonhosted.org/packages/dc/f6/e8e302f9942cbebede88b1a0c33d0be3a738c3ac37abae87254d58ffc51c/Cython-0.29.33.tar.gz
-        sha256: 5040764c4a4d2ce964a395da24f0d1ae58144995dab92c6b96f44c3f4d72286a
+        url: https://files.pythonhosted.org/packages/da/a0/298340fb8412574a0b00a0d9856aa27e7038da429b9e31d6825173d1e6bd/Cython-0.29.35.tar.gz
+        sha256: 6e381fa0bf08b3c26ec2f616b19ae852c06f5750f4290118bf986b6f85c8c527
         x-checker-data:
           name: Cython
           type: pypi
@@ -53,20 +53,20 @@ modules:
             '>=': 0.29.30
             <: '3.0'
       - type: file
-        url: https://files.pythonhosted.org/packages/e4/a9/6704bb5e1d1d778d3a6ee1278a8d8134f0db160e09d52863a24edb58eab5/numpy-1.24.2.tar.gz
-        sha256: 003a9f530e880cb2cd177cba1af7220b9aa42def9c4afc2a2fc3ee6be7eb2b22
+        url: https://files.pythonhosted.org/packages/d0/b2/fe774844d1857804cc884bba67bec38f649c99d0dc1ee7cbbf1da601357c/numpy-1.25.0.tar.gz
+        sha256: f1accae9a28dc3cda46a91de86acf69de0d1b5f4edd44a9b0c3ceb8036dfff19
         x-checker-data:
           type: pypi
           name: numpy
       - type: file
-        url: https://files.pythonhosted.org/packages/bc/07/830784e061fb94d67649f3e438ff63cfb902dec6d48ac75aeaaac7c7c30e/Pillow-9.4.0.tar.gz
-        sha256: a1c2d7780448eb93fbcc3789bf3916aa5720d942e37945f4056680317f1cd23e
+        url: https://files.pythonhosted.org/packages/00/d5/4903f310765e0ff2b8e91ffe55031ac6af77d982f0156061e20a4d1a8b2d/Pillow-9.5.0.tar.gz
+        sha256: bf548479d336726d7a0eceb6e767e179fbde37833ae42794602631a070d630f1
         x-checker-data:
           type: pypi
           name: Pillow
       - type: file
-        url: https://files.pythonhosted.org/packages/d9/33/b616c7ed4742be6e0d111ca375b41379607dc7cc7ac7ff6aead7a5a0bf53/wxPython-4.2.0.tar.gz
-        sha256: 663cebc4509d7e5d113518865fe274f77f95434c5d57bc386ed58d65ceed86c7
+        url: https://files.pythonhosted.org/packages/aa/64/d749e767a8ce7bdc3d533334e03bb1106fc4e4803d16f931fada9007ee13/wxPython-4.2.1.tar.gz
+        sha256: e48de211a6606bf072ec3fa778771d6b746c00b7f4b970eb58728ddf56d13d5c
         x-checker-data:
           type: pypi
           name: wxPython

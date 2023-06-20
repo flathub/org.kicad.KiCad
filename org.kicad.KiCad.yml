@@ -97,8 +97,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/Open-Cascade-SAS/OCCT
-        commit: b079fb9877ef64d4a8158a60fa157f59b096debb
-        tag: V7_6_3
+        commit: ffce0d66bbaafe3a95984d0e61804c201b9995d2
+        tag: V7_7_1
         x-checker-data:
           type: git
           tag-pattern: ^V([\d_]+)$
@@ -112,8 +112,8 @@ modules:
       - /include
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.gz
-        sha256: 205666dea9f6a7cfed87c7a6dfbeb52a2c1b9de55712c9c1a87735d7181452b6
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.gz
+        sha256: 66a469b6e608a51f8347236f4912e27dc5c60c60d7d53ae9bfe4683316c6f04c
         x-checker-data:
           type: html
           url: https://www.boost.org/users/download/
@@ -129,8 +129,8 @@ modules:
       - --disable-glcanvasegl
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.1/wxWidgets-3.2.1.tar.bz2
-        sha256: c229976bb413eb88e45cb5dfb68b27890d450149c09b331abd751e7ae0f5fa66
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.2.1/wxWidgets-3.2.2.1.tar.bz2
+        sha256: dffcb6be71296fff4b7f8840eb1b510178f57aa2eb236b20da41182009242c02
         x-checker-data:
           type: html
           url: https://wxwidgets.org/downloads
@@ -140,6 +140,8 @@ modules:
         commands:
           - cp -p /usr/share/automake-*/config.{sub,guess} .
           - autoconf -f -B build/autoconf_prepend-include
+      - type: patch
+        path: patches/0001_wxWidgets_Replace-gtk_combo_box_text_insert_text-with-direct-model-insertion.patch
 
   - python3-wxPython.yml
   - python3-requests.yml
@@ -173,8 +175,8 @@ modules:
     rm-configure: true
     sources:
       - type: archive
-        url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/39/ngspice-39.tar.gz
-        sha256: bf94e811eaad8aaf05821d036a9eb5f8a65d21d30e1cab12701885e09618d771
+        url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/40/ngspice-40.tar.gz
+        sha256: e303ca7bc0f594e2d6aa84f68785423e6bf0c8dad009bb20be4d5742588e890d
         x-checker-data:
           type: html
           url: https://ngspice.sourceforge.io/download.html
@@ -268,11 +270,13 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 51293858b3c5316d20d72963af64c23992c51ca6
-        tag: 7.0.0-rc2
+        commit: 228927b4e9fa71904c17738410b6c56c34554649
+        tag: 7.0.6-rc1
         x-checker-data:
           type: git
           tag-pattern: ^([\d\.]+[-rc\d]+)$
+          versions:
+            <: 7.99.0
       - type: shell
         commands:
           - rm -rf .git/
@@ -336,18 +340,19 @@ modules:
             done
           - exec /app/bin/pcbnew "$@"
 
-  #- name: kicad-doc
-  #  build-commands:
-  #    # Only install HTML docs
-  #    - find . -type f -name '*.pdf' -execdir rm {} \;
-  #    - find . -type f -exec install -Dm644 "{}" "${FLATPAK_DEST}/{}" \;
-  #  buildsystem: simple
-  #  sources:
-  #    - type: archive
-  #      url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-6.0.10.tar.gz
-  #      sha256: 15aa790890b7880ba94d773e2b8bb1a6421134c8b62f2e05c94307fb2ac2defa
-  #      x-checker-data:
-  #        type: html
-  #        url: https://www.kicad.org/download/source/
-  #        version-pattern: 'Current Version: <strong>([\d\.]+)</strong>'
-  #        url-template: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-$version.tar.gz
+  - name: kicad-doc
+    build-commands:
+      # Only install HTML docs
+      - find . -type f -name '*.pdf' -execdir rm {} \;
+      - find . -type f -exec install -Dm644 "{}" "${FLATPAK_DEST}/{}" \;
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-7.0.5.tar.gz
+        sha256: 22f7504929a3a26b94c9d4c314354173f9d6d65369bac9b626e8c3ae9df70754
+        # Checking kicad-doc results in timeout errors
+        #x-checker-data:
+        #  type: html
+        #  url: https://kicad-downloads.s3.cern.ch
+        #  version-pattern: docs/kicad-doc-([\d.]+).tar.gz
+        #  url-template: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-$version.tar.gz
