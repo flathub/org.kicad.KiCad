@@ -270,7 +270,7 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 32930319ea29e484c4fee5d08b1c325275f22512
+        commit: 7bcd3e2262fe88d3cc827ca309d492be5eff860c
         #tag: 7.0.6-rc1
         x-checker-data:
           type: git
