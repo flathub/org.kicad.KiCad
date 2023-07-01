@@ -28,13 +28,13 @@ modules:
       - /bin
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/a8/e7/1440b0d19054a5616e9e5beeaa22f68485aa9de20d187f04e52880b7ae7a/setuptools-59.2.0.tar.gz
-        sha256: 157d21de9d055ab9e8ea3186d91e7f4f865e11f42deafa952d90842671fc2576
+        url: https://files.pythonhosted.org/packages/dc/98/5f896af066c128669229ff1aa81553ac14cfb3e5e74b6b44594132b8540e/setuptools-68.0.0.tar.gz
+        sha256: baf1fdb41c6da4cd2eae722e135500da913332ab3f2f5c7d33af9b492acb5235
         x-checker-data:
           name: setuptools
           type: pypi
           versions:
-            ==: 59.2.0
+            '>=': '67.8'
       - type: file
         url: https://files.pythonhosted.org/packages/7a/b0/29c0c8c6f8cebeb0de4c17bc44365cba0b35cb4246e4a27a7e12ecf92d73/wheel-0.38.1.tar.gz
         sha256: ea041edf63f4ccba53ad6e035427997b3bb10ee88a4cd014ae82aeb9eea77bb9
