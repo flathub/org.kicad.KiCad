@@ -270,8 +270,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: d77de385f0df0f497a23992496d8b7a97448ce54
-        tag: 7.0.6-rc2
+        commit: 7efda5fbbd3cddb8b45fe219b42e4899b805ce59
+        tag: 7.0.6-rc3
         x-checker-data:
           type: git
           tag-pattern: ^([\d\.]+[-rc\d]+)$
