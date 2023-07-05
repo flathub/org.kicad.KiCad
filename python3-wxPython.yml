@@ -19,10 +19,11 @@ modules:
   - name: python3-wxPython
     buildsystem: simple
     build-commands:
-      - SETUPTOOLS_USE_DISTUTILS=stdlib pip3 install --verbose --exists-action=i
+      - pip3 install --verbose --exists-action=i
         --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} wxPython
     build-options:
       env:
+        SETUPTOOLS_USE_DISTUTILS: stdlib
         WXPYTHON_BUILD_ARGS: --use_syswx --nodoc
     cleanup:
       - /bin
