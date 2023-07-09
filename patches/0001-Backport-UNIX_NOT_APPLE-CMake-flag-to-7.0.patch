@@ -1,0 +1,31 @@
+From 64a5242d073dd639edb9a26a565c0b93b67a2999 Mon Sep 17 00:00:00 2001
+From: Johannes Maibaum <jmaibaum@gmail.com>
+Date: Mon, 10 Jul 2023 22:02:39 +0200
+Subject: [PATCH 1/2] Backport UNIX_NOT_APPLE CMake flag to 7.0
+
+This was part of 912f1d5cecdc7d14df09d7e9a78e0aa75760b75d on master.
+---
+ CMakeLists.txt | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index a65d3f1aeb..2a498e483a 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -53,6 +53,13 @@ set( CMAKE_EXPORT_COMPILE_COMMANDS ON )
+ set( KICAD_CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" )
+ set( CMAKE_MODULE_PATH       "${KICAD_CMAKE_MODULE_PATH}" )
+ 
++# Create a flag to identify the non-Apple unix systems
++if( UNIX AND NOT APPLE )
++    set( UNIX_NOT_APPLE ON )
++else()
++    set( UNIX_NOT_APPLE OFF )
++endif()
++
+ # On Windows, binaries created by link option -g3 are very large (more than 1Gb for pcbnew,
+ # and more than 3Gb for the full kicad suite)
+ # This option create binaries using link option -g1 that create much smaller files, but
+-- 
+2.41.0
+

@@ -1,0 +1,355 @@
+From 8758b40bbb1e590cc4a06a6a1bf39b7bdf461a6b Mon Sep 17 00:00:00 2001
+From: Johannes Maibaum <jmaibaum@gmail.com>
+Date: Thu, 22 Jun 2023 18:04:32 +0000
+Subject: [PATCH 2/2] Add KICAD_BUILD_{NIGHTLY_,}FLATPAK CMake options
+
+---
+ CMakeLists.txt                                |  11 ++
+ resources/CMakeLists.txt                      | 137 ++++++++++++++----
+ .../org.kicad.bitmap2component.desktop.in     |   2 +-
+ .../launchers/org.kicad.eeschema.desktop.in   |   2 +-
+ .../launchers/org.kicad.gerbview.desktop.in   |   2 +-
+ .../launchers/org.kicad.kicad.desktop.in      |   2 +-
+ .../org.kicad.pcbcalculator.desktop.in        |   2 +-
+ .../launchers/org.kicad.pcbnew.desktop.in     |   2 +-
+ .../metainfo/org.kicad.kicad.metainfo.xml.in  |   4 +-
+ resources/linux/mime/kicad-kicad.xml.in       |   6 +-
+ 10 files changed, 130 insertions(+), 40 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 2a498e483a..eed50413e9 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -100,6 +100,17 @@ option( KICAD_I18N_UNIX_STRICT_PATH
+     "Use standard Unix locale lookup path (default OFF)."
+     OFF )
+ 
++# Options to build with flatpak platform defaults (only on Linux)
++cmake_dependent_option( KICAD_BUILD_FLATPAK
++    "Build KiCad with metadata, launchers, icons, and MIME info following flatpak conventions"
++    OFF "UNIX_NOT_APPLE"
++    OFF )
++
++cmake_dependent_option( KICAD_BUILD_NIGHTLY_FLATPAK
++    "Build a Nightly flatpak (requires KICAD_BUILD_FLATPAK=ON)"
++    OFF "UNIX_NOT_APPLE"
++    OFF )
++
+ # Not supported by all platforms (for instance mingw)
+ option( KICAD_SANITIZE_ADDRESS
+     "Build KiCad with sanitizer options. WARNING: Not compatible with gold linker"
+diff --git a/resources/CMakeLists.txt b/resources/CMakeLists.txt
+index c9ee78e279..24c8c701d9 100644
+--- a/resources/CMakeLists.txt
++++ b/resources/CMakeLists.txt
+@@ -5,6 +5,30 @@ if( APPLE )
+     #TODO Generate this at runtime as well
+     include( ${KICAD_CMAKE_MODULE_PATH}/WritePlatformMetadata_macos.cmake )
+ elseif( UNIX )
++    # Default values for regular builds
++    set( KICAD_REVERSE_DOMAIN "org.kicad" )
++    set( KICAD_APP_NAME "${KICAD_REVERSE_DOMAIN}.kicad" )
++    set( KICAD_APP_PREFIX "${KICAD_REVERSE_DOMAIN}" )
++    set( KICAD_ICON_PREFIX "" )
++    set( KICAD_DESKTOP_FILE_ICON_PREFIX "" )
++    set( KICAD_DESKTOP_FILE_ICON_KICAD "kicad" )
++    set( KICAD_MIME_FILE_PREFIX "kicad" )
++    set( KICAD_MIME_ICON_PREFIX "" )
++
++    # Override default values from above if we are building a flatpak
++    if( KICAD_BUILD_FLATPAK )
++        set( KICAD_APP_NAME "${KICAD_REVERSE_DOMAIN}.KiCad" )
++        if( KICAD_BUILD_NIGHTLY_FLATPAK )
++            set( KICAD_APP_NAME "${KICAD_APP_NAME}.Nightly" )
++        endif()
++        set( KICAD_APP_PREFIX "${KICAD_APP_NAME}" )
++        set( KICAD_ICON_PREFIX "${KICAD_APP_NAME}" )
++        set( KICAD_DESKTOP_FILE_ICON_PREFIX "${KICAD_APP_PREFIX}." )
++        set( KICAD_DESKTOP_FILE_ICON_KICAD "${KICAD_APP_NAME}" )
++        set( KICAD_MIME_FILE_PREFIX "${KICAD_APP_PREFIX}" )
++        set( KICAD_MIME_ICON_PREFIX "${KICAD_APP_PREFIX}." )
++    endif()
++
+     # Add the command to configure the linux metainfo file with the version information
+     add_custom_command(
+         OUTPUT ${PROJECT_BINARY_DIR}/resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
+@@ -12,6 +36,7 @@ elseif( UNIX )
+             -DSRC_PATH=${PROJECT_SOURCE_DIR}
+             -DBUILD_PATH=${PROJECT_BINARY_DIR}
+             -DKICAD_CMAKE_MODULE_PATH=${PROJECT_SOURCE_DIR}/cmake
++            -DKICAD_APP_NAME=${KICAD_APP_NAME}
+             -P ${KICAD_CMAKE_MODULE_PATH}/BuildSteps/WritePlatformMetadata_linux.cmake
+         DEPENDS ${KICAD_CMAKE_MODULE_PATH}/BuildSteps/WritePlatformMetadata_linux.cmake
+         COMMENT "Configuring Linux metainfo"
+@@ -20,60 +45,114 @@ elseif( UNIX )
+     # Read the metainfo from the binary directory because it has been configured by Cmake already
+     # to have the version string in it
+     linux_metadata_translation( ${PROJECT_BINARY_DIR}/resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
+-                                ${PROJECT_BINARY_DIR}/resources/linux/metainfo/org.kicad.kicad.metainfo.xml
++                                ${PROJECT_BINARY_DIR}/resources/linux/metainfo/${KICAD_APP_NAME}.metainfo.xml
+                                 ${PROJECT_SOURCE_DIR}/translation/pofiles )
+ 
+-    # All the desktop files are read from the source directory
+-    linux_metadata_translation( ${PROJECT_SOURCE_DIR}/resources/linux/launchers/org.kicad.bitmap2component.desktop.in
+-                                ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.bitmap2component.desktop
++    # All the desktop files take two passes: First they are configured to replace the variables,
++    # then they are translated from the binary directory
++    configure_file( ${PROJECT_SOURCE_DIR}/resources/linux/launchers/org.kicad.bitmap2component.desktop.in
++                    ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.bitmap2component.desktop.in
++                    @ONLY )
++    linux_metadata_translation( ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.bitmap2component.desktop.in
++                                ${PROJECT_BINARY_DIR}/resources/linux/launchers/${KICAD_APP_PREFIX}.bitmap2component.desktop
+                                 ${PROJECT_SOURCE_DIR}/translation/pofiles )
+ 
+-    linux_metadata_translation( ${PROJECT_SOURCE_DIR}/resources/linux/launchers/org.kicad.eeschema.desktop.in
+-                                ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.eeschema.desktop
++    configure_file( ${PROJECT_SOURCE_DIR}/resources/linux/launchers/org.kicad.eeschema.desktop.in
++                    ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.eeschema.desktop.in
++                    @ONLY )
++    linux_metadata_translation( ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.eeschema.desktop.in
++                                ${PROJECT_BINARY_DIR}/resources/linux/launchers/${KICAD_APP_PREFIX}.eeschema.desktop
+                                 ${PROJECT_SOURCE_DIR}/translation/pofiles )
+ 
+-    linux_metadata_translation( ${PROJECT_SOURCE_DIR}/resources/linux/launchers/org.kicad.gerbview.desktop.in
+-                                ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.gerbview.desktop
++    configure_file( ${PROJECT_SOURCE_DIR}/resources/linux/launchers/org.kicad.gerbview.desktop.in
++                    ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.gerbview.desktop.in
++                    @ONLY )
++    linux_metadata_translation( ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.gerbview.desktop.in
++                                ${PROJECT_BINARY_DIR}/resources/linux/launchers/${KICAD_APP_PREFIX}.gerbview.desktop
+                                 ${PROJECT_SOURCE_DIR}/translation/pofiles )
+ 
+-    linux_metadata_translation( ${PROJECT_SOURCE_DIR}/resources/linux/launchers/org.kicad.kicad.desktop.in
+-                                ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.kicad.desktop
++    configure_file( ${PROJECT_SOURCE_DIR}/resources/linux/launchers/org.kicad.kicad.desktop.in
++                    ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.kicad.desktop.in
++                    @ONLY )
++    linux_metadata_translation( ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.kicad.desktop.in
++                                ${PROJECT_BINARY_DIR}/resources/linux/launchers/${KICAD_APP_NAME}.desktop
+                                 ${PROJECT_SOURCE_DIR}/translation/pofiles )
+ 
+-    linux_metadata_translation( ${PROJECT_SOURCE_DIR}/resources/linux/launchers/org.kicad.pcbcalculator.desktop.in
+-                                ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.pcbcalculator.desktop
++    configure_file( ${PROJECT_SOURCE_DIR}/resources/linux/launchers/org.kicad.pcbcalculator.desktop.in
++                    ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.pcbcalculator.desktop.in
++                    @ONLY )
++    linux_metadata_translation( ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.pcbcalculator.desktop.in
++                                ${PROJECT_BINARY_DIR}/resources/linux/launchers/${KICAD_APP_PREFIX}.pcbcalculator.desktop
+                                 ${PROJECT_SOURCE_DIR}/translation/pofiles )
+ 
+-    linux_metadata_translation( ${PROJECT_SOURCE_DIR}/resources/linux/launchers/org.kicad.pcbnew.desktop.in
+-                                ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.pcbnew.desktop
++    configure_file( ${PROJECT_SOURCE_DIR}/resources/linux/launchers/org.kicad.pcbnew.desktop.in
++                    ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.pcbnew.desktop.in
++                    @ONLY )
++    linux_metadata_translation( ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.pcbnew.desktop.in
++                                ${PROJECT_BINARY_DIR}/resources/linux/launchers/${KICAD_APP_PREFIX}.pcbnew.desktop
+                                 ${PROJECT_SOURCE_DIR}/translation/pofiles )
+ 
+-    # Translate the MIME info, which are read from the source directory
++    # Translate the MIME info, which are read from the source directory...
+     linux_metadata_translation( ${PROJECT_SOURCE_DIR}/resources/linux/mime/kicad-gerbers.xml.in
+-                                ${PROJECT_BINARY_DIR}/resources/linux/mime/kicad-gerbers.xml
++                                ${PROJECT_BINARY_DIR}/resources/linux/mime/${KICAD_MIME_FILE_PREFIX}-gerbers.xml
+                                 ${PROJECT_SOURCE_DIR}/translation/pofiles )
+ 
+-    linux_metadata_translation( ${PROJECT_SOURCE_DIR}/resources/linux/mime/kicad-kicad.xml.in
+-                                ${PROJECT_BINARY_DIR}/resources/linux/mime/kicad-kicad.xml
++    # ...except for the KiCad MIME info, which is also configured first to replace variables
++    configure_file( ${PROJECT_SOURCE_DIR}/resources/linux/mime/kicad-kicad.xml.in
++                    ${PROJECT_BINARY_DIR}/resources/linux/mime/kicad-kicad.xml.in
++                    @ONLY )
++    linux_metadata_translation( ${PROJECT_BINARY_DIR}/resources/linux/mime/kicad-kicad.xml.in
++                                ${PROJECT_BINARY_DIR}/resources/linux/mime/${KICAD_MIME_FILE_PREFIX}-kicad.xml
+                                 ${PROJECT_SOURCE_DIR}/translation/pofiles )
+ 
+     add_custom_target( metadata ALL
+-                       DEPENDS ${PROJECT_BINARY_DIR}/resources/linux/metainfo/org.kicad.kicad.metainfo.xml
+-                               ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.bitmap2component.desktop
+-                               ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.eeschema.desktop
+-                               ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.gerbview.desktop
+-                               ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.kicad.desktop
+-                               ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.pcbcalculator.desktop
+-                               ${PROJECT_BINARY_DIR}/resources/linux/launchers/org.kicad.pcbnew.desktop
+-                               ${PROJECT_BINARY_DIR}/resources/linux/mime/kicad-gerbers.xml
+-                               ${PROJECT_BINARY_DIR}/resources/linux/mime/kicad-kicad.xml
++                       DEPENDS ${PROJECT_BINARY_DIR}/resources/linux/metainfo/${KICAD_APP_NAME}.metainfo.xml
++                               ${PROJECT_BINARY_DIR}/resources/linux/launchers/${KICAD_APP_PREFIX}.bitmap2component.desktop
++                               ${PROJECT_BINARY_DIR}/resources/linux/launchers/${KICAD_APP_PREFIX}.eeschema.desktop
++                               ${PROJECT_BINARY_DIR}/resources/linux/launchers/${KICAD_APP_PREFIX}.gerbview.desktop
++                               ${PROJECT_BINARY_DIR}/resources/linux/launchers/${KICAD_APP_NAME}.desktop
++                               ${PROJECT_BINARY_DIR}/resources/linux/launchers/${KICAD_APP_PREFIX}.pcbcalculator.desktop
++                               ${PROJECT_BINARY_DIR}/resources/linux/launchers/${KICAD_APP_PREFIX}.pcbnew.desktop
++                               ${PROJECT_BINARY_DIR}/resources/linux/mime/${KICAD_MIME_FILE_PREFIX}-gerbers.xml
++                               ${PROJECT_BINARY_DIR}/resources/linux/mime/${KICAD_MIME_FILE_PREFIX}-kicad.xml
+                       )
+ 
+ 
+-    # Install icons
+-    install( DIRECTORY ${PROJECT_SOURCE_DIR}/resources/linux/icons/
++    # Copy icons to binary dir, where they can be renamed for flatpak, if needed
++    file( COPY ${PROJECT_SOURCE_DIR}/resources/linux/icons/
++          DESTINATION ${PROJECT_BINARY_DIR}/resources/linux/icons
++          FILES_MATCHING
++          PATTERN "*.png"
++          PATTERN "*.svg"
++          )
++
++    if( KICAD_BUILD_FLATPAK )
++        # Rename all icons to start with KICAD_ICON_PREFIX
++        file( GLOB_RECURSE _ALL_ICONS
++              LIST_DIRECTORIES false
++              ${PROJECT_BINARY_DIR}/resources/linux/icons/*.png
++              ${PROJECT_BINARY_DIR}/resources/linux/icons/*.svg
++              )
++        foreach( _ICON ${_ALL_ICONS} )
++            get_filename_component( _ICON_PATH ${_ICON} DIRECTORY )
++            get_filename_component( _ICON_NAME ${_ICON} NAME_WE )
++            get_filename_component( _ICON_EXT ${_ICON} EXT )
++            if( _ICON_NAME STREQUAL "kicad" )
++                set( _RENAMED_ICON "${_ICON_PATH}/${KICAD_APP_NAME}${_ICON_EXT}" )
++            else()
++                set( _RENAMED_ICON "${_ICON_PATH}/${KICAD_ICON_PREFIX}.${_ICON_NAME}${_ICON_EXT}" )
++            endif()
++            file( RENAME ${_ICON} ${_RENAMED_ICON} )
++        endforeach()
++    endif()
++
++    # Install icons from binary dir, as they might have been renamed above
++    install( DIRECTORY ${PROJECT_BINARY_DIR}/resources/linux/icons/
+              DESTINATION ${CMAKE_INSTALL_DATADIR}/icons
+              COMPONENT resources
++             FILES_MATCHING
++             PATTERN "${KICAD_ICON_PREFIX}*.png"
++             PATTERN "${KICAD_ICON_PREFIX}*.svg"
+              )
+ 
+     # Install MIME type files
+diff --git a/resources/linux/launchers/org.kicad.bitmap2component.desktop.in b/resources/linux/launchers/org.kicad.bitmap2component.desktop.in
+index 04a161eafe..d33fa1fe22 100644
+--- a/resources/linux/launchers/org.kicad.bitmap2component.desktop.in
++++ b/resources/linux/launchers/org.kicad.bitmap2component.desktop.in
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Version=1.0
+ Terminal=false
+-Icon=bitmap2component
++Icon=@KICAD_DESKTOP_FILE_ICON_PREFIX@bitmap2component
+ Type=Application
+ Categories=Science;Electronics;
+ Exec=bitmap2component %f
+diff --git a/resources/linux/launchers/org.kicad.eeschema.desktop.in b/resources/linux/launchers/org.kicad.eeschema.desktop.in
+index 795fcf57a7..1c894a50bf 100644
+--- a/resources/linux/launchers/org.kicad.eeschema.desktop.in
++++ b/resources/linux/launchers/org.kicad.eeschema.desktop.in
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Version=1.0
+ Terminal=false
+-Icon=eeschema
++Icon=@KICAD_DESKTOP_FILE_ICON_PREFIX@eeschema
+ Type=Application
+ Categories=Science;Electronics;
+ Exec=eeschema %f
+diff --git a/resources/linux/launchers/org.kicad.gerbview.desktop.in b/resources/linux/launchers/org.kicad.gerbview.desktop.in
+index 44131bb3eb..4d4859c48e 100644
+--- a/resources/linux/launchers/org.kicad.gerbview.desktop.in
++++ b/resources/linux/launchers/org.kicad.gerbview.desktop.in
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Version=1.0
+ Terminal=false
+-Icon=gerbview
++Icon=@KICAD_DESKTOP_FILE_ICON_PREFIX@gerbview
+ Type=Application
+ Categories=Science;Electronics;
+ Exec=gerbview %F
+diff --git a/resources/linux/launchers/org.kicad.kicad.desktop.in b/resources/linux/launchers/org.kicad.kicad.desktop.in
+index e812e4b31b..654e978fa1 100644
+--- a/resources/linux/launchers/org.kicad.kicad.desktop.in
++++ b/resources/linux/launchers/org.kicad.kicad.desktop.in
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Version=1.0
+ Terminal=false
+-Icon=kicad
++Icon=@KICAD_DESKTOP_FILE_ICON_KICAD@
+ Type=Application
+ Categories=Science;Electronics;
+ Exec=kicad %f
+diff --git a/resources/linux/launchers/org.kicad.pcbcalculator.desktop.in b/resources/linux/launchers/org.kicad.pcbcalculator.desktop.in
+index 1c8ae53e0b..dbf55ab9fd 100644
+--- a/resources/linux/launchers/org.kicad.pcbcalculator.desktop.in
++++ b/resources/linux/launchers/org.kicad.pcbcalculator.desktop.in
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Version=1.0
+ Terminal=false
+-Icon=pcbcalculator
++Icon=@KICAD_DESKTOP_FILE_ICON_PREFIX@pcbcalculator
+ Type=Application
+ Categories=Science;Electronics;
+ Exec=pcb_calculator
+diff --git a/resources/linux/launchers/org.kicad.pcbnew.desktop.in b/resources/linux/launchers/org.kicad.pcbnew.desktop.in
+index e2ee11aa46..ef6ec5ddf2 100644
+--- a/resources/linux/launchers/org.kicad.pcbnew.desktop.in
++++ b/resources/linux/launchers/org.kicad.pcbnew.desktop.in
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Version=1.0
+ Terminal=false
+-Icon=pcbnew
++Icon=@KICAD_DESKTOP_FILE_ICON_PREFIX@pcbnew
+ Type=Application
+ Categories=Science;Electronics;
+ Exec=pcbnew %f
+diff --git a/resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in b/resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
+index a4855fc948..027740f4e3 100644
+--- a/resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
++++ b/resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
+@@ -2,10 +2,10 @@
+ <!-- Copyright (C) 2016-2017 Lubomir Rintel <lkundrak@v3.sk> -->
+ <!-- Copyright (C) 2016-2021 KiCad Developers, see AUTHORS.txt for contributors. -->
+ <component type="desktop">
+-    <id>org.kicad.kicad</id>
++    <id>@KICAD_APP_NAME@</id>
+     <name>KiCad</name>
+ 
+-    <launchable type="desktop-id">org.kicad.kicad.desktop</launchable>
++    <launchable type="desktop-id">@KICAD_APP_NAME@.desktop</launchable>
+ 
+     <project_license>GPL-3.0-or-later</project_license>
+     <metadata_license>CC-BY-SA-4.0</metadata_license>
+diff --git a/resources/linux/mime/kicad-kicad.xml.in b/resources/linux/mime/kicad-kicad.xml.in
+index 5eef3f304e..f5b768e57c 100644
+--- a/resources/linux/mime/kicad-kicad.xml.in
++++ b/resources/linux/mime/kicad-kicad.xml.in
+@@ -3,14 +3,14 @@
+     <mime-type type="application/x-kicad-project">
+         <sub-class-of type="text/plain"/>
+         <comment>KiCad Project</comment>
+-        <generic-icon name="application-x-kicad-project"/>
++        <generic-icon name="@KICAD_MIME_ICON_PREFIX@application-x-kicad-project"/>
+         <glob pattern="*.pro" weight="40"/>
+         <glob pattern="*.kicad_pro" weight="50"/>
+     </mime-type>
+     <mime-type type="application/x-kicad-schematic">
+         <sub-class-of type="text/plain"/>
+         <comment>KiCad Schematic</comment>
+-        <generic-icon name="application-x-kicad-schematic"/>
++        <generic-icon name="@KICAD_MIME_ICON_PREFIX@application-x-kicad-schematic"/>
+         <glob pattern="*.sch" weight="40"/>
+         <glob pattern="*.kicad_sch" weight="50"/>
+         <magic priority="50">
+@@ -25,7 +25,7 @@
+     <mime-type type="application/x-kicad-pcb">
+         <sub-class-of type="text/plain"/>
+         <comment>KiCad Printed Circuit Board</comment>
+-        <generic-icon name="application-x-kicad-pcb"/>
++        <generic-icon name="@KICAD_MIME_ICON_PREFIX@application-x-kicad-pcb"/>
+         <glob pattern="*.kicad_pcb" weight="50"/>
+         <magic priority="50">
+             <!--The new board file (.kicad_pcb) header-->
+-- 
+2.41.0
+
