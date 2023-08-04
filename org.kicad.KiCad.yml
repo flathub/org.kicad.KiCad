@@ -4,7 +4,6 @@ runtime: org.freedesktop.Sdk
 runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 command: kicad-startup
-rename-appdata-file: org.kicad.kicad.metainfo.xml
 finish-args:
   - --device=dri
   - --filesystem=home
@@ -207,6 +206,7 @@ modules:
       - -DGLEW_INCLUDE_DIR=/app/include/GL
       - -DOCC_INCLUDE_DIR=/app/include/opencascade
       - -DOPENGL_glu_LIBRARY=/app/lib/libGLU.so
+      - -DKICAD_BUILD_FLATPAK=ON
       - -DKICAD_BUILD_QA_TESTS=OFF
       - -DKICAD_BUILD_I18N=ON
       - -DKICAD_USE_EGL=OFF
@@ -220,68 +220,38 @@ modules:
       - ln -s /app/bin/pip3.10 /app/bin/pip3
       - ln -s /app/bin/pip3 /app/bin/pip
       - install python /app/bin/python
+      # Alter the desktop files for kicad, eeschema, and pcbnew to use the
+      # wrapper scripts installing/uninstalling the ODBC drivers before
+      # launching the apps.
       - >
         for f in $FLATPAK_DEST/share/applications/*.desktop; do
           desktop_name="$(basename $f)";
-          desktop_app_name="${desktop_name%.desktop}";
-          app_name="${desktop_app_name#org.kicad.}";
-          if [ "$app_name" = "kicad" ]; then
+          if [ "$desktop_name" = "org.kicad.KiCad.desktop" ]; then
             desktop-file-edit \
-              --set-icon="${FLATPAK_ID}" \
               --set-key=Exec \
               --set-value="kicad-startup %f" \
-              --set-key=X-Flatpak-RenamedFrom \
-              --set-value="${desktop_name};" \
               "$f";
-            mv $FLATPAK_DEST/share/applications/{org.kicad.kicad,$FLATPAK_ID}.desktop;
           else
-            desktop-file-edit \
-              --set-icon="${FLATPAK_ID}.${app_name}" \
-              --set-key=X-Flatpak-RenamedFrom \
-              --set-value="${desktop_name};" \
-              "$f";
-            if [[ "$app_name" =~ ^(eeschema|pcbnew)$ ]]; then
+            if [[ "$desktop_name" =~ ^org\.kicad\.KiCad\.(eeschema|pcbnew)\.desktop$ ]]; then
               desktop-file-edit \
                 --set-key=Exec \
-                --set-value="${app_name}-startup %f" \
+                --set-value="${BASH_REMATCH[1]}-startup %f" \
                 "$f";
             fi;
-            mv $FLATPAK_DEST/share/applications/{org.kicad,$FLATPAK_ID}.${app_name}.desktop;
           fi;
         done;
-        unset desktop_name desktop_app_name app_name
-      - sed -i "s/\(application-x-kicad-.\+\)/$FLATPAK_ID.\1/" $FLATPAK_DEST/share/mime/packages/kicad-kicad.xml
-      - mv $FLATPAK_DEST/share/mime/packages/{kicad,$FLATPAK_ID}-kicad.xml
-      - mv $FLATPAK_DEST/share/mime/packages/{kicad,$FLATPAK_ID}-gerbers.xml
-      - >
-        cd $FLATPAK_DEST/share/icons/hicolor;
-        for d in */{apps,mimetypes}; do
-          for f in ${d}/*; do
-            name="$(basename $f)";
-            suffix="${name##*.}";
-            if [[ "$name" == kicad.* ]]; then
-              mv "$f" "${d}/${FLATPAK_ID}.${suffix}";
-            else
-              mv "$f" "${d}/${FLATPAK_ID}.${name}";
-            fi;
-          done;
-        done;
-        unset name suffix
+        unset desktop_name
     sources:
       - type: git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 7efda5fbbd3cddb8b45fe219b42e4899b805ce59
-        tag: 7.0.6-rc3
+        # Track a commit pre 7.0.7-rc1 tag
+        commit: 4bed2e57cb96213ecf8bad9f69b9645af8e68339
+        #tag: 7.0.6-rc3
         x-checker-data:
           type: git
           tag-pattern: ^([\d\.]+[-rc\d]+)$
           versions:
             <: 7.99.0
-      - type: shell
-        commands:
-          - rm -rf .git/
-          - sed -i 's/org\.kicad\.kicad/org.kicad.KiCad/g' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
-          - sed -i '86i<kudos><kudo>UserDocs</kudo></kudos>' resources/linux/metainfo/org.kicad.kicad.metainfo.xml.in
       - type: script
         dest-filename: pip3
         commands:
