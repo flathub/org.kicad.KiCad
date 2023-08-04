@@ -200,6 +200,7 @@ modules:
           - autoreconf -fi
 
   - name: kicad
+    builddir: true
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
@@ -212,14 +213,14 @@ modules:
       - -DKICAD_USE_EGL=OFF
       - -DKICAD_LIBRARY_DATA=/app/extensions/Library
     post-install:
-      - install kicad-startup /app/bin/kicad-startup
-      - install eeschema-startup /app/bin/eeschema-startup
-      - install pcbnew-startup /app/bin/pcbnew-startup
-      - install -d /app/extensions/ODBCDriver
-      - install pip3 /app/bin/pip3.10
+      - install ../../flatpak-extra/kicad-startup /app/bin/kicad-startup
+      - install ../../flatpak-extra/eeschema-startup /app/bin/eeschema-startup
+      - install ../../flatpak-extra/pcbnew-startup /app/bin/pcbnew-startup
+      - install ../../flatpak-extra/python /app/bin/python
+      - install ../../flatpak-extra/pip3 /app/bin/pip3.10
       - ln -s /app/bin/pip3.10 /app/bin/pip3
       - ln -s /app/bin/pip3 /app/bin/pip
-      - install python /app/bin/python
+      - install -d /app/extensions/ODBCDriver
       # Alter the desktop files for kicad, eeschema, and pcbnew to use the
       # wrapper scripts installing/uninstalling the ODBC drivers before
       # launching the apps.
@@ -241,8 +242,11 @@ modules:
           fi;
         done;
         unset desktop_name
+      # TODO (post-install script): Re-add <kudos> tag to metainfo.xml for UserDocs.
+    subdir: kicad-git
     sources:
       - type: git
+        dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
         # Track a commit pre 7.0.7-rc1 tag
         commit: 4bed2e57cb96213ecf8bad9f69b9645af8e68339
@@ -253,18 +257,21 @@ modules:
           versions:
             <: 7.99.0
       - type: script
+        dest: flatpak-extra
         dest-filename: pip3
         commands:
           - export PYTHONUSERBASE="$XDG_DATA_HOME/python"
           - export PATH="$XDG_DATA_HOME/python/bin":$PATH
           - exec /usr/bin/pip3 "$@"
       - type: script
+        dest: flatpak-extra
         dest-filename: python
         commands:
           - export PYTHONUSERBASE="$XDG_DATA_HOME/python"
           - export PATH="$XDG_DATA_HOME/python/bin":$PATH
           - exec /usr/bin/python "$@"
       - type: script
+        dest: flatpak-extra
         dest-filename: kicad-startup
         commands:
           - mkdir -p ${XDG_CONFIG_HOME}/unixodbc
@@ -280,6 +287,7 @@ modules:
             done
           - exec /app/bin/kicad "$@"
       - type: script
+        dest: flatpak-extra
         dest-filename: eeschema-startup
         commands:
           - mkdir -p ${XDG_CONFIG_HOME}/unixodbc
@@ -295,6 +303,7 @@ modules:
             done
           - exec /app/bin/eeschema "$@"
       - type: script
+        dest: flatpak-extra
         dest-filename: pcbnew-startup
         commands:
           - mkdir -p ${XDG_CONFIG_HOME}/unixodbc
