@@ -233,7 +233,8 @@ modules:
               --set-value="kicad-startup %f" \
               "$f";
           else
-            if [[ "$desktop_name" =~ ^org\.kicad\.KiCad\.(eeschema|pcbnew)\.desktop$ ]]; then
+            if [[ "$desktop_name" =~ ^org\.kicad\.KiCad\.(eeschema|pcbnew)\.desktop$
+        ]]; then
               desktop-file-edit \
                 --set-key=Exec \
                 --set-value="${BASH_REMATCH[1]}-startup %f" \
@@ -248,9 +249,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        # Track a commit pre 7.0.7-rc1 tag
-        commit: 4bed2e57cb96213ecf8bad9f69b9645af8e68339
-        #tag: 7.0.6-rc3
+        commit: 0cf6d8070550b49359842d177e9c45bbbce4c44f
+        tag: 7.0.7-rc1
         x-checker-data:
           type: git
           tag-pattern: ^([\d\.]+[-rc\d]+)$
