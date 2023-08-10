@@ -190,8 +190,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/lurcher/unixODBC.git
-        tag: 2.3.11
-        commit: 6c8071b1bef4e4991e7b3023a1c1c712168a818e
+        tag: 2.3.12
+        commit: c335dbf3fa25b524e935e98cf26b96a2e13f5c81
         x-checker-data:
           type: git
           tag-pattern: ^([\d\.]+)$
