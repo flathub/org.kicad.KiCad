@@ -327,8 +327,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-7.0.5.tar.gz
-        sha256: 22f7504929a3a26b94c9d4c314354173f9d6d65369bac9b626e8c3ae9df70754
+        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-7.0.7.tar.gz
+        sha256: bfb5fa11040cfdaba828824a5047e31645809ebc469a897e715b35edcae7c7fb
         # Checking kicad-doc results in timeout errors
         #x-checker-data:
         #  type: html
