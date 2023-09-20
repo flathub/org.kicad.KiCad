@@ -36,6 +36,12 @@ modules:
           versions:
             ==: 59.2.0
       - type: file
+        url: https://files.pythonhosted.org/packages/38/af/b0e6a9eba989870fd26e10889446d1bec2e6d5be0a1bae2dc4dcda9ce199/pyproject-metadata-0.7.1.tar.gz
+        sha256: 0a94f18b108b9b21f3a26a3d541f056c34edcb17dc872a144a15618fed7aef67
+        x-checker-data:
+          name: pyproject-metadata
+          type: pypi
+      - type: file
         url: https://files.pythonhosted.org/packages/7a/b0/29c0c8c6f8cebeb0de4c17bc44365cba0b35cb4246e4a27a7e12ecf92d73/wheel-0.38.1.tar.gz
         sha256: ea041edf63f4ccba53ad6e035427997b3bb10ee88a4cd014ae82aeb9eea77bb9
         x-checker-data:
