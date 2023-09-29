@@ -248,8 +248,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 2176a654cd7c0d125645484b53c9324ec3d34aaf
-        tag: 7.0.7
+        commit: 063d9c830514d46de163bd0ae2bb1df66309f11e
+        tag: 7.0.8
         x-checker-data:
           type: git
           tag-pattern: ^([\d\.]+)$
@@ -326,8 +326,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-7.0.7.tar.gz
-        sha256: bfb5fa11040cfdaba828824a5047e31645809ebc469a897e715b35edcae7c7fb
+        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-7.0.8.tar.gz
+        sha256: 923752b5667f76cb4b3a9cbd00c14f36f1bf8cd3930d273c25d67331412f954b
         # Checking kicad-doc results in timeout errors
         #x-checker-data:
         #  type: html
