@@ -95,8 +95,8 @@ modules:
       - -DINSTALL_TEST_CASES=OFF
     sources:
       - type: git
-        url: https://github.com/Open-Cascade-SAS/OCCT
         commit: cec1ecd0c9f3b3d2572c47035d11949e8dfa85e2
+        url: https://github.com/Open-Cascade-SAS/OCCT
         tag: V7_7_2
         x-checker-data:
           type: git
@@ -131,10 +131,11 @@ modules:
         url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.3/wxWidgets-3.2.3.tar.bz2
         sha256: c170ab67c7e167387162276aea84e055ee58424486404bba692c401730d1a67a
         x-checker-data:
+          is-important: true
           type: html
           url: https://wxwidgets.org/downloads
-          version-pattern: 'Latest Stable Release: ([\d\.]+)'
           url-template: https://github.com/wxWidgets/wxWidgets/releases/download/v$version/wxWidgets-$version.tar.bz2
+          version-pattern: 'Latest Stable Release: ([\d\.]+)'
       - type: script
         commands:
           - cp -p /usr/share/automake-*/config.{sub,guess} .
@@ -175,10 +176,11 @@ modules:
         url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/41/ngspice-41.tar.gz
         sha256: 1ce219395d2f50c33eb223a1403f8318b168f1e6d1015a7db9dbf439408de8c4
         x-checker-data:
+          is-important: true
           type: html
           url: https://ngspice.sourceforge.io/download.html
-          version-pattern: <strong>ngspice-([\d]+)</strong>
           url-template: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/$version/ngspice-$version.tar.gz
+          version-pattern: <strong>ngspice-([\d]+)</strong>
       - type: script
         commands:
           - cp -p /usr/share/automake-*/config.{sub,guess} .
@@ -250,6 +252,7 @@ modules:
         commit: ceced2a9a4b3fb35b1ae8658d127f90f81c60c2e
         tag: 7.0.8-rc1
         x-checker-data:
+          is-main-source: true
           type: git
           tag-pattern: ^([\d\.]+[-rc\d]+)$
           versions:
@@ -329,7 +332,8 @@ modules:
         sha256: 923752b5667f76cb4b3a9cbd00c14f36f1bf8cd3930d273c25d67331412f954b
         # Checking kicad-doc results in timeout errors
         #x-checker-data:
+        #  is-important: true
         #  type: html
         #  url: https://kicad-downloads.s3.cern.ch
-        #  version-pattern: docs/kicad-doc-([\d.]+).tar.gz
         #  url-template: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-$version.tar.gz
+        #  version-pattern: docs/kicad-doc-([\d.]+).tar.gz
