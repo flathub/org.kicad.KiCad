@@ -139,6 +139,10 @@ modules:
         commands:
           - cp -p /usr/share/automake-*/config.{sub,guess} .
           - autoconf -f -B build/autoconf_prepend-include
+      - type: patch
+        paths:
+          # The following will be included in wx 3.2.4, once released
+          - patches/0001-Avoid-crash-with-GTK3-if-console-program-is-linked-to-GUI.patch
 
   - python3-wxPython.yml
   - python3-requests.yml
