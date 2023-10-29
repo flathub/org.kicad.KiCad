@@ -191,6 +191,8 @@ modules:
           - autoconf -f -B build/autoconf_prepend-include
 
   - name: unixodbc
+    cleanup:
+      - /share/man
     sources:
       - type: git
         url: https://github.com/lurcher/unixODBC.git
