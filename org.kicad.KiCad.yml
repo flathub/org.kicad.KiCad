@@ -223,6 +223,7 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DCMAKE_CTEST_ARGUMENTS="--output-on-failure"
       - -DGLEW_INCLUDE_DIR=/app/include/GL
       - -DOCC_INCLUDE_DIR=/app/include/opencascade
       - -DOPENGL_glu_LIBRARY=/app/lib/libGLU.so
@@ -263,8 +264,6 @@ modules:
         unset desktop_name
       # TODO (post-install script): Re-add <kudos> tag to metainfo.xml for UserDocs.
     run-tests: true
-    test-args:
-      - --output-on-failure
     subdir: kicad-git
     sources:
       - type: git
