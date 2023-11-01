@@ -222,6 +222,7 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DCMAKE_CTEST_ARGUMENTS="--output-on-failure"
       - -DGLEW_INCLUDE_DIR=/app/include/GL
       - -DOCC_INCLUDE_DIR=/app/include/opencascade
       - -DOPENGL_glu_LIBRARY=/app/lib/libGLU.so
