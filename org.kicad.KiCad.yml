@@ -126,23 +126,14 @@ modules:
       - --with-opengl
       - --disable-glcanvasegl
     sources:
-      - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.3/wxWidgets-3.2.3.tar.bz2
-        sha256: c170ab67c7e167387162276aea84e055ee58424486404bba692c401730d1a67a
+      - type: git
+        commit: 085a136dcb11aca5b1102193f006f8056d5f0876
+        tag: v3.2.4
+        url: https://github.com/wxWidgets/wxWidgets
         x-checker-data:
           is-important: true
-          type: html
-          url: https://wxwidgets.org/downloads
-          url-template: https://github.com/wxWidgets/wxWidgets/releases/download/v$version/wxWidgets-$version.tar.bz2
-          version-pattern: 'Latest Stable Release: ([\d\.]+)'
-      - type: script
-        commands:
-          - cp -p /usr/share/automake-*/config.{sub,guess} .
-          - autoconf -f -B build/autoconf_prepend-include
-      - type: patch
-        paths:
-          # The following will be included in wx 3.2.4, once released
-          - patches/0001-Avoid-crash-with-GTK3-if-console-program-is-linked-to-GUI.patch
+          type: git
+          tag-pattern: ^v([\d\.]+)$
 
   - python3-wxPython.yml
   - python3-requests.yml
@@ -190,6 +181,8 @@ modules:
           - autoconf -f -B build/autoconf_prepend-include
 
   - name: unixodbc
+    cleanup:
+      - /share/man
     sources:
       - type: git
         url: https://github.com/lurcher/unixODBC.git
