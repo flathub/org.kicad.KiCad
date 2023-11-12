@@ -316,20 +316,160 @@ modules:
             done
           - exec /app/bin/pcbnew "$@"
 
-  - name: kicad-doc
-    build-commands:
-      # Only install HTML docs
-      - find . -type f -name '*.pdf' -execdir rm {} \;
-      - find . -type f -exec install -Dm644 "{}" "${FLATPAK_DEST}/{}" \;
-    buildsystem: simple
-    sources:
-      - type: archive
-        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-7.0.9.tar.gz
-        sha256: 3e276fd4d5ca1a2cc11cb35770c3ef6a33e02ec4a20243b28d110b647abef00b
-        # Checking kicad-doc results in timeout errors
-        #x-checker-data:
-        #  is-important: true
-        #  type: html
-        #  url: https://kicad-downloads.s3.cern.ch
-        #  url-template: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-$version.tar.gz
-        #  version-pattern: docs/kicad-doc-([\d.]+).tar.gz
+  - name: documentation
+    modules:
+      - name: perl-build
+        buildsystem: simple
+        build-commands:
+          - perl Build.PL --install_base=${FLATPAK_DEST}
+                          --install_path lib=${FLATPAK_DEST}/lib
+          - ./Build code
+          - ./Build install
+        cleanup:
+          - '*'
+        sources:
+          - type: archive
+            url: https://cpan.metacpan.org/authors/id/L/LE/LEONT/Module-Build-0.4234.tar.gz
+            sha256: 66aeac6127418be5e471ead3744648c766bd01482825c5b66652675f2bc86a8f
+            x-checker-data:
+              type: html
+              url: https://metacpan.org/dist/Module-Build
+              url-template: https://cpan.metacpan.org/authors/id/L/LE/LEONT/Module-Build-$version.tar.gz
+              version-pattern: Module-Build-([\d\.]+) - Build and install Perl modules - metacpan.org
+
+      - name: perl-pod-parser
+        buildsystem: simple
+        build-commands:
+          - perl Makefile.PL PREFIX=${FLATPAK_DEST} LIB=${FLATPAK_DEST}/lib
+          - make
+          - make install
+        cleanup:
+          - '*'
+        sources:
+          - type: archive
+            url: https://cpan.metacpan.org/authors/id/M/MA/MAREKR/Pod-Parser-1.66.tar.gz
+            sha256: 22928a7bffe61b452c05bbbb8f5216d4b9cf9fe2a849b776c25500d24d20df7c
+            x-checker-data:
+              type: html
+              url: https://metacpan.org/dist/Pod-Parser
+              url-template: https://cpan.metacpan.org/authors/id/M/MA/MAREKR/Pod-Parser-$version.tar.gz
+              version-pattern: Pod-Parser-([\d\.]+) - Modules for parsing/translating POD format documents - metacpan.org
+
+      - name: perl-yaml-tiny
+        buildsystem: simple
+        build-commands:
+          - perl Makefile.PL PREFIX=${FLATPAK_DEST} LIB=${FLATPAK_DEST}/lib
+          - make
+          - make install
+        cleanup:
+          - '*'
+        sources:
+          - type: archive
+            url: https://cpan.metacpan.org/authors/id/E/ET/ETHER/YAML-Tiny-1.74.tar.gz
+            sha256: 7b38ca9f5d3ce24230a6b8bdc1f47f5b2db348e7f7f9666c26f5955636e33d6c
+            x-checker-data:
+              type: html
+              url: https://metacpan.org/dist/YAML-Tiny
+              url-template: https://cpan.metacpan.org/authors/id/E/ET/ETHER/YAML-Tiny-$version.tar.gz
+              version-pattern: YAML-Tiny-([\d\.]+) - Read/Write YAML files with as little code as possible - metacpan.org
+
+      - name: perl-mime-charset
+        buildsystem: simple
+        build-commands:
+          - perl Makefile.PL PREFIX=${FLATPAK_DEST} LIB=${FLATPAK_DEST}/lib
+          - make
+          - make install
+        cleanup:
+          - '*'
+        sources:
+          - type: archive
+            url: https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/MIME-Charset-1.013.1.tar.gz
+            sha256: 1bb7a6e0c0d251f23d6e60bf84c9adefc5b74eec58475bfee4d39107e60870f0
+            x-checker-data:
+              type: html
+              url: https://metacpan.org/dist/MIME-Charset
+              url-template: https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/MIME-Charset-$version.tar.gz
+              version-pattern: MIME-Charset-([\d\.]+) - Charset Information for MIME - metacpan.org
+
+      - name: perl-unicode-gcstring
+        buildsystem: simple
+        build-commands:
+          - perl Makefile.PL PREFIX=${FLATPAK_DEST} LIB=${FLATPAK_DEST}/lib
+          - make
+          - make install
+        cleanup:
+          - '*'
+        post-install:
+          - find ${FLATPAK_DEST}/lib -name '*.so' -exec chmod u+w {} \;
+        sources:
+          - type: archive
+            url: https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/Unicode-LineBreak-2019.001.tar.gz
+            sha256: 486762e4cacddcc77b13989f979a029f84630b8175e7fef17989e157d4b6318a
+            x-checker-data:
+              type: html
+              url: https://metacpan.org/dist/Unicode-LineBreak
+              url-template: https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/Unicode-LineBreak-$version.tar.gz
+              version-pattern: Unicode-LineBreak-([\d\.]+) - UAX \#14 Unicode Line Breaking Algorithm - metacpan.org
+
+      - name: po4a
+        buildsystem: simple
+        build-options:
+          env:
+            PERL5LIB: /app/lib
+        build-commands:
+          - perl Build.PL --install_base=${FLATPAK_DEST}
+                          --install_path lib=${FLATPAK_DEST}/lib
+          - ./Build code
+          - ./Build install
+        cleanup:
+          - '*'
+        sources:
+          - type: archive
+            url: https://github.com/mquinson/po4a/releases/download/v0.69/po4a-0.69.tar.gz
+            sha256: 7cd4aff13661665ec2d9df478757ae407683d4ecb5c2627ccf8b46729bcb9496
+            x-checker-data:
+              type: html
+              url: https://po4a.org
+              url-template: https://github.com/mquinson/po4a/releases/download/v$version/po4a-$version.tar.gz
+              version-pattern: <h2>\d{4}-\d{2}-\d{2} - po4a ([\d\.]+) .+</h2>
+
+      - name: asciidoctor
+        buildsystem: simple
+        build-options:
+          env:
+            GEM_PATH: /app/lib/ruby/gems/2.7.1
+        build-commands:
+          - gem install --ignore-dependencies --no-user-install --verbose
+                        --local --install-dir ${FLATPAK_DEST}/lib/ruby/gems/2.7.1
+                        --bindir ${FLATPAK_DEST}/bin *.gem
+        cleanup:
+          - '*'
+        sources:
+          - type: file
+            url: https://rubygems.org/gems/asciidoctor-2.0.20.gem
+            sha256: 835eabd445e4ae88f56a5f4e07593c3612b2be72eb661c612c3a8e1e17c57479
+            x-checker-data:
+              type: html
+              url: https://rubygems.org/gems/asciidoctor
+              url-template: https://rubygems.org/gems/asciidoctor-$version.gem
+              version-pattern: <i class="page__subheading">([\d\.]+)</i>
+
+      - name: kicad-doc
+        buildsystem: cmake-ninja
+        build-options:
+          env:
+            GEM_PATH: /app/lib/ruby/gems/2.7.1
+            PERL5LIB: /app/lib
+        config-opts:
+          - -DBUILD_FORMATS=html
+        sources:
+          - type: git
+            url: https://gitlab.com/kicad/services/kicad-doc.git
+            commit: e84a56f8b443d11d9ae4de8f6daa9ba1fc2caa3a
+            tag: 7.0.9
+            x-checker-data:
+              is-important: true
+              type: git
+              tag-pattern: ^([\d\.]+)$
+              versions:
+                <: 7.99.0
