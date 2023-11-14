@@ -316,20 +316,4 @@ modules:
             done
           - exec /app/bin/pcbnew "$@"
 
-  - name: kicad-doc
-    build-commands:
-      # Only install HTML docs
-      - find . -type f -name '*.pdf' -execdir rm {} \;
-      - find . -type f -exec install -Dm644 "{}" "${FLATPAK_DEST}/{}" \;
-    buildsystem: simple
-    sources:
-      - type: archive
-        url: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-7.0.9.tar.gz
-        sha256: 3e276fd4d5ca1a2cc11cb35770c3ef6a33e02ec4a20243b28d110b647abef00b
-        # Checking kicad-doc results in timeout errors
-        #x-checker-data:
-        #  is-important: true
-        #  type: html
-        #  url: https://kicad-downloads.s3.cern.ch
-        #  url-template: https://kicad-downloads.s3.cern.ch/docs/kicad-doc-$version.tar.gz
-        #  version-pattern: docs/kicad-doc-([\d.]+).tar.gz
+  - kicad-doc.yml
