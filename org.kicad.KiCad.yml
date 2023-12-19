@@ -94,9 +94,9 @@ modules:
       - -DINSTALL_TEST_CASES=OFF
     sources:
       - type: git
-        commit: cec1ecd0c9f3b3d2572c47035d11949e8dfa85e2
+        commit: ffd7a3aa4f0a62b217a69c549a41bee8ddad9783
         url: https://github.com/Open-Cascade-SAS/OCCT
-        tag: V7_7_2
+        tag: V7_8_0
         x-checker-data:
           type: git
           tag-pattern: ^V([\d_]+)$
@@ -110,8 +110,8 @@ modules:
       - /include
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.83.0/source/boost_1_83_0.tar.gz
-        sha256: c0685b68dd44cc46574cce86c4e17c0f611b15e195be9848dfd0769a0a207628
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.84.0/source/boost_1_84_0.tar.gz
+        sha256: a5800f405508f5df8114558ca9855d2640a2de8f0445f051fa1c7c3383045724
         x-checker-data:
           type: html
           url: https://www.boost.org/users/download/
