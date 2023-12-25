@@ -101,6 +101,8 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^V([\d_]+)$
+          versions:
+            <: '7_8_0'
 
   - name: boost
     buildsystem: simple
