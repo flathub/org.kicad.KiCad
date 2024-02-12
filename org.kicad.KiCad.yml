@@ -209,8 +209,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: git
-        commit: a2bde63741977ca0f4ef7db2f609df320be67a08
-        tag: v1.7.1
+        commit: a418d9d4ab87bae16b87d8f37143a4687ae0e4b2
+        tag: v1.7.2
         url: https://github.com/libgit2/libgit2
         x-checker-data:
           type: git
