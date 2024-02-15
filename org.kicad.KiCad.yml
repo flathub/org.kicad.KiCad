@@ -8,7 +8,9 @@ finish-args:
   - --filesystem=home
   - --share=ipc
   - --share=network
-  - --socket=x11
+#  - --socket=x11
+  - --socket=fallback-x11
+  - --socket=wayland
 
 add-extensions:
   org.kicad.KiCad.Library:
@@ -112,21 +114,23 @@ modules:
       - /include
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.84.0/source/boost_1_84_0.tar.gz
+        #url: https://boostorg.jfrog.io/artifactory/main/release/1.84.0/source/boost_1_84_0.tar.gz
+        url: http://download.openpkg.org/components/cache/boost/boost_1_84_0.tar.gz
         sha256: a5800f405508f5df8114558ca9855d2640a2de8f0445f051fa1c7c3383045724
         x-checker-data:
           type: html
           url: https://www.boost.org/users/download/
           version-pattern: Version (\d+\.?\d+\.\d+)(?!\sbeta)|</a>$
-          url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${version0}_${version1}_${version2}.tar.gz
-
+          #url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${version0}_${version1}_${version2}.tar.gz
+          url-template: http://download.openpkg.org/components/cache/boost/boost_${version0}_${version1}_${version2}.tar.gz
   - name: wxWidgets
     cleanup:
       - /bin
       - /include
     config-opts:
       - --with-opengl
-      - --disable-glcanvasegl
+      - --with-gtk=3
+ #     - --disable-glcanvasegl
     sources:
       - type: git
         commit: 085a136dcb11aca5b1102193f006f8056d5f0876
@@ -196,19 +200,48 @@ modules:
       - type: script
         commands:
           - autoreconf -fi
+  - name: libgit2
+    buildsystem: cmake
+    config-opts:
+    - "-DBUILD_EXAMPLES=OFF"
+    - "-DBUILD_TESTS=OFF"
+    - "-DUSE_SSH=ON"
+    modules:
+    - name: libssh2
+      cleanup:
+      - "/bin"
+      sources:
+      - type: archive
+        url: https://github.com/libssh2/libssh2/releases/download/libssh2-1.11.0/libssh2-1.11.0.tar.bz2
+        sha256: e56d81f01f090d3c6eaf5f56c645610fd1a90d92819541d0079ae363d1eed11e
+    sources:
+    - type: archive
+      url: https://github.com/libgit2/libgit2/archive/refs/tags/v1.7.1.tar.gz
+      sha256: 17d2b292f21be3892b704dddff29327b3564f96099a1c53b00edc23160c71327
+    cleanup:
+    - "/include"
+    - "*.la"
+    - "*.a"
+    - "/lib/cmake"
+    - "/lib/pkgconfig"
+  
+  - shared-modules/libsecret/libsecret.json
 
   - name: kicad
     builddir: true
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DGLEW_INCLUDE_DIR=/app/include/GL
+#      - -DGLEW_INCLUDE_DIR=/app/include/GL
       - -DOCC_INCLUDE_DIR=/app/include/opencascade
       - -DOPENGL_glu_LIBRARY=/app/lib/libGLU.so
       - -DKICAD_BUILD_FLATPAK=ON
       - -DKICAD_BUILD_QA_TESTS=OFF
       - -DKICAD_BUILD_I18N=ON
-      - -DKICAD_USE_EGL=OFF
+      - -DKICAD_USE_EGL=ON
+      - -DKICAD_WAYLAND=ON
+      # shared-modules version of glew does not seem wayland/egl ready
+      - -DKICAD_USE_BUNDLED_GLEW=ON
       - -DKICAD_LIBRARY_DATA=/app/extensions/Library
     post-install:
       - install ../../flatpak-extra/kicad-startup /app/bin/kicad-startup
@@ -247,8 +280,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 567c5bc8db09d04b9fab77f94d88e6493a903636
-        tag: 7.0.10
+        commit: 2c9c741895a41544767034e8e572b5e5461558c5
+        #tag: 7.0.10
         x-checker-data:
           is-main-source: true
           type: git
@@ -318,4 +351,4 @@ modules:
             done
           - exec /app/bin/pcbnew "$@"
 
-  - kicad-doc.yml
+ # - kicad-doc.yml
