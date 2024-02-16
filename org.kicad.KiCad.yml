@@ -266,8 +266,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: ebb69bdfa42a2753f1bb1fc27aee3ea312cb6182
-        tag: 8.0.0-rc2
+        commit: afae6e2e9d9d9575fa6154174933eb3a0c61b7b7
+        tag: 8.0.0-rc3
         x-checker-data:
           is-main-source: true
           type: git
