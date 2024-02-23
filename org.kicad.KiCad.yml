@@ -40,6 +40,7 @@ cleanup:
 modules:
   - shared-modules/glu/glu-9.json
   - shared-modules/glew/glew.json
+  - shared-modules/libsecret/libsecret.json
 
   - name: glm
     buildsystem: simple
@@ -76,7 +77,7 @@ modules:
       - /include
       - /share/doc
     config-opts:
-      - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DBUILD_LIBRARY_TYPE=Shared
       - -DBUILD_Inspector=OFF
       - -DBUILD_DOC_Overview=OFF
@@ -197,6 +198,23 @@ modules:
         commands:
           - autoreconf -fi
 
+  - name: libgit2
+    buildsystem: cmake-ninja
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    sources:
+      - type: git
+        commit: a418d9d4ab87bae16b87d8f37143a4687ae0e4b2
+        tag: v1.7.2
+        url: https://github.com/libgit2/libgit2
+        x-checker-data:
+          type: git
+          tag-pattern: ^(v[\d\.]+)$
+
   - name: kicad
     builddir: true
     buildsystem: cmake-ninja
@@ -247,14 +265,14 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: f67945aae92f39abd522454fc25cd73b145084dd
-        tag: 7.0.11
+        commit: 942661fc10e172febf9d9990de2471d4b1020618
+        tag: 8.0.0
         x-checker-data:
           is-main-source: true
           type: git
           tag-pattern: ^([\d\.]+)$
           versions:
-            <: 7.99.0
+            <: 8.99.0
       - type: script
         dest: flatpak-extra
         dest-filename: pip3
