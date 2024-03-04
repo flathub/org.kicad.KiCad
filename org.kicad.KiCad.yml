@@ -52,8 +52,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/g-truc/glm
-        tag: 1.0.0
-        commit: 33b0eb9fa336ffd8551024b1d2690e418014553b
+        tag: 1.0.1
+        commit: 0af55ccecd98d4e5a8d1fad7de25ba429d60e863
         x-checker-data:
           type: git
           tag-pattern: ^([\d\.]+)$
@@ -149,8 +149,8 @@ modules:
       - /share
     sources:
       - type: archive
-        url: https://sourceforge.net/projects/swig/files/swig/swig-4.2.0/swig-4.2.0.tar.gz
-        sha256: 261ca2d7589e260762817b912c075831572b72ff2717942f75b3e51244829c97
+        url: https://sourceforge.net/projects/swig/files/swig/swig-4.2.1/swig-4.2.1.tar.gz
+        sha256: fa045354e2d048b2cddc69579e4256245d4676894858fcf0bab2290ecf59b7d8
         x-checker-data:
           type: html
           url: https://www.swig.org/download.html
@@ -266,8 +266,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: afae6e2e9d9d9575fa6154174933eb3a0c61b7b7
-        tag: 8.0.0-rc3
+        commit: fa2ccdd083e3d244562a372dd04905fcb87cebfa
+        tag: 8.0.1-rc1
         x-checker-data:
           is-main-source: true
           type: git
