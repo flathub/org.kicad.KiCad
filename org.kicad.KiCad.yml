@@ -216,16 +216,18 @@ modules:
           type: git
           tag-pattern: ^(v[\d\.]+)$
 
+  - python3-pytest.yml
+
   - name: kicad
     builddir: true
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DCMAKE_CTEST_ARGUMENTS="--output-on-failure"
       - -DGLEW_INCLUDE_DIR=/app/include/GL
       - -DOCC_INCLUDE_DIR=/app/include/opencascade
       - -DOPENGL_glu_LIBRARY=/app/lib/libGLU.so
       - -DKICAD_BUILD_FLATPAK=ON
-      - -DKICAD_BUILD_QA_TESTS=OFF
       - -DKICAD_BUILD_I18N=ON
       - -DKICAD_USE_EGL=OFF
       - -DKICAD_LIBRARY_DATA=/app/extensions/Library
@@ -261,6 +263,7 @@ modules:
         done;
         unset desktop_name
       # TODO (post-install script): Re-add <kudos> tag to metainfo.xml for UserDocs.
+    run-tests: true
     subdir: kicad-git
     sources:
       - type: git
