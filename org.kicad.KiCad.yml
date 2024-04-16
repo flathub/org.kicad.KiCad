@@ -96,14 +96,12 @@ modules:
       - -DINSTALL_TEST_CASES=OFF
     sources:
       - type: git
-        commit: cec1ecd0c9f3b3d2572c47035d11949e8dfa85e2
+        commit: bd2a789f15235755ce4d1a3b07379a2e062fdc2e
         url: https://github.com/Open-Cascade-SAS/OCCT
-        tag: V7_7_2
+        tag: V7_8_1
         x-checker-data:
           type: git
           tag-pattern: ^V([\d_]+)$
-          versions:
-            <: '7_8_0'
 
   - name: boost
     buildsystem: simple
@@ -114,8 +112,8 @@ modules:
       - /include
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.84.0/source/boost_1_84_0.tar.gz
-        sha256: a5800f405508f5df8114558ca9855d2640a2de8f0445f051fa1c7c3383045724
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.85.0/source/boost_1_85_0.tar.gz
+        sha256: be0d91732d5b0cc6fbb275c7939974457e79b54d6f07ce2e3dfdd68bef883b0b
         x-checker-data:
           type: html
           url: https://www.boost.org/users/download/
@@ -211,14 +209,12 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: git
-        commit: a418d9d4ab87bae16b87d8f37143a4687ae0e4b2
-        tag: v1.7.2
+        commit: d74d491481831ddcd23575d376e56d2197e95910
+        tag: v1.8.0
         url: https://github.com/libgit2/libgit2
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d\.]+)$
-          versions:
-            <: 'v1.8.0'
 
   - python3-pytest.yml
 
@@ -273,8 +269,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: b7a193dc3a44f3611d0768007f04059c65234639
-        tag: 8.0.1-rc2
+        commit: e03308e5ca83034411d73a14b9d60416ebb1b668
+        tag: 8.0.2-rc1
         x-checker-data:
           is-main-source: true
           type: git
