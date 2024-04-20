@@ -65,8 +65,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/xorg/lib/libxmu.git
-        tag: libXmu-1.2.0
-        commit: cc378e4f0cc2ab5b66d378050ba4956612a01197
+        tag: libXmu-1.2.1
+        commit: 792f80402ee06ce69bca3a8f2a84295999c3a170
         x-checker-data:
           type: git
           tag-pattern: ^libXmu-([\d\.]+)$
@@ -269,8 +269,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: e03308e5ca83034411d73a14b9d60416ebb1b668
-        tag: 8.0.2-rc1
+        commit: 3517d25aec343e2904fa9b9a5ad669aa797b4d7b
+        tag: 8.0.2-rc2
         x-checker-data:
           is-main-source: true
           type: git
