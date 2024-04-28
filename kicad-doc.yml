@@ -149,8 +149,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/kicad/services/kicad-doc.git
-        commit: b472e528a4e3399eb8627e00f27aa0d04715f602
-        tag: 8.0.1
+        commit: 3fe9b8ef7378032cfc72637b1c6ade54b061f62d
+        tag: 8.0.2
         x-checker-data:
           is-important: true
           type: git
