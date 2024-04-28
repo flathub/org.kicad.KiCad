@@ -64,8 +64,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/xorg/lib/libxmu.git
-        tag: libXmu-1.2.0
-        commit: cc378e4f0cc2ab5b66d378050ba4956612a01197
+        tag: libXmu-1.2.1
+        commit: 792f80402ee06ce69bca3a8f2a84295999c3a170
         x-checker-data:
           type: git
           tag-pattern: ^libXmu-([\d\.]+)$
@@ -113,8 +113,8 @@ modules:
       - /include
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.84.0/source/boost_1_84_0.tar.gz
-        sha256: a5800f405508f5df8114558ca9855d2640a2de8f0445f051fa1c7c3383045724
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.85.0/source/boost_1_85_0.tar.gz
+        sha256: be0d91732d5b0cc6fbb275c7939974457e79b54d6f07ce2e3dfdd68bef883b0b
         x-checker-data:
           type: html
           url: https://www.boost.org/users/download/
@@ -217,7 +217,7 @@ modules:
           type: git
           tag-pattern: ^(v[\d\.]+)$
           versions:
-            <: 'v1.8.0'
+            <: v1.8.0
 
   - python3-pytest.yml
 
@@ -272,8 +272,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: ac408046cfde7a273ff267bed0cfd03cdfa6075e
-        tag: 8.0.1
+        commit: 61a17e4c8b944da0d34a7eec9eaffe4f343fa11f
+        tag: 8.0.2
         x-checker-data:
           is-main-source: true
           type: git
