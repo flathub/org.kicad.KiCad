@@ -137,8 +137,6 @@ modules:
           is-important: true
           type: git
           tag-pattern: ^v([\d\.]+)$
-      - type: patch
-        path: patches/wxWidgets_0001_Fix-wxCheckBox-undetermined-state-showing-as-checked-with-some-themes.patch
 
   - python3-wxPython.yml
   - python3-requests.yml
