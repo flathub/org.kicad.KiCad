@@ -110,8 +110,8 @@ modules:
       - '*'
     sources:
       - type: archive
-        url: https://github.com/mquinson/po4a/releases/download/v0.70/po4a-0.70.tar.gz
-        sha256: 9e27bdb12d8beaf840b2732def767d282d070c8e77e63a9baf807057411509b3
+        url: https://github.com/mquinson/po4a/releases/download/v0.73/po4a-0.73.tar.gz
+        sha256: 6f18f82d8cb2a377394137ea396cc3e8195d6cd6e454fe0218aa0f0e36038ea0
         x-checker-data:
           type: html
           url: https://po4a.org
