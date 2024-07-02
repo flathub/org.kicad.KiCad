@@ -150,7 +150,7 @@ modules:
       - type: git
         url: https://gitlab.com/kicad/services/kicad-doc.git
         commit: 4505d45db4b9abc8c3b14dd5039f2eee87718b96
-        tag: 8.0.4-rc1
+        tag: 8.0.4-rc2
         x-checker-data:
           is-important: true
           type: git
