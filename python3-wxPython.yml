@@ -29,8 +29,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenMathLib/OpenBLAS
-        tag: v0.3.27
-        commit: ce3f668c992cb3cc80849d5c30ed637f5adbd5b2
+        tag: v0.3.28
+        commit: 5ef8b1964658f9cb6a6324a06f6a1a022609b0c5
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d\.]+)$
