@@ -118,8 +118,10 @@ modules:
         x-checker-data:
           type: html
           url: https://www.boost.org/users/download/
-          version-pattern: Version (\d+\.?\d+\.\d+)(?!\sbeta)|</a>$
           url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${version0}_${version1}_${version2}.tar.gz
+          version-pattern: Version (\d+\.?\d+\.\d+)(?!\sbeta)|</a>$
+          versions:
+            <: 1.86.0
 
   - name: wxWidgets
     cleanup:
