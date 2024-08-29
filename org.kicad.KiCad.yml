@@ -116,7 +116,7 @@ modules:
         sha256: be0d91732d5b0cc6fbb275c7939974457e79b54d6f07ce2e3dfdd68bef883b0b
         x-checker-data:
           type: html
-          url: https://www.boost.org/users/download/
+          url: https://www.boost.org/users/history/
           url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${version0}_${version1}_${version2}.tar.gz
           version-pattern: Version (\d+\.?\d+\.\d+)(?!\sbeta)|</a>$
           versions:
