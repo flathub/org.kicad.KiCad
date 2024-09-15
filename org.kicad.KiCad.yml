@@ -95,14 +95,12 @@ modules:
       - -DINSTALL_TEST_CASES=OFF
     sources:
       - type: git
-        commit: cec1ecd0c9f3b3d2572c47035d11949e8dfa85e2
+        commit: bd2a789f15235755ce4d1a3b07379a2e062fdc2e
         url: https://github.com/Open-Cascade-SAS/OCCT
-        tag: V7_7_2
+        tag: V7_8_1
         x-checker-data:
           type: git
           tag-pattern: ^V([\d_]+)$
-          versions:
-            <: '7_8_0'
 
   - name: boost
     buildsystem: simple
