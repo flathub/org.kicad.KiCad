@@ -208,14 +208,12 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: git
-        commit: a418d9d4ab87bae16b87d8f37143a4687ae0e4b2
-        tag: v1.7.2
+        commit: 36f7e21ad757a3dacc58cf7944329da6bc1d6e96
+        tag: v1.8.1
         url: https://github.com/libgit2/libgit2
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d\.]+)$
-          versions:
-            <: v1.8.0
 
   - python3-pytest.yml
 
