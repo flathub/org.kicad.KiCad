@@ -95,14 +95,12 @@ modules:
       - -DINSTALL_TEST_CASES=OFF
     sources:
       - type: git
-        commit: cec1ecd0c9f3b3d2572c47035d11949e8dfa85e2
+        commit: bd2a789f15235755ce4d1a3b07379a2e062fdc2e
         url: https://github.com/Open-Cascade-SAS/OCCT
-        tag: V7_7_2
+        tag: V7_8_1
         x-checker-data:
           type: git
           tag-pattern: ^V([\d_]+)$
-          versions:
-            <: '7_8_0'
 
   - name: boost
     buildsystem: simple
@@ -210,14 +208,12 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: git
-        commit: a418d9d4ab87bae16b87d8f37143a4687ae0e4b2
-        tag: v1.7.2
+        commit: 36f7e21ad757a3dacc58cf7944329da6bc1d6e96
+        tag: v1.8.1
         url: https://github.com/libgit2/libgit2
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d\.]+)$
-          versions:
-            <: v1.8.0
 
   - python3-pytest.yml
 
