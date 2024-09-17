@@ -101,6 +101,8 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^V([\d_]+)$
+      - type: patch
+        path: patches/occt_0001_FreeType-Use-unsigned-point-and-contour-indexing-in-FT_Outline.patch
 
   - name: boost
     buildsystem: simple
