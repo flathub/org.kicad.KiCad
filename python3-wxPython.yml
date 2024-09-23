@@ -85,8 +85,6 @@ modules:
         x-checker-data:
           type: pypi
           name: numpy
-          versions:
-            <: '2'
 
   - name: python3-pillow
     buildsystem: simple
