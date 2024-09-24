@@ -121,8 +121,6 @@ modules:
           url: https://www.boost.org/users/history/
           url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${version0}_${version1}_${version2}.tar.gz
           version-pattern: Version (\d+\.?\d+\.\d+)(?!\sbeta)|</a>$
-          versions:
-            <: 1.86.0
 
 
   - name: wxWidgets
