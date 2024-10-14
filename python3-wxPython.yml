@@ -66,8 +66,8 @@ modules:
           packagetype: bdist_wheel
           type: pypi
       - type: file
-        url: https://files.pythonhosted.org/packages/aa/5f/bb5970d3d04173b46c9037109f7f05fc8904ff5be073ee49bb6ff00301bc/pyproject_metadata-0.8.0-py3-none-any.whl
-        sha256: ad858d448e1d3a1fb408ac5bac9ea7743e7a8bbb472f2693aaa334d2db42f526
+        url: https://files.pythonhosted.org/packages/22/81/42aaafbff27ca340eef777a4e3e8a509941e75fc0eeb9da2be5ee4159041/pyproject_metadata-0.8.1-py3-none-any.whl
+        sha256: adf593fa478b787c90cc77fcea4114f19a3a1335532bdcba2851be9459a6c39e
         x-checker-data:
           name: pyproject-metadata
           packagetype: bdist_wheel
@@ -80,8 +80,8 @@ modules:
         --prefix=${FLATPAK_DEST} numpy --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/59/5f/9003bb3e632f2b58f5e3a3378902dcc73c5518070736c6740fe52454e8e1/numpy-2.1.1.tar.gz
-        sha256: d0cf7d55b1051387807405b3898efafa862997b4cba8aa5dbe657be794afeafd
+        url: https://files.pythonhosted.org/packages/4b/d1/8a730ea07f4a37d94f9172f4ce1d81064b7a64766b460378be278952de75/numpy-2.1.2.tar.gz
+        sha256: 13532a088217fa624c99b843eeb54640de23b3414b14aa66d023805eb731066c
         x-checker-data:
           type: pypi
           name: numpy
