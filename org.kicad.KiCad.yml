@@ -338,11 +338,5 @@ modules:
               odbcinst -i -d -f "$template" >/dev/null;
             done
           - exec /app/bin/pcbnew "$@"
-      - type: patch # These can be removed with KiCad 8.0.6
-        dest: kicad-git
-        paths:
-          - patches/kicad_0001_Fix-compilation-with-Boost-1.86.patch
-          - patches/kicad_0002-KIID-Use-Boost-uuids-own-hash-function-fix-Boost-1.86.patch
-          - patches/kicad_0003-Fix-Boost-1.86-SHA1-one-last-time.patch
 
   - kicad-doc.yml
