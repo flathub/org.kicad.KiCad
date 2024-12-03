@@ -148,8 +148,8 @@ modules:
       - /share
     sources:
       - type: archive
-        url: https://sourceforge.net/projects/swig/files/swig/swig-4.2.1/swig-4.2.1.tar.gz
-        sha256: fa045354e2d048b2cddc69579e4256245d4676894858fcf0bab2290ecf59b7d8
+        url: https://sourceforge.net/projects/swig/files/swig/swig-4.3.0/swig-4.3.0.tar.gz
+        sha256: f7203ef796f61af986c70c05816236cbd0d31b7aa9631e5ab53020ab7804aa9e
         x-checker-data:
           type: html
           url: https://www.swig.org/download.html
@@ -208,8 +208,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: git
-        commit: 36f7e21ad757a3dacc58cf7944329da6bc1d6e96
-        tag: v1.8.1
+        commit: 3f4182d15eab74a302718f2de454ffadb1995626
+        tag: v1.8.4
         url: https://github.com/libgit2/libgit2
         x-checker-data:
           type: git
@@ -268,8 +268,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 3adec39b0c67ff562faed124009c410d3b2e6618
-        tag: 8.0.6
+        commit: ad43570ec03cd2de6d05d71ffb44898ba0c0ff4f
+        tag: 8.0.7
         x-checker-data:
           is-main-source: true
           type: git
