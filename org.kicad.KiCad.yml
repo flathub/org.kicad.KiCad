@@ -262,7 +262,7 @@ modules:
         done;
         unset desktop_name
       # TODO (post-install script): Re-add <kudos> tag to metainfo.xml for UserDocs.
-    #run-tests: true  # Temporarily disable due to https://buildbot.flathub.org/#/builders/31/builds/13639
+    run-tests: true
     subdir: kicad-git
     sources:
       - type: git
