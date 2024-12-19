@@ -340,5 +340,8 @@ modules:
               odbcinst -i -d -f "$template" >/dev/null;
             done
           - exec /app/bin/pcbnew "$@"
+      - type: patch
+        dest: kicad-git
+        path: patches/kicad_0001_Fix-aarch64-qa_cli.patch
 
   - kicad-doc.yml
