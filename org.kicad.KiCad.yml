@@ -299,7 +299,7 @@ modules:
         unset desktop_name
       # TODO (post-install script): Re-add <kudos> tag to metainfo.xml for UserDocs.
     # Disable tests (see https://github.com/flatpak/flatpak/issues/6137)
-    #run-tests: true
+    run-tests: true
     subdir: kicad-git
     sources:
       - type: git
@@ -375,5 +375,8 @@ modules:
               odbcinst -i -d -f "$template" >/dev/null;
             done
           - exec /app/bin/pcbnew "$@"
+      - type: patch
+        dest: kicad-git
+        path: patches/kicad_0001-QA-Remove-empty-stderr-asserts-in-cli-test_sch.py.patch
 
   - kicad-doc.yml
