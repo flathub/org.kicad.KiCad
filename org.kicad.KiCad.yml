@@ -7,6 +7,7 @@ command: kicad-startup
 finish-args:
   - --device=dri
   - --filesystem=home
+  - --filesystem=/tmp:rw
   - --share=ipc
   - --share=network
   - --socket=x11
@@ -114,8 +115,8 @@ modules:
       - /include
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.86.0/source/boost_1_86_0.tar.gz
-        sha256: 2575e74ffc3ef1cd0babac2c1ee8bdb5782a0ee672b1912da40e5b4b591ca01f
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.87.0/source/boost_1_87_0.tar.gz
+        sha256: f55c340aa49763b1925ccf02b2e83f35fdcf634c9d5164a2acb87540173c741d
         x-checker-data:
           type: html
           url: https://www.boost.org/users/history/
@@ -219,6 +220,39 @@ modules:
 
   - python3-pytest.yml
 
+  - name: protobuf
+    buildsystem: cmake-ninja
+    config-opts:
+      - -Dprotobuf_BUILD_SHARED_LIBS=ON
+    cleanup:
+      - /bin
+      - /include
+    sources:
+      - type: git
+        url: https://github.com/protocolbuffers/protobuf.git
+        tag: v29.2
+        commit: 233098326bc268fc03b28725c941519fc77703e6
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+
+  - name: nng
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DBUILD_SHARED_LIBS=ON
+    cleanup:
+      - /bin
+      - /include
+    sources:
+      - type: git
+        url: https://github.com/nanomsg/nng.git
+        tag: v1.9.0
+        commit: 29aff2bacc9e2cfa6dcc52155d2816582617f918
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+
   - name: kicad
     builddir: true
     buildsystem: cmake-ninja
@@ -264,20 +298,20 @@ modules:
         done;
         unset desktop_name
       # TODO (post-install script): Re-add <kudos> tag to metainfo.xml for UserDocs.
-    #run-tests: true  # Temporarily disable due to https://buildbot.flathub.org/#/builders/31/builds/13639
+    run-tests: true
     subdir: kicad-git
     sources:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 7972805d07faabc66f5810a1ff4955cd106ecbc0
-        tag: 8.0.7-rc1
+        commit: c156bdd8af558b228bcd8ae60c83511484221a8d
+        tag: 9.0.0-rc1
         x-checker-data:
           is-main-source: true
           type: git
           tag-pattern: ^([\d\.]+[-rc\d]+)$
           versions:
-            <: 8.99.0
+            <: 9.99.0
       - type: script
         dest: flatpak-extra
         dest-filename: pip3
@@ -340,5 +374,8 @@ modules:
               odbcinst -i -d -f "$template" >/dev/null;
             done
           - exec /app/bin/pcbnew "$@"
+      - type: patch
+        dest: kicad-git
+        path: patches/kicad_0001-QA-Remove-empty-stderr-asserts-in-cli-test_sch.py.patch
 
   - kicad-doc.yml
