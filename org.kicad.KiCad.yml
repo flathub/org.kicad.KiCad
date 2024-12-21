@@ -114,8 +114,8 @@ modules:
       - /include
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.86.0/source/boost_1_86_0.tar.gz
-        sha256: 2575e74ffc3ef1cd0babac2c1ee8bdb5782a0ee672b1912da40e5b4b591ca01f
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.87.0/source/boost_1_87_0.tar.gz
+        sha256: f55c340aa49763b1925ccf02b2e83f35fdcf634c9d5164a2acb87540173c741d
         x-checker-data:
           type: html
           url: https://www.boost.org/users/history/
@@ -229,8 +229,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
-        tag: v29.1
-        commit: 796e49f6ca82f763d1087d2ff7355d2f0d7b71b1
+        tag: v29.2
+        commit: 233098326bc268fc03b28725c941519fc77703e6
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -303,14 +303,14 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 7972805d07faabc66f5810a1ff4955cd106ecbc0
-        tag: 8.0.7-rc1
+        commit: c156bdd8af558b228bcd8ae60c83511484221a8d
+        tag: 9.0.0-rc1
         x-checker-data:
           is-main-source: true
           type: git
           tag-pattern: ^([\d\.]+[-rc\d]+)$
           versions:
-            <: 8.99.0
+            <: 9.99.0
       - type: script
         dest: flatpak-extra
         dest-filename: pip3
