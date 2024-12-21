@@ -219,6 +219,39 @@ modules:
 
   - python3-pytest.yml
 
+  - name: protobuf
+    buildsystem: cmake-ninja
+    config-opts:
+      - -Dprotobuf_BUILD_SHARED_LIBS=ON
+    cleanup:
+      - /bin
+      - /include
+    sources:
+      - type: git
+        url: https://github.com/protocolbuffers/protobuf.git
+        tag: v29.1
+        commit: 796e49f6ca82f763d1087d2ff7355d2f0d7b71b1
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+
+  - name: nng
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DBUILD_SHARED_LIBS=ON
+    cleanup:
+      - /bin
+      - /include
+    sources:
+      - type: git
+        url: https://github.com/nanomsg/nng.git
+        tag: v1.9.0
+        commit: 29aff2bacc9e2cfa6dcc52155d2816582617f918
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+
   - name: kicad
     builddir: true
     buildsystem: cmake-ninja
