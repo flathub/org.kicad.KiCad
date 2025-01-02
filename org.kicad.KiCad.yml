@@ -119,9 +119,9 @@ modules:
         sha256: f55c340aa49763b1925ccf02b2e83f35fdcf634c9d5164a2acb87540173c741d
         x-checker-data:
           type: html
-          url: https://www.boost.org/users/history/
-          url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${version0}_${version1}_${version2}.tar.gz
-          version-pattern: Version (\d+\.?\d+\.\d+)(?!\sbeta)|</a>$
+          url: https://www.boost.org/feed/downloads.rss
+          url-template: https://archives.boost.io/release/1.87.0/source/boost_${version0}_${version1}_${version2}.tar.gz
+          version-pattern: <title>Version (\d+\.?\d+\.\d+)(?!\sbeta)|</title>$
 
 
   - name: wxWidgets
