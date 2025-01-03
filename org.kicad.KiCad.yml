@@ -109,7 +109,7 @@ modules:
   - name: boost
     buildsystem: simple
     build-commands:
-      - ./bootstrap.sh --prefix=/app --with-libraries=context,date_time,filesystem,iostreams,locale,program_options,regex,system,thread,test
+      - ./bootstrap.sh --prefix=/app --with-libraries=locale,test
       - ./b2 -j $FLATPAK_BUILDER_N_JOBS install
     cleanup:
       - /include
