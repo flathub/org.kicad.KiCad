@@ -107,7 +107,7 @@ modules:
   - name: boost
     buildsystem: simple
     build-commands:
-      - ./bootstrap.sh --prefix=/app --with-libraries=context,date_time,filesystem,iostreams,locale,program_options,regex,system,thread,test
+      - ./bootstrap.sh --prefix=/app --with-libraries=locale,test
       - ./b2 -j $FLATPAK_BUILDER_N_JOBS install
     cleanup:
       - /include
@@ -118,7 +118,7 @@ modules:
         x-checker-data:
           type: html
           url: https://www.boost.org/feed/downloads.rss
-          url-template: https://archives.boost.io/release/1.87.0/source/boost_${version0}_${version1}_${version2}.tar.gz
+          url-template: https://archives.boost.io/release/$version/source/boost_${version0}_${version1}_${version2}.tar.gz
           version-pattern: <title>Version (\d+\.?\d+\.\d+)(?!\sbeta)|</title>$
 
   - name: wxWidgets
