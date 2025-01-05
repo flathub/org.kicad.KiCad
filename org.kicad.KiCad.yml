@@ -173,8 +173,8 @@ modules:
     rm-configure: true
     sources:
       - type: archive
-        url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/43/ngspice-43.tar.gz
-        sha256: 14dd6a6f08531f2051c13ae63790a45708bd43f3e77886a6a84898c297b13699
+        url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/44/ngspice-44.tar.gz
+        sha256: 3865d13ab44f1f01f68c7ac0e0716984e45dce5a86d126603c26d8df30161e9b
         x-checker-data:
           is-important: true
           type: html
@@ -247,8 +247,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/nanomsg/nng.git
-        tag: v1.9.0
-        commit: 29aff2bacc9e2cfa6dcc52155d2816582617f918
+        tag: v1.10.0
+        commit: 82b891248a2a88b72b8485219d76ba88cfe48528
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
