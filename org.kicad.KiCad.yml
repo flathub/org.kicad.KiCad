@@ -173,8 +173,8 @@ modules:
     rm-configure: true
     sources:
       - type: archive
-        url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/44/ngspice-44.tar.gz
-        sha256: 3865d13ab44f1f01f68c7ac0e0716984e45dce5a86d126603c26d8df30161e9b
+        url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/44.2/ngspice-44.2.tar.gz
+        sha256: e7dadfb7bd5474fd22409c1e5a67acdec19f77e597df68e17c5549bc1390d7fd
         x-checker-data:
           is-important: true
           type: html
@@ -230,8 +230,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
-        tag: v29.2
-        commit: 233098326bc268fc03b28725c941519fc77703e6
+        tag: v29.3
+        commit: b407e8416e3893036aee5af9a12bd9b6a0e2b2e6
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
