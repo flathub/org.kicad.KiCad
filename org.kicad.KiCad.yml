@@ -264,8 +264,9 @@ modules:
       - -DOPENGL_glu_LIBRARY=/app/lib/libGLU.so
       - -DKICAD_BUILD_FLATPAK=ON
       - -DKICAD_BUILD_I18N=ON
-      - -DKICAD_USE_EGL=OFF
       - -DKICAD_LIBRARY_DATA=/app/extensions/Library
+      - -DKICAD_USE_CMAKE_FINDPROTOBUF=OFF
+      - -DKICAD_USE_EGL=OFF
     post-install:
       - install ../../flatpak-extra/kicad-startup /app/bin/kicad-startup
       - install ../../flatpak-extra/eeschema-startup /app/bin/eeschema-startup
