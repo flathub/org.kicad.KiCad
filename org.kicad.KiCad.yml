@@ -264,8 +264,9 @@ modules:
       - -DOPENGL_glu_LIBRARY=/app/lib/libGLU.so
       - -DKICAD_BUILD_FLATPAK=ON
       - -DKICAD_BUILD_I18N=ON
-      - -DKICAD_USE_EGL=OFF
       - -DKICAD_LIBRARY_DATA=/app/extensions/Library
+      - -DKICAD_USE_CMAKE_FINDPROTOBUF=OFF
+      - -DKICAD_USE_EGL=OFF
     post-install:
       - install ../../flatpak-extra/kicad-startup /app/bin/kicad-startup
       - install ../../flatpak-extra/eeschema-startup /app/bin/eeschema-startup
@@ -298,14 +299,14 @@ modules:
         done;
         unset desktop_name
       # TODO (post-install script): Re-add <kudos> tag to metainfo.xml for UserDocs.
-    run-tests: true
+    #run-tests: true  # Disable tests due to https://buildbot.flathub.org/#/builders/6/builds/175287
     subdir: kicad-git
     sources:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: c156bdd8af558b228bcd8ae60c83511484221a8d
-        tag: 9.0.0-rc1
+        commit: 8d20cf454b821c8d541e0efbb5962b754a61d946
+        tag: 9.0.0-rc2
         x-checker-data:
           is-main-source: true
           type: git

@@ -1,14 +1,14 @@
-From a9cea6c411f588190eea6b4cda3e14e4e2004b5d Mon Sep 17 00:00:00 2001
+From 2fedcbe045590ee5038eec5c8b2ba27e1fe83b62 Mon Sep 17 00:00:00 2001
 From: Johannes Maibaum <jmaibaum@gmail.com>
 Date: Sat, 21 Dec 2024 08:55:10 +0100
 Subject: [PATCH] QA: Remove empty stderr asserts in cli/test_sch.py
 
 ---
- qa/tests/cli/test_sch.py | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ qa/tests/cli/test_sch.py | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/qa/tests/cli/test_sch.py b/qa/tests/cli/test_sch.py
-index 1a4e19770d..7fc5a99ac8 100644
+index a56d6dafa6..0f6e9e63e8 100644
 --- a/qa/tests/cli/test_sch.py
 +++ b/qa/tests/cli/test_sch.py
 @@ -50,7 +50,7 @@ def test_sch_export_svg( kitest,
@@ -38,7 +38,7 @@ index 1a4e19770d..7fc5a99ac8 100644
  
      kitest.add_attachment( str( output_filepath ) )
  
-@@ -156,8 +156,8 @@ def test_sch_export_pythonbom( kitest,
+@@ -156,7 +156,7 @@ def test_sch_export_pythonbom( kitest,
      stdout, stderr, exitcode = utils.run_and_capture( command )
  
      assert exitcode == 0
@@ -47,9 +47,6 @@ index 1a4e19770d..7fc5a99ac8 100644
  
      # pythonbom is not currently crossplatform (platform specific paths) to enable diffs
  
--    kitest.add_attachment( str( output_filepath ) )
-\ No newline at end of file
-+    kitest.add_attachment( str( output_filepath ) )
 -- 
-2.47.1
+2.48.1
 
