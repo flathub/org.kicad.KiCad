@@ -137,6 +137,8 @@ modules:
           is-important: true
           type: git
           tag-pattern: ^v([\d\.]+)$
+      - type: patch
+        path: patches/wxWidgets_0001_Allow-wxDataViewCustomRenderer-GetSize()-return-0-in-wxGTK.patch
 
   - python3-wxPython.yml
   - python3-requests.yml
