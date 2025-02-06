@@ -138,7 +138,9 @@ modules:
           type: git
           tag-pattern: ^v([\d\.]+)$
       - type: patch
-        path: patches/wxWidgets_0001_Allow-wxDataViewCustomRenderer-GetSize()-return-0-in-wxGTK.patch
+        paths:
+        - patches/wxWidgets_0001_Allow-wxDataViewCustomRenderer-GetSize()-return-0-in-wxGTK.patch
+        - patches/wxWidgets_0002_Fix-border-size-for-wxStaticBox-with-GTK3.patch
 
   - python3-wxPython.yml
   - python3-requests.yml
