@@ -142,8 +142,8 @@ modules:
           tag-pattern: ^v([\d\.]+)$
       - type: patch
         paths:
-        - patches/wxWidgets_0001_Allow-wxDataViewCustomRenderer-GetSize()-return-0-in-wxGTK.patch
-        - patches/wxWidgets_0002_Fix-border-size-for-wxStaticBox-with-GTK3.patch
+          - patches/wxWidgets_0001_Allow-wxDataViewCustomRenderer-GetSize()-return-0-in-wxGTK.patch
+          - patches/wxWidgets_0002_Fix-border-size-for-wxStaticBox-with-GTK3.patch
 
   - python3-wxPython.yml
   - python3-requests.yml
@@ -251,8 +251,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/nanomsg/nng.git
-        tag: v1.10.0
-        commit: 82b891248a2a88b72b8485219d76ba88cfe48528
+        tag: v1.10.1
+        commit: d98d3ec1e0c3230a6f9e60616180ac66f5791a5b
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -309,8 +309,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 8d20cf454b821c8d541e0efbb5962b754a61d946
-        tag: 9.0.0-rc2
+        commit: cd23dca90a459efb4ea10ef27dc39c0cbfbf9a95
+        tag: 9.0.0-rc3
         x-checker-data:
           is-main-source: true
           type: git
