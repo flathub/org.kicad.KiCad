@@ -302,7 +302,7 @@ modules:
         unset desktop_name
       # TODO (post-install script): Re-add <kudos> tag to metainfo.xml for UserDocs.
     # Disable tests (see https://github.com/flatpak/flatpak/issues/6137)
-    #run-tests: true
+    run-tests: true
     subdir: kicad-git
     sources:
       - type: git
