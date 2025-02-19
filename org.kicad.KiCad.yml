@@ -6,6 +6,8 @@ command: kicad-startup
 finish-args:
   - --device=dri
   - --filesystem=home
+  # Required for default path of KiCad's IPC API
+  - --filesystem=/tmp:rw
   - --share=ipc
   - --share=network
   - --socket=x11
@@ -216,6 +218,39 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d\.]+)$
+
+  - name: protobuf
+    buildsystem: cmake-ninja
+    config-opts:
+      - -Dprotobuf_BUILD_SHARED_LIBS=ON
+    cleanup:
+      - /bin
+      - /include
+    sources:
+      - type: git
+        url: https://github.com/protocolbuffers/protobuf.git
+        tag: v29.3
+        commit: b407e8416e3893036aee5af9a12bd9b6a0e2b2e6
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+
+  - name: nng
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DBUILD_SHARED_LIBS=ON
+    cleanup:
+      - /bin
+      - /include
+    sources:
+      - type: git
+        url: https://github.com/nanomsg/nng.git
+        tag: v1.10.1
+        commit: d98d3ec1e0c3230a6f9e60616180ac66f5791a5b
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
 
   - python3-pytest.yml
 
