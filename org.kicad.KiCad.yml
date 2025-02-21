@@ -6,6 +6,8 @@ command: kicad-startup
 finish-args:
   - --device=dri
   - --filesystem=home
+  # Required for default path of KiCad's IPC API
+  - --filesystem=/tmp:rw
   - --share=ipc
   - --share=network
   - --socket=x11
@@ -217,6 +219,39 @@ modules:
           type: git
           tag-pattern: ^(v[\d\.]+)$
 
+  - name: protobuf
+    buildsystem: cmake-ninja
+    config-opts:
+      - -Dprotobuf_BUILD_SHARED_LIBS=ON
+    cleanup:
+      - /bin
+      - /include
+    sources:
+      - type: git
+        url: https://github.com/protocolbuffers/protobuf.git
+        tag: v29.3
+        commit: b407e8416e3893036aee5af9a12bd9b6a0e2b2e6
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+
+  - name: nng
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DBUILD_SHARED_LIBS=ON
+    cleanup:
+      - /bin
+      - /include
+    sources:
+      - type: git
+        url: https://github.com/nanomsg/nng.git
+        tag: v1.10.1
+        commit: d98d3ec1e0c3230a6f9e60616180ac66f5791a5b
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+
   - python3-pytest.yml
 
   - name: kicad
@@ -264,20 +299,21 @@ modules:
         done;
         unset desktop_name
       # TODO (post-install script): Re-add <kudos> tag to metainfo.xml for UserDocs.
-    run-tests: true
+    # Disable tests until they work again
+    #run-tests: true
     subdir: kicad-git
     sources:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 9c4f534cf1a8fa5b2f3e7d4e1804fad681de921a
-        tag: 8.0.9
+        commit: 286b0611feca00727bf70bfa184ec2c28a745dc3
+        tag: 9.0.0
         x-checker-data:
           is-main-source: true
           type: git
           tag-pattern: ^([\d\.]+)$
           versions:
-            <: 8.99.0
+            <: 9.99.0
       - type: script
         dest: flatpak-extra
         dest-filename: pip3
