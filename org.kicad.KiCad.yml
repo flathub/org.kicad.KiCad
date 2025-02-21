@@ -6,11 +6,10 @@ command: kicad-startup
 finish-args:
   - --device=dri
   - --filesystem=home
-  # Required for default path of KiCad's IPC API
-  - --filesystem=/tmp:rw
   - --share=ipc
   - --share=network
   - --socket=x11
+  - --env=TMPDIR=/var/tmp
 
 add-extensions:
   org.kicad.KiCad.Library:
