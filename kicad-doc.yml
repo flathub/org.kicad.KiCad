@@ -156,4 +156,4 @@ modules:
           type: git
           tag-pattern: ^([\d\.]+[-rc\d]+)$
           versions:
-            <: 8.99.0
+            <: 9.99.0
