@@ -97,14 +97,12 @@ modules:
       - -DINSTALL_TEST_CASES=OFF
     sources:
       - type: git
-        commit: bd2a789f15235755ce4d1a3b07379a2e062fdc2e
+        commit: 858dd02fed80c8ca68cf1d70a6e03ecf97f849ca
         url: https://github.com/Open-Cascade-SAS/OCCT
-        tag: V7_8_1
+        tag: V7_9_0
         x-checker-data:
           type: git
           tag-pattern: ^V([\d_]+)$
-      - type: patch
-        path: patches/occt_0001_FreeType-Use-unsigned-point-and-contour-indexing-in-FT_Outline.patch
 
   - name: boost
     buildsystem: simple
@@ -303,7 +301,8 @@ modules:
         done;
         unset desktop_name
       # TODO (post-install script): Re-add <kudos> tag to metainfo.xml for UserDocs.
-    #run-tests: true  # Disable tests due to https://buildbot.flathub.org/#/builders/6/builds/175287
+    # Disable tests (see https://github.com/flatpak/flatpak/issues/6137)
+    #run-tests: true
     subdir: kicad-git
     sources:
       - type: git
