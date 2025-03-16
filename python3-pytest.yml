@@ -22,8 +22,8 @@ sources:
       packagetype: bdist_wheel
       type: pypi
   - type: file
-    url: https://files.pythonhosted.org/packages/11/92/76a1c94d3afee238333bc0a42b82935dd8f9cf8ce9e336ff87ee14d9e1cf/pytest-8.3.4-py3-none-any.whl
-    sha256: 50e16d954148559c9a74109af1eaf0c945ba2d8f30f0a3d3335edde19788b6f6
+    url: https://files.pythonhosted.org/packages/30/3d/64ad57c803f1fa1e963a7946b6e0fea4a70df53c1a7fed304586539c2bac/pytest-8.3.5-py3-none-any.whl
+    sha256: c69214aa47deac29fad6c2a4f590b9c4a9fdb16a403176fe154b79c0b4d4d820
     x-checker-data:
       name: pytest
       packagetype: bdist_wheel
@@ -49,8 +49,8 @@ sources:
       packagetype: bdist_wheel
       type: pypi
   - type: file
-    url: https://files.pythonhosted.org/packages/9d/3a/e39436efe51894243ff145a37c4f9a030839b97779ebcc4f13b3ba21c54e/cssselect2-0.7.0-py3-none-any.whl
-    sha256: fd23a65bfd444595913f02fc71f6b286c29261e354c41d722ca7a261a49b5969
+    url: https://files.pythonhosted.org/packages/0f/e7/aa315e6a749d9b96c2504a1ba0ba031ba2d0517e972ce22682e3fccecb09/cssselect2-0.8.0-py3-none-any.whl
+    sha256: 46fc70ebc41ced7a32cd42d58b1884d72ade23d21e5a4eaaf022401c13f0e76e
     x-checker-data:
       name: cssselect2
       packagetype: bdist_wheel
