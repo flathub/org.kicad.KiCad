@@ -226,6 +226,9 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - -Dprotobuf_BUILD_SHARED_LIBS=ON
+      - -Dprotobuf_BUILD_TESTS=OFF
+      - -Dprotobuf_ALLOW_CCACHE=ON
+      - -Dprotobuf_LOCAL_DEPENDENCIES_ONLY=ON
     cleanup:
       - /bin
       - /include
