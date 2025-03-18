@@ -129,8 +129,8 @@ modules:
       - --disable-glcanvasegl
     sources:
       - type: git
-        commit: 5ff25322553c1870cf20a2e1ba6f20ed50d9fe9a
-        tag: v3.2.6
+        commit: a7d97b966993214a5ea8928aec6ed5fa6e32f939
+        tag: v3.2.7.1
         url: https://github.com/wxWidgets/wxWidgets
         x-checker-data:
           is-important: true
@@ -228,8 +228,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
-        tag: v29.3
-        commit: b407e8416e3893036aee5af9a12bd9b6a0e2b2e6
+        tag: v30.1
+        commit: 0d815c5b74281f081c1ee4b431a4d5bbb1615c97
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
