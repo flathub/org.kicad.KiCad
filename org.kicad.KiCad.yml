@@ -134,17 +134,13 @@ modules:
       - --disable-glcanvasegl
     sources:
       - type: git
-        commit: 5ff25322553c1870cf20a2e1ba6f20ed50d9fe9a
-        tag: v3.2.6
+        commit: a7d97b966993214a5ea8928aec6ed5fa6e32f939
+        tag: v3.2.7.1
         url: https://github.com/wxWidgets/wxWidgets
         x-checker-data:
           is-important: true
           type: git
           tag-pattern: ^v([\d\.]+)$
-      - type: patch
-        paths:
-          - patches/wxWidgets_0001_Allow-wxDataViewCustomRenderer-GetSize()-return-0-in-wxGTK.patch
-          - patches/wxWidgets_0002_Fix-border-size-for-wxStaticBox-with-GTK3.patch
 
   - python3-wxPython.yml
   - python3-requests.yml
