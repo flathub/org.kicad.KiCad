@@ -63,13 +63,18 @@ modules:
       - /include
       - /share/doc
     sources:
-      - type: git
-        url: https://gitlab.freedesktop.org/xorg/lib/libxmu.git
-        tag: libXmu-1.2.1
-        commit: 792f80402ee06ce69bca3a8f2a84295999c3a170
-        x-checker-data:
-          type: git
-          tag-pattern: ^libXmu-([\d\.]+)$
+      # Temporarily switch libXmu over to archive download, to make builds
+      # succeed, while gitlab.freedesktop.org is undergoing maintenance.
+      - type: archive
+        url: https://xorg.freedesktop.org//archive/individual/lib/libXmu-1.2.1.tar.gz
+        sha256: bf0902583dd1123856c11e0a5085bd3c6e9886fbbd44954464975fd7d52eb599
+      #- type: git
+      #  url: https://gitlab.freedesktop.org/xorg/lib/libxmu.git
+      #  commit: 792f80402ee06ce69bca3a8f2a84295999c3a170
+      #  tag: libXmu-1.2.1
+      #  x-checker-data:
+      #    type: git
+      #    tag-pattern: ^libXmu-([\d\.]+)$
 
   - name: OCCT
     buildsystem: cmake-ninja
@@ -129,17 +134,13 @@ modules:
       - --disable-glcanvasegl
     sources:
       - type: git
-        commit: 5ff25322553c1870cf20a2e1ba6f20ed50d9fe9a
-        tag: v3.2.6
+        commit: a7d97b966993214a5ea8928aec6ed5fa6e32f939
+        tag: v3.2.7.1
         url: https://github.com/wxWidgets/wxWidgets
         x-checker-data:
           is-important: true
           type: git
           tag-pattern: ^v([\d\.]+)$
-      - type: patch
-        paths:
-          - patches/wxWidgets_0001_Allow-wxDataViewCustomRenderer-GetSize()-return-0-in-wxGTK.patch
-          - patches/wxWidgets_0002_Fix-border-size-for-wxStaticBox-with-GTK3.patch
 
   - python3-wxPython.yml
   - python3-requests.yml
@@ -222,6 +223,9 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - -Dprotobuf_BUILD_SHARED_LIBS=ON
+      - -Dprotobuf_BUILD_TESTS=OFF
+      - -Dprotobuf_ALLOW_CCACHE=ON
+      - -Dprotobuf_LOCAL_DEPENDENCIES_ONLY=ON
     cleanup:
       - /bin
       - /include
@@ -230,9 +234,13 @@ modules:
         url: https://github.com/protocolbuffers/protobuf.git
         tag: v29.3
         commit: b407e8416e3893036aee5af9a12bd9b6a0e2b2e6
+        # Fix protobuf < v30 due to kicad 9.0.0 not building against protobuf
+        # v30.1. kicad 9.0.1 will support protobuf v30.1.
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
+          versions:
+            <: '30'
 
   - name: nng
     buildsystem: cmake-ninja
