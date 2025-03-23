@@ -63,18 +63,13 @@ modules:
       - /include
       - /share/doc
     sources:
-      # Temporarily switch libXmu over to archive download, to make builds
-      # succeed, while gitlab.freedesktop.org is undergoing maintenance.
-      - type: archive
-        url: https://xorg.freedesktop.org//archive/individual/lib/libXmu-1.2.1.tar.gz
-        sha256: bf0902583dd1123856c11e0a5085bd3c6e9886fbbd44954464975fd7d52eb599
-      #- type: git
-      #  url: https://gitlab.freedesktop.org/xorg/lib/libxmu.git
-      #  commit: 792f80402ee06ce69bca3a8f2a84295999c3a170
-      #  tag: libXmu-1.2.1
-      #  x-checker-data:
-      #    type: git
-      #    tag-pattern: ^libXmu-([\d\.]+)$
+      - type: git
+        url: https://gitlab.freedesktop.org/xorg/lib/libxmu.git
+        tag: libXmu-1.2.1
+        commit: 792f80402ee06ce69bca3a8f2a84295999c3a170
+        x-checker-data:
+          type: git
+          tag-pattern: ^libXmu-([\d\.]+)$
 
   - name: OCCT
     buildsystem: cmake-ninja
@@ -232,8 +227,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
-        tag: v29.3
-        commit: b407e8416e3893036aee5af9a12bd9b6a0e2b2e6
+        tag: v29.4
+        commit: 1be1c9d0ea6efa2a25bd7b76186844d1669be78a
         # Fix protobuf < v30 due to kicad 9.0.0 not building against protobuf
         # v30.1. kicad 9.0.1 will support protobuf v30.1.
         x-checker-data:
