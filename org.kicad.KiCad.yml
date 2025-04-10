@@ -139,8 +139,8 @@ modules:
           type: git
           tag-pattern: ^v([\d\.]+)$
 
-  - python3-wxPython.yml
   - python3-requests.yml
+  - python3-wxPython.yml
 
   - name: swig
     buildsystem: autotools
