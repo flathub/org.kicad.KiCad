@@ -227,15 +227,11 @@ modules:
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
-        tag: v29.4
-        commit: 1be1c9d0ea6efa2a25bd7b76186844d1669be78a
-        # Fix protobuf < v30 due to kicad 9.0.0 not building against protobuf
-        # v30.1. kicad 9.0.1 will support protobuf v30.1.
+        tag: v30.2
+        commit: 43e1626812c1b543e56a7bec59dc09eb18248bd2
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-          versions:
-            <: '30'
 
   - name: nng
     buildsystem: cmake-ninja
