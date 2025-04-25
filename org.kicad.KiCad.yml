@@ -129,8 +129,8 @@ modules:
       - --disable-glcanvasegl
     sources:
       - type: git
-        commit: a7d97b966993214a5ea8928aec6ed5fa6e32f939
-        tag: v3.2.7.1
+        commit: 8aef5f40b93958719771331ca03866b7b6fff6bf
+        tag: v3.2.8
         url: https://github.com/wxWidgets/wxWidgets
         x-checker-data:
           is-important: true
@@ -147,8 +147,8 @@ modules:
       - /share
     sources:
       - type: archive
-        url: https://sourceforge.net/projects/swig/files/swig/swig-4.3.0/swig-4.3.0.tar.gz
-        sha256: f7203ef796f61af986c70c05816236cbd0d31b7aa9631e5ab53020ab7804aa9e
+        url: https://sourceforge.net/projects/swig/files/swig/swig-4.3.1/swig-4.3.1.tar.gz
+        sha256: 44fc829f70f1e17d635a2b4d69acab38896699ecc24aa023e516e0eabbec61b8
         x-checker-data:
           type: html
           url: https://www.swig.org/download.html
