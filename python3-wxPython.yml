@@ -52,8 +52,8 @@ modules:
           packagetype: bdist_wheel
           name: attrdict3
       - type: file
-        url: https://files.pythonhosted.org/packages/7d/ec/40c0ddd29ef4daa6689a2b9c5ced47d5b58fa54ae149b19e9a97f4979c8c/meson_python-0.17.1-py3-none-any.whl
-        sha256: 30a75c52578ef14aff8392677b09c39346e0a24d2b2c6204b8ed30583c11269c
+        url: https://files.pythonhosted.org/packages/28/58/66db620a8a7ccb32633de9f403fe49f1b63c68ca94e5c340ec5cceeb9821/meson_python-0.18.0-py3-none-any.whl
+        sha256: 3b0fe051551cc238f5febb873247c0949cd60ded556efa130aa57021804868e2
         x-checker-data:
           type: pypi
           packagetype: bdist_wheel
@@ -80,8 +80,8 @@ modules:
         --prefix=${FLATPAK_DEST} numpy --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/dc/b2/ce4b867d8cd9c0ee84938ae1e6a6f7926ebf928c9090d036fc3c6a04f946/numpy-2.2.5.tar.gz
-        sha256: a9c0d994680cd991b1cb772e8b297340085466a6fe964bc9d4e80f5e2f43c291
+        url: https://files.pythonhosted.org/packages/76/21/7d2a95e4bba9dc13d043ee156a356c0a8f0c6309dff6b21b4d71a073b8a8/numpy-2.2.6.tar.gz
+        sha256: e29554e2bef54a90aa5cc07da6ce955accb83f21ab5de01a62c8478897b264fd
         x-checker-data:
           type: pypi
           name: numpy
