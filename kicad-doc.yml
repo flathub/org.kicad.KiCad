@@ -13,11 +13,11 @@ modules:
         url: https://cpan.metacpan.org/authors/id/L/LE/LEONT/Module-Build-0.4234.tar.gz
         sha256: 66aeac6127418be5e471ead3744648c766bd01482825c5b66652675f2bc86a8f
         x-checker-data:
-          type: html
-          url: https://metacpan.org/dist/Module-Build
-          url-template: https://cpan.metacpan.org/authors/id/L/LE/LEONT/Module-Build-$version.tar.gz
-          version-pattern: Module-Build-([\d\.]+) - Build and install Perl modules
-            - metacpan.org
+          type: json
+          url: https://fastapi.metacpan.org/v1/download_url/Module::Build
+          version-query: .version
+          url-query: .download_url
+          timestamp-query: .date
 
   - name: perl-pod-parser
     buildsystem: simple
@@ -32,11 +32,11 @@ modules:
         url: https://cpan.metacpan.org/authors/id/M/MA/MAREKR/Pod-Parser-1.67.tar.gz
         sha256: 5deccbf55d750ce65588cd211c1a03fa1ef3aaa15d1ac2b8d85383a42c1427ea
         x-checker-data:
-          type: html
-          url: https://metacpan.org/dist/Pod-Parser
-          url-template: https://cpan.metacpan.org/authors/id/M/MA/MAREKR/Pod-Parser-$version.tar.gz
-          version-pattern: Pod-Parser-([\d\.]+) - Modules for parsing/translating
-            POD format documents - metacpan.org
+          type: json
+          url: https://fastapi.metacpan.org/v1/download_url/Pod::Parser
+          version-query: .version
+          url-query: .download_url
+          timestamp-query: .date
 
   - name: perl-yaml-tiny
     buildsystem: simple
@@ -51,11 +51,11 @@ modules:
         url: https://cpan.metacpan.org/authors/id/E/ET/ETHER/YAML-Tiny-1.76.tar.gz
         sha256: a8d584394cf069bf8f17cba3dd5099003b097fce316c31fb094f1b1c171c08a3
         x-checker-data:
-          type: html
-          url: https://metacpan.org/dist/YAML-Tiny
-          url-template: https://cpan.metacpan.org/authors/id/E/ET/ETHER/YAML-Tiny-$version.tar.gz
-          version-pattern: YAML-Tiny-([\d\.]+) - Read/Write YAML files with as little
-            code as possible - metacpan.org
+          type: json
+          url: https://fastapi.metacpan.org/v1/download_url/YAML::Tiny
+          version-query: .version
+          url-query: .download_url
+          timestamp-query: .date
 
   - name: perl-mime-charset
     buildsystem: simple
@@ -70,11 +70,11 @@ modules:
         url: https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/MIME-Charset-1.013.1.tar.gz
         sha256: 1bb7a6e0c0d251f23d6e60bf84c9adefc5b74eec58475bfee4d39107e60870f0
         x-checker-data:
-          type: html
-          url: https://metacpan.org/dist/MIME-Charset
-          url-template: https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/MIME-Charset-$version.tar.gz
-          version-pattern: MIME-Charset-([\d\.]+) - Charset Information for MIME -
-            metacpan.org
+          type: json
+          url: https://fastapi.metacpan.org/v1/download_url/MIME::Charset
+          version-query: .version
+          url-query: .download_url
+          timestamp-query: .date
 
   - name: perl-unicode-gcstring
     buildsystem: simple
@@ -91,11 +91,11 @@ modules:
         url: https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/Unicode-LineBreak-2019.001.tar.gz
         sha256: 486762e4cacddcc77b13989f979a029f84630b8175e7fef17989e157d4b6318a
         x-checker-data:
-          type: html
-          url: https://metacpan.org/dist/Unicode-LineBreak
-          url-template: https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/Unicode-LineBreak-$version.tar.gz
-          version-pattern: Unicode-LineBreak-([\d\.]+) - UAX \#14 Unicode Line Breaking
-            Algorithm - metacpan.org
+          type: json
+          url: https://fastapi.metacpan.org/v1/download_url/Unicode::LineBreak
+          version-query: .version
+          url-query: .download_url
+          timestamp-query: .date
 
   - name: po4a
     buildsystem: simple
