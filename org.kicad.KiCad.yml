@@ -129,8 +129,8 @@ modules:
       - --disable-glcanvasegl
     sources:
       - type: git
-        commit: 896e4f587615b832ce27b8325357cb504997e1d3
-        tag: v3.2.8.1
+        commit: e92f57b421938e00f0ad944c281c2e353eee2ab8
+        tag: v3.3.0
         url: https://github.com/wxWidgets/wxWidgets
         x-checker-data:
           is-important: true
@@ -207,8 +207,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: git
-        commit: 338e6fb681369ff0537719095e22ce9dc602dbf0
-        tag: v1.9.0
+        commit: 0060d9cf5666f015b1067129bd874c6cc4c9c7ac
+        tag: v1.9.1
         url: https://github.com/libgit2/libgit2
         x-checker-data:
           type: git
@@ -227,8 +227,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
-        tag: v31.0
-        commit: 3d4adad5c4c4e6a6f9f038769b8c90716065b0e4
+        tag: v31.1
+        commit: 74211c0dfc2777318ab53c2cd2c317a2ef9012de
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -244,8 +244,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/nanomsg/nng.git
-        tag: v1.10.1
-        commit: d98d3ec1e0c3230a6f9e60616180ac66f5791a5b
+        tag: v1.11
+        commit: 84aa701f42968bf536141a24e826da66963b571a
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
