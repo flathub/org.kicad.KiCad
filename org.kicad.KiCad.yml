@@ -136,6 +136,8 @@ modules:
           is-important: true
           type: git
           tag-pattern: ^v([\d\.]+)$
+          versions:
+            < : '3.3' # See: https://github.com/wxWidgets/Phoenix/issues/2764
 
   - python3-requests.yml
   - python3-wxPython.yml
