@@ -55,8 +55,10 @@ modules:
         tag: 1.0.1
         commit: 0af55ccecd98d4e5a8d1fad7de25ba429d60e863
         x-checker-data:
-          type: git
-          tag-pattern: ^([\d\.]+)$
+          type: json
+          url: https://api.github.com/repos/g-truc/glm/releases/latest
+          tag-query: .tag_name
+          timestamp-query: .published_at
 
   - name: libXmu
     cleanup:
@@ -100,8 +102,11 @@ modules:
         url: https://github.com/Open-Cascade-SAS/OCCT
         tag: V7_9_1
         x-checker-data:
-          type: git
-          tag-pattern: ^V([\d_]+)$
+          type: json
+          url: https://api.github.com/repos/Open-Cascade-SAS/OCCT/releases/latest
+          tag-query: .tag_name
+          version-query: "$tag | sub(\"^V\"; \"\")"
+          timestamp-query: .published_at
 
   - name: boost
     buildsystem: simple
@@ -134,8 +139,14 @@ modules:
         url: https://github.com/wxWidgets/wxWidgets
         x-checker-data:
           is-important: true
-          type: git
-          tag-pattern: ^v([\d\.]+)$
+          # TODO: The following doesn't work, because /latest only fetches 1
+          # tag, and this will be 3.3.0 (at time of writing this comment),
+          # breaking the versions restriction below.
+          type: json
+          url: https://api.github.com/repos/wxWidgets/wxWidgets/releases/latest
+          tag-query: .tag_name
+          version-query: "$tag | sub(\"^v\"; \"\")"
+          timestamp-query: .published_at
           versions:
             <: '3.3'  # See: https://github.com/wxWidgets/Phoenix/issues/2764
 
