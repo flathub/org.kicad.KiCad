@@ -153,7 +153,9 @@ modules:
         tag: 9.0.2
         x-checker-data:
           is-important: true
-          type: git
-          tag-pattern: ^([\d\.]+)$
+          type: json
+          url: https://gitlab.com/api/v4/projects/kicad%2Fservices%2Fkicad-doc/repository/tags
+          tag-query: "[.[] | select(.name|test(\"^\\\\d.\\\\d.\\\\d$\"; \"\"))] | first | .name"
+          timestamp-query: "[.[] | select(.name|test(\"^\\\\d.\\\\d.\\\\d$\"; \"\"))] | first | .created_at"
           versions:
             <: 9.99.0
