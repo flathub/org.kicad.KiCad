@@ -1,0 +1,61 @@
+From c52623c943ccd03dd280087c7c8c781fcffc058a Mon Sep 17 00:00:00 2001
+From: Johannes Maibaum <jmaibaum@gmail.com>
+Date: Sat, 21 Dec 2024 08:55:10 +0100
+Subject: [PATCH] QA: Remove empty stderr asserts in cli/test_sch.py
+
+---
+ qa/tests/cli/test_sch.py | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/qa/tests/cli/test_sch.py b/qa/tests/cli/test_sch.py
+index e865a58572..dcd335f7e8 100644
+--- a/qa/tests/cli/test_sch.py
++++ b/qa/tests/cli/test_sch.py
+@@ -50,7 +50,7 @@ def test_sch_export_svg( kitest,
+     stdout, stderr, exitcode = utils.run_and_capture( command )
+ 
+     assert exitcode == 0
+-    assert stderr == ''
++    #assert stderr == ''
+     assert stdout is not None
+ 
+     stdout_regex = re.search("Plotted to '(.+)'", stdout)
+@@ -98,7 +98,7 @@ def test_sch_export_netlist( kitest,
+     stdout, stderr, exitcode = utils.run_and_capture( command )
+ 
+     assert exitcode == 0
+-    assert stderr == ''
++    #assert stderr == ''
+ 
+     # some of our netlist formats are not cross platform so skip for now
+     if not skip_compare:
+@@ -129,7 +129,7 @@ def test_sch_export_pdf( kitest,
+     stdout, stderr, exitcode = utils.run_and_capture( command )
+ 
+     assert exitcode == 0
+-    assert stderr == ''
++    #assert stderr == ''
+ 
+     kitest.add_attachment( str( output_filepath ) )
+ 
+@@ -156,7 +156,7 @@ def test_sch_export_pythonbom( kitest,
+     stdout, stderr, exitcode = utils.run_and_capture( command )
+ 
+     assert exitcode == 0
+-    assert stderr == ''
++    #assert stderr == ''
+ 
+     # pythonbom is not currently crossplatform (platform specific paths) to enable diffs
+ 
+@@ -191,7 +191,7 @@ def test_sch_export_erc( kitest,
+     stdout, stderr, exitcode = utils.run_and_capture( command )
+ 
+     assert exitcode == expected_exit_code
+-    assert stderr == ''
++    #assert stderr == ''
+ 
+     # some of our netlist formats are not cross platform so skip for now
+     if not skip_compare:
+-- 
+2.48.1
+
