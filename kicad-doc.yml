@@ -110,8 +110,8 @@ modules:
       - '*'
     sources:
       - type: archive
-        url: https://github.com/mquinson/po4a/releases/download/v0.73/po4a-0.73.tar.gz
-        sha256: 6f18f82d8cb2a377394137ea396cc3e8195d6cd6e454fe0218aa0f0e36038ea0
+        url: https://github.com/mquinson/po4a/releases/download/v0.74/po4a-0.74.tar.gz
+        sha256: 25fc323f2ba37bbd48c3af0ebf49952644b0e468261f98633e91219a838fe7c2
         x-checker-data:
           type: html
           url: https://po4a.org
@@ -149,8 +149,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/kicad/services/kicad-doc.git
-        commit: 4a63302e377babad79c73aa35e75c76a65fe08db
-        tag: 9.0.3-rc1
+        commit: 82db54933b8eaad0658d53c7fbe2b3dcefe58884
+        tag: 9.0.4-rc1
         x-checker-data:
           is-important: true
           type: git
