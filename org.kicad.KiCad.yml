@@ -113,8 +113,8 @@ modules:
       - /include
     sources:
       - type: archive
-        url: https://archives.boost.io/release/1.88.0/source/boost_1_88_0.tar.gz
-        sha256: 3621533e820dcab1e8012afd583c0c73cf0f77694952b81352bf38c1488f9cb4
+        url: https://archives.boost.io/release/1.89.0/source/boost_1_89_0.tar.gz
+        sha256: 9de758db755e8330a01d995b0a24d09798048400ac25c03fc5ea9be364b13c93
         x-checker-data:
           type: html
           url: https://www.boost.org/feed/downloads.rss
@@ -233,8 +233,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
-        tag: v31.1
-        commit: 74211c0dfc2777318ab53c2cd2c317a2ef9012de
+        tag: v32.0
+        commit: 4fbd1111a292d04746c732573025e3251de0bb9c
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
