@@ -13,8 +13,8 @@ sources:
       packagetype: bdist_wheel
       type: pypi
   - type: file
-    url: https://files.pythonhosted.org/packages/20/94/c5790835a017658cbfabd07f3bfb549140c3ac458cfc196323996b10095a/charset_normalizer-3.4.2-py3-none-any.whl
-    sha256: 7f56930ab0abd1c45cd15be65cc741c28b1c9a34876ce8c17a2fa107810c0af0
+    url: https://files.pythonhosted.org/packages/8a/1f/f041989e93b001bc4e44bb1669ccdcf54d3f00e628229a85b08d330615c5/charset_normalizer-3.4.3-py3-none-any.whl
+    sha256: ce571ab16d890d23b5c278547ba694193a45011ff86a9162a71307ed9f86759a
     x-checker-data:
       name: charset_normalizer
       packagetype: bdist_wheel
@@ -27,10 +27,9 @@ sources:
       packagetype: bdist_wheel
       type: pypi
   - type: file
-    url: https://files.pythonhosted.org/packages/7c/e4/56027c4a6b4ae70ca9de302488c5ca95ad4a39e190093d6c1a8ace08341b/requests-2.32.4-py3-none-any.whl
-    sha256: 27babd3cda2a6d50b30443204ee89830707d396671944c998b5975b031ac2b2c
+    url: https://files.pythonhosted.org/packages/1e/db/4254e3eabe8020b458f1a747140d32277ec7a271daf1d235b70dc0b4e6e3/requests-2.32.5-py3-none-any.whl
+    sha256: 2462f94637a34fd532264295e186976db0f5d453d1cdd31473c85a6a161affb6
     x-checker-data:
-      is-important: true
       name: requests
       packagetype: bdist_wheel
       type: pypi
