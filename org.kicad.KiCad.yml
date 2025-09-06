@@ -1,6 +1,6 @@
 app-id: org.kicad.KiCad
 runtime: org.freedesktop.Sdk
-runtime-version: '24.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: kicad-startup
 finish-args:
