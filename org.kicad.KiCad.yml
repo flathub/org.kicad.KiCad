@@ -179,10 +179,6 @@ modules:
           url: https://ngspice.sourceforge.io/download.html
           url-template: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/$version/ngspice-$version.tar.gz
           version-pattern: <strong>ngspice-([\d.]+)</strong>
-      - type: script
-        commands:
-          - cp -p /usr/share/automake-*/config.{sub,guess} .
-          - autoconf -f -B build/autoconf_prepend-include
 
   - name: unixodbc
     cleanup:
