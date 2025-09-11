@@ -1,5 +1,4 @@
 app-id: org.kicad.KiCad
-branch: beta
 runtime: org.freedesktop.Sdk
 runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
@@ -233,7 +232,7 @@ modules:
         commit: 4fbd1111a292d04746c732573025e3251de0bb9c
         x-checker-data:
           type: git
-          tag-pattern: ^v([\d.]+)$
+          tag-pattern: ^v([\d\.]+)$
 
   - name: nng
     buildsystem: cmake-ninja
@@ -250,7 +249,7 @@ modules:
         commit: 84aa701f42968bf536141a24e826da66963b571a
         x-checker-data:
           type: git
-          tag-pattern: ^v([\d.]+)$
+          tag-pattern: ^v([\d\.]+)$
 
   - name: kicad
     builddir: true
