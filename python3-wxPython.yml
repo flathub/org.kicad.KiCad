@@ -39,8 +39,8 @@ modules:
     buildsystem: simple
     build-commands:
       - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
-        --prefix=${FLATPAK_DEST} attrdict3 meson_python packaging pyproject_metadata six
-        --no-build-isolation
+        --prefix=${FLATPAK_DEST} attrdict3 meson_python packaging pyproject_metadata
+        six --no-build-isolation
     cleanup:
       - /lib
     sources:
@@ -87,8 +87,8 @@ modules:
         --prefix=${FLATPAK_DEST} numpy --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/37/7d/3fec4199c5ffb892bed55cff901e4f39a58c81df9c44c280499e92cad264/numpy-2.3.2.tar.gz
-        sha256: e0486a11ec30cdecb53f184d496d1c6a20786c81e55e41640270130056f8ee48
+        url: https://files.pythonhosted.org/packages/d0/19/95b3d357407220ed24c139018d2518fab0a61a948e68286a25f1a4d049ff/numpy-2.3.3.tar.gz
+        sha256: ddc7c39727ba62b80dfdbedf400d1c10ddfa8eefbd7ec8dcb118be8b56d31029
         x-checker-data:
           type: pypi
           name: numpy
