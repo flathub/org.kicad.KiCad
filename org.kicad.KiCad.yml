@@ -6,10 +6,10 @@ command: kicad-startup
 finish-args:
   - --device=dri
   - --filesystem=home
-  - --filesystem=/tmp:rw
   - --share=ipc
   - --share=network
   - --socket=x11
+  - --env=TMPDIR=/var/tmp
 
 add-extensions:
   org.kicad.KiCad.Library:
