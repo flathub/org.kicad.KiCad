@@ -151,8 +151,8 @@ modules:
       - '*'
     sources:
       - type: file
-        url: https://rubygems.org/gems/asciidoctor-2.0.23.gem
-        sha256: 52208807f237dfa0ca29882f8b13d60b820496116ad191cf197ca56f2b7fddf3
+        url: https://rubygems.org/gems/asciidoctor-2.0.25.gem
+        sha256: b06fe822b0910d4e25ea0f562fecfc7948e946e222efd9494849d27da4267d19
         x-checker-data:
           type: html
           url: https://rubygems.org/gems/asciidoctor
@@ -170,8 +170,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/kicad/services/kicad-doc.git
-        commit: 941a00e455c9249a5d692f338063733c114dfaa7
-        tag: 9.0.6-rc1
+        commit: 90da21fb28206c1e1bf0ef955d60c9a6aac28b53
+        tag: 9.0.6-rc2
         x-checker-data:
           is-important: true
           type: git
