@@ -132,8 +132,8 @@ modules:
       - --disable-rpath
     sources:
       - type: archive
-        url: https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.6.tar.gz
-        sha256: e3c19ab9e8f41b3723124fbc0114cde7cbf55e65aa9c58c12acd89ec9c0dd1b9
+        url: https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.7.tar.gz
+        sha256: 23815a6d095696f7919090fdc3e2f9459b2c83d57224b2e446ce1f5f7333ef36
         x-checker-data:
           type: html
           url: https://cache.ruby-lang.org/pub/ruby/index.txt
@@ -151,8 +151,8 @@ modules:
       - '*'
     sources:
       - type: file
-        url: https://rubygems.org/gems/asciidoctor-2.0.23.gem
-        sha256: 52208807f237dfa0ca29882f8b13d60b820496116ad191cf197ca56f2b7fddf3
+        url: https://rubygems.org/gems/asciidoctor-2.0.26.gem
+        sha256: 16e3accf1fc206bbd6335848649d7fd65f31d2daa60d85af13d47a8ee4b071c1
         x-checker-data:
           type: html
           url: https://rubygems.org/gems/asciidoctor
@@ -170,8 +170,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/kicad/services/kicad-doc.git
-        commit: c7322a2a48bcbfb98c1f74d69daff03482724eba
-        tag: 9.0.5
+        commit: 90da21fb28206c1e1bf0ef955d60c9a6aac28b53
+        tag: 9.0.6
         x-checker-data:
           is-important: true
           type: git
