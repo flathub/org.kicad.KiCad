@@ -52,8 +52,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/g-truc/glm
-        tag: 1.0.1
-        commit: 0af55ccecd98d4e5a8d1fad7de25ba429d60e863
+        tag: 1.0.2
+        commit: a532f5b1cf27d6a3c099437e6959cf7e398a0a67
         x-checker-data:
           type: git
           tag-pattern: ^([\d\.]+)$
@@ -96,9 +96,9 @@ modules:
       - -DINSTALL_TEST_CASES=OFF
     sources:
       - type: git
-        commit: 36c80dbe7b199348e2f0a2d6932a462a37fd0b90
+        commit: c5f20409c52bf8f658314d205a0e5d6f0be0969c
         url: https://github.com/Open-Cascade-SAS/OCCT
-        tag: V7_9_1
+        tag: V7_9_2
         x-checker-data:
           type: git
           tag-pattern: ^V([\d_]+)$
@@ -149,8 +149,8 @@ modules:
       - /share
     sources:
       - type: archive
-        url: https://sourceforge.net/projects/swig/files/swig/swig-4.3.1/swig-4.3.1.tar.gz
-        sha256: 44fc829f70f1e17d635a2b4d69acab38896699ecc24aa023e516e0eabbec61b8
+        url: https://sourceforge.net/projects/swig/files/swig/swig-4.4.0/swig-4.4.0.tar.gz
+        sha256: c3f8e5dcd68c18aa19847b33b0a1bb92f07e904c53ae9cf5ae4ff8727a72927e
         x-checker-data:
           type: html
           url: https://www.swig.org/download.html
@@ -225,8 +225,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
-        tag: v32.1
-        commit: 7fcfd66022455635fa29af92987cdc0967efd4f3
+        tag: v33.0
+        commit: a79f2d2e9fadd75e94f3fe40a0399bf0a5d90551
         x-checker-data:
           type: git
           tag-pattern: ^v([\d\.]+)$
@@ -302,8 +302,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: fda292bd08dc31d2849eccfe135d305edf29f8ad
-        tag: 9.0.5
+        commit: 8a3464bdf151525060489e7997d7393480b0fa37
+        tag: 9.0.6
         x-checker-data:
           is-main-source: true
           type: git
