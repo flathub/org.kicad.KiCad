@@ -175,6 +175,6 @@ modules:
         x-checker-data:
           is-important: true
           type: git
-          tag-pattern: ^([\d\.]+[-rc\d]+)$
+          tag-pattern: ^([\d\.]+-rc\d+)$
           versions:
             <: 9.99.0

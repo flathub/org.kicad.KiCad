@@ -309,7 +309,7 @@ modules:
         x-checker-data:
           is-main-source: true
           type: git
-          tag-pattern: ^([\d\.]+[-rc\d]+)$
+          tag-pattern: ^([\d\.]+-rc\d+)$
           versions:
             <: 9.99.0
       - type: script
