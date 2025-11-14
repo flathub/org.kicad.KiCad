@@ -28,7 +28,6 @@ modules:
       - /bin
       - /include
       - /lib/cmake
-      - /lib/debug
       - /lib/*.a
       - /lib/*.la
       - /lib/pkgconfig
