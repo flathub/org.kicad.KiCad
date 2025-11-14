@@ -25,15 +25,22 @@ modules:
     make-install-args:
       - PREFIX=/app
     cleanup:
+      - /bin
       - /include
+      - /lib/cmake
+      - /lib/debug
+      - /lib/*.a
+      - /lib/*.la
+      - /lib/pkgconfig
+      - /share/man
     sources:
-      - type: git
-        url: https://github.com/OpenMathLib/OpenBLAS
-        tag: v0.3.30
-        commit: 993fad6aebbce34a97d3f8c34d6d79d35b64cc48
+      - type: archive
+        url: https://github.com/OpenMathLib/OpenBLAS/releases/download/v0.3.30/OpenBLAS-0.3.30.tar.gz
+        sha512: c726ced2d3e6ebd3ddcd0b13c255bb43fae8c12d2aec15e9ef992b0bc7099996c02cd284ccaaa7b5fac3f23f280b098063dd60f521d97a68dc183ab192fcccdb
         x-checker-data:
-          type: git
-          tag-pattern: ^(v[\d\.]+)$
+          type: anitya
+          project-id: 2540
+          url-template: https://github.com/OpenMathLib/OpenBLAS/archive/v$version.tar.gz
 
   - name: python3-build-dependencies
     buildsystem: simple
