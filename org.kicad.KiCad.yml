@@ -12,6 +12,12 @@ finish-args:
   - --env=TMPDIR=/var/tmp
 
 add-extensions:
+  org.kicad.KiCad.Docs:
+    version: stable
+    directory: share/doc/kicad
+    bundle: true
+    autodelete: true
+    no-autodownload: true
   org.kicad.KiCad.Library:
     version: stable
     directory: extensions/Library
