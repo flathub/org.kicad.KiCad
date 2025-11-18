@@ -25,7 +25,13 @@ modules:
     make-install-args:
       - PREFIX=/app
     cleanup:
+      - /bin
       - /include
+      - /lib/cmake
+      - /lib/*.a
+      - /lib/*.la
+      - /lib/pkgconfig
+      - /share/man
     sources:
       - type: git
         url: https://github.com/OpenMathLib/OpenBLAS
