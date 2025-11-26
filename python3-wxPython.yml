@@ -39,18 +39,11 @@ modules:
     buildsystem: simple
     build-commands:
       - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
-        --prefix=${FLATPAK_DEST} attrdict3 meson_python packaging pyproject_metadata
-        six --no-build-isolation
+        --prefix=${FLATPAK_DEST} meson_python packaging pyproject_metadata six
+        --no-build-isolation
     cleanup:
       - /lib
     sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/d7/3c/a7d33166f92b50ca0e154411c351430700c21d8115b93c515ae9137a91f6/attrdict3-2.0.2-py2.py3-none-any.whl
-        sha256: a98b72de6a3f20b0997cc7efbba3555af6558ed9a97de4468a3f81cac11595dc
-        x-checker-data:
-          type: pypi
-          packagetype: bdist_wheel
-          name: attrdict3
       - type: file
         url: https://files.pythonhosted.org/packages/28/58/66db620a8a7ccb32633de9f403fe49f1b63c68ca94e5c340ec5cceeb9821/meson_python-0.18.0-py3-none-any.whl
         sha256: 3b0fe051551cc238f5febb873247c0949cd60ded556efa130aa57021804868e2
