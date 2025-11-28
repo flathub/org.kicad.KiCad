@@ -4,8 +4,7 @@ build-commands:
   - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
     --prefix=${FLATPAK_DEST} "CairoSVG" "pytest" --no-build-isolation
 cleanup:
-  - /bin
-  - /lib
+  - '*'
 sources:
   - type: file
     url: https://files.pythonhosted.org/packages/cb/b1/3846dd7f199d53cb17f49cba7e651e9ce294d8497c8c150530ed11865bb8/iniconfig-2.3.0-py3-none-any.whl
@@ -28,6 +27,14 @@ sources:
       name: pytest
       packagetype: bdist_wheel
       type: pypi
+  - type: file
+    url: https://files.pythonhosted.org/packages/f3/0d/d0d6dea55cd152ce3d6767bb38a8fc10e33796ba4ba210cbab9354b6d238/pillow-11.3.0.tar.gz
+    sha256: 3828ee7586cd0b2091b6209e5ad53e20d0649bbe87164a459d0676e035e8f523
+    x-checker-data:
+      type: pypi
+      name: Pillow
+      versions:
+        <: '12'
   - type: file
     url: https://files.pythonhosted.org/packages/eb/56/b1ba7935a17738ae8453301356628e8147c79dbb825bcbc73dc7401f9846/cffi-2.0.0.tar.gz
     sha256: 44d1b5909021139fe36001ae048dbdde8214afa20200eda0f64c068cac5d5529
