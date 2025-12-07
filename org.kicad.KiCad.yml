@@ -96,9 +96,9 @@ modules:
       - -DINSTALL_TEST_CASES=OFF
     sources:
       - type: git
-        commit: c5f20409c52bf8f658314d205a0e5d6f0be0969c
+        commit: a016080bf6738d6aeae020badee4e888ad1540a5
         url: https://github.com/Open-Cascade-SAS/OCCT
-        tag: V7_9_2
+        tag: V7_9_3
         x-checker-data:
           type: git
           tag-pattern: ^V([\d_]+)$
@@ -130,8 +130,8 @@ modules:
       - --disable-glcanvasegl
     sources:
       - type: git
-        commit: 896e4f587615b832ce27b8325357cb504997e1d3
-        tag: v3.2.8.1
+        commit: 4cc7ba11fd65f3cc125e7193f769c82671a58513
+        tag: v3.2.9
         url: https://github.com/wxWidgets/wxWidgets
         x-checker-data:
           is-important: true
@@ -208,8 +208,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: git
-        commit: 0060d9cf5666f015b1067129bd874c6cc4c9c7ac
-        tag: v1.9.1
+        commit: ca225744b992bf2bf24e9a2eb357ddef78179667
+        tag: v1.9.2
         url: https://github.com/libgit2/libgit2
         x-checker-data:
           type: git
@@ -230,8 +230,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
-        tag: v33.1
-        commit: a8d85ffbc7158660b4247f732371d1b07780510e
+        tag: v33.2
+        commit: 7ccf2060af4cd13c44a8659d0999be6c7a98fcc1
         x-checker-data:
           type: git
           tag-pattern: ^v([\d\.]+)$
