@@ -130,8 +130,8 @@ modules:
       - --disable-glcanvasegl
     sources:
       - type: git
-        commit: 4cc7ba11fd65f3cc125e7193f769c82671a58513
-        tag: v3.2.9
+        commit: 896e4f587615b832ce27b8325357cb504997e1d3
+        tag: v3.2.8.1
         url: https://github.com/wxWidgets/wxWidgets
         x-checker-data:
           is-important: true
