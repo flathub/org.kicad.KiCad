@@ -112,8 +112,8 @@ modules:
       - /include
     sources:
       - type: archive
-        url: https://archives.boost.io/release/1.89.0/source/boost_1_89_0.tar.gz
-        sha256: 9de758db755e8330a01d995b0a24d09798048400ac25c03fc5ea9be364b13c93
+        url: https://archives.boost.io/release/1.90.0/source/boost_1_90_0.tar.gz
+        sha256: 5e93d582aff26868d581a52ae78c7d8edf3f3064742c6e77901a1f18a437eea9
         x-checker-data:
           type: html
           url: https://www.boost.org/feed/downloads.rss
@@ -130,8 +130,8 @@ modules:
       - --disable-glcanvasegl
     sources:
       - type: git
-        commit: 896e4f587615b832ce27b8325357cb504997e1d3
-        tag: v3.2.8.1
+        commit: 18bf6488604eafc5cc0ec79890ddfdab3798a104
+        tag: v3.2.9
         url: https://github.com/wxWidgets/wxWidgets
         x-checker-data:
           is-important: true
@@ -150,15 +150,13 @@ modules:
       - /share
     sources:
       - type: archive
-        url: https://sourceforge.net/projects/swig/files/swig/swig-4.3.1/swig-4.3.1.tar.gz
-        sha256: 44fc829f70f1e17d635a2b4d69acab38896699ecc24aa023e516e0eabbec61b8
+        url: https://sourceforge.net/projects/swig/files/swig/swig-4.4.1/swig-4.4.1.tar.gz
+        sha256: 40162a706c56f7592d08fd52ef5511cb7ac191f3593cf07306a0a554c6281fcf
         x-checker-data:
           type: html
           url: https://www.swig.org/download.html
           version-pattern: The latest release is <a href=".+">swig-([\d\.]+)</a>
           url-template: https://sourceforge.net/projects/swig/files/swig/swig-$version/swig-$version.tar.gz
-          versions:
-            <: 4.4.0
 
   - name: ngspice
     cleanup:
@@ -306,8 +304,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 4433da15b1de250ca54d25e590fdf0442ac02e7b
-        tag: 9.0.6-rc2
+        commit: 85ebd7c3711679ff243055f749a90dc8d56ae0ba
+        tag: 9.0.7-rc1
         x-checker-data:
           is-main-source: true
           type: git
