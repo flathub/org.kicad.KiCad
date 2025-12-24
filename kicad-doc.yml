@@ -132,8 +132,8 @@ modules:
       - --disable-rpath
     sources:
       - type: archive
-        url: https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.7.tar.gz
-        sha256: 23815a6d095696f7919090fdc3e2f9459b2c83d57224b2e446ce1f5f7333ef36
+        url: https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.8.tar.gz
+        sha256: 53c4ddad41fbb6189f1f5ee0db57a51d54bd1f87f8755b3d68604156a35b045b
         x-checker-data:
           type: html
           url: https://cache.ruby-lang.org/pub/ruby/index.txt
@@ -170,8 +170,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/kicad/services/kicad-doc.git
-        commit: e08a5cb969a4d2887c5241da368f3dc3d143f43b
-        tag: 9.0.7-rc1
+        commit: e3f7acefde9cdefe05298d5c79f1069c71896319
+        tag: 9.0.7-rc2
         x-checker-data:
           is-important: true
           type: git
