@@ -41,7 +41,6 @@ cleanup:
 modules:
   - shared-modules/glu/glu-9.json
   - shared-modules/glew/glew.json
-  - shared-modules/libsecret/libsecret.json
 
   - name: glm
     buildsystem: simple
