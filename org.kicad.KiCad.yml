@@ -6,6 +6,8 @@ command: kicad-startup
 finish-args:
   - --device=dri
   - --filesystem=home
+  - --filesystem=/media
+  - --filesystem=/run/media
   - --share=ipc
   - --share=network
   - --socket=x11
