@@ -138,6 +138,8 @@ modules:
           type: html
           url: https://cache.ruby-lang.org/pub/ruby/index.txt
           pattern: \s(https://cache.ruby-lang.org/pub/ruby/.+/ruby-([\d\.]+).tar.gz)\s
+          versions:
+            <: '4'
 
   - name: asciidoctor
     buildsystem: simple
