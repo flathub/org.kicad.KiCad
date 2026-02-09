@@ -35,8 +35,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenMathLib/OpenBLAS
-        tag: v0.3.30
-        commit: 993fad6aebbce34a97d3f8c34d6d79d35b64cc48
+        tag: v0.3.31
+        commit: 76f1be470c9b9f80dc6e27407e13b975df436489
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d\.]+)$
@@ -50,15 +50,15 @@ modules:
       - /lib
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/28/58/66db620a8a7ccb32633de9f403fe49f1b63c68ca94e5c340ec5cceeb9821/meson_python-0.18.0-py3-none-any.whl
-        sha256: 3b0fe051551cc238f5febb873247c0949cd60ded556efa130aa57021804868e2
+        url: https://files.pythonhosted.org/packages/16/7f/d1b0c65b267a1463d752b324f11d3470e30889daefc4b9ec83029bfa30b5/meson_python-0.19.0-py3-none-any.whl
+        sha256: 67b5906c37404396d23c195e12c8825506074460d4a2e7083266b845d14f0298
         x-checker-data:
           type: pypi
           packagetype: bdist_wheel
           name: meson-python
       - type: file
-        url: https://files.pythonhosted.org/packages/20/12/38679034af332785aac8774540895e234f4d07f7545804097de4b666afd8/packaging-25.0-py3-none-any.whl
-        sha256: 29572ef2b1f17581046b3a2227d5c611fb25ec70ca1ba8554b24b0e69331a484
+        url: https://files.pythonhosted.org/packages/b7/b9/c538f279a4e237a006a2c98387d081e9eb060d203d8ed34467cc0f0b9b53/packaging-26.0-py3-none-any.whl
+        sha256: b36f1fef9334a5588b4166f8bcd26a14e521f2b55e6b9de3aaa80d3ff7a37529
         x-checker-data:
           name: packaging
           packagetype: bdist_wheel
@@ -78,8 +78,8 @@ modules:
         --prefix=${FLATPAK_DEST} numpy --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/a4/7a/6a3d14e205d292b738db449d0de649b373a59edb0d0b4493821d0a3e8718/numpy-2.4.0.tar.gz
-        sha256: 6e504f7b16118198f138ef31ba24d985b124c2c469fe8467007cf30fd992f934
+        url: https://files.pythonhosted.org/packages/57/fd/0005efbd0af48e55eb3c7208af93f2862d4b1a56cd78e84309a2d959208d/numpy-2.4.2.tar.gz
+        sha256: 659a6107e31a83c4e33f763942275fd278b21d095094044eb35569e86a21ddae
         x-checker-data:
           type: pypi
           name: numpy
@@ -96,8 +96,8 @@ modules:
       - /bin
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/80/6e/b70e6dbdd7cb4f154b7ca424b4c7799f7b067f7a9f4204b8d16d6464648f/wxpython-4.2.4.tar.gz
-        sha256: 2eb123979c87bcb329e8a2452269d60ff8f9f651e9bf25c67579e53c4ebbae3c
+        url: https://files.pythonhosted.org/packages/22/43/81657a6b126ffc19163500a8184d683cec08eb4e1d06905cd0c371c702d0/wxpython-4.2.5.tar.gz
+        sha256: 44e836d1bccd99c38790bb034b6ecf70d9060f6734320560f7c4b0d006144793
         x-checker-data:
           is-important: true
           type: pypi
