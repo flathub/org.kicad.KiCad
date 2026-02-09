@@ -66,8 +66,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/xorg/lib/libxmu.git
-        tag: libXmu-1.2.1
-        commit: 792f80402ee06ce69bca3a8f2a84295999c3a170
+        tag: libXmu-1.3.1
+        commit: cdf280f6611932f79ab872832974e8043b1cad6d
         x-checker-data:
           type: git
           tag-pattern: ^libXmu-([\d\.]+)$
@@ -228,8 +228,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
-        tag: v33.2
-        commit: 7ccf2060af4cd13c44a8659d0999be6c7a98fcc1
+        tag: v33.5
+        commit: b6f9284da830b69be787732ffdaa35049d20a088
         x-checker-data:
           type: git
           tag-pattern: ^v([\d\.]+)$
