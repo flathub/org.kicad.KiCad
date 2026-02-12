@@ -329,14 +329,14 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 9f6e81e9ccf0db9a728354e2cac0d813385128f1
-        tag: 9.0.7-rc2
+        commit: bec26c8f739e24625dff7c86a0308a454e9b42f0
+        tag: 10.0.0-rc1
         x-checker-data:
           is-main-source: true
           type: git
           tag-pattern: ^([\d\.]+-rc\d+)$
           versions:
-            <: 9.99.0
+            <: 10.99.0
       - type: script
         dest: flatpak-extra
         dest-filename: pip3
