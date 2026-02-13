@@ -1,7 +1,7 @@
 app-id: org.kicad.KiCad
-runtime: org.freedesktop.Sdk
-runtime-version: '25.08'
-sdk: org.freedesktop.Sdk
+runtime: org.gnome.Sdk
+runtime-version: '49'
+sdk: org.gnome.Sdk
 command: kicad-startup
 finish-args:
   - --device=dri
@@ -250,6 +250,31 @@ modules:
           type: git
           tag-pattern: ^v([\d\.]+)$
 
+  - name: libspacenav
+    sources:
+      - type: git
+        url: https://github.com/FreeSpacenav/libspnav
+        tag: v1.2
+        commit: d641e5cbbe0d6d2381a2ee8d95c8c7273d005272
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d\.]+)$
+
+  - name: poppler
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DENABLE_QT5=OFF
+      - -DENABLE_QT6=OFF
+    sources:
+      - type: git
+        url: https://gitlab.freedesktop.org/poppler/poppler.git
+        commit: 30927d02c1fd6dc02aae2e32334bb82315b24cbb
+        tag: poppler-26.02.0
+        x-checker-data:
+          type: git
+          tag-pattern: ^poppler-([\d\.]+)$
+
   - name: kicad
     builddir: true
     buildsystem: cmake-ninja
@@ -264,6 +289,7 @@ modules:
       - -DKICAD_LIBRARY_DATA=/app/extensions/Library
       - -DKICAD_USE_CMAKE_FINDPROTOBUF=OFF
       - -DKICAD_USE_EGL=OFF
+      - -DKICAD_USE_PCH=OFF  # https://bbs.archlinux.org/viewtopic.php?id=307900
     post-install:
       - install ../../flatpak-extra/kicad-startup /app/bin/kicad-startup
       - install ../../flatpak-extra/eeschema-startup /app/bin/eeschema-startup
@@ -303,14 +329,14 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 9f6e81e9ccf0db9a728354e2cac0d813385128f1
-        tag: 9.0.7-rc2
+        commit: bec26c8f739e24625dff7c86a0308a454e9b42f0
+        tag: 10.0.0-rc1
         x-checker-data:
           is-main-source: true
           type: git
           tag-pattern: ^([\d\.]+-rc\d+)$
           versions:
-            <: 9.99.0
+            <: 10.99.0
       - type: script
         dest: flatpak-extra
         dest-filename: pip3
