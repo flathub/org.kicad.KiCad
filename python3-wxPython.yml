@@ -12,8 +12,10 @@ modules:
         commit: 99c24238981b7b1084313aca8f5c493bb46f302c
         tag: 0.18.0
         x-checker-data:
-          type: git
-          tag-pattern: ^([\d\.]+)$
+          type: json
+          url: https://api.github.com/repos/NixOS/patchelf/releases/latest
+          tag-query: .tag_name
+          timestamp-query: .published_at
 
   - name: openblas
     no-autogen: true
@@ -38,8 +40,11 @@ modules:
         tag: v0.3.31
         commit: 76f1be470c9b9f80dc6e27407e13b975df436489
         x-checker-data:
-          type: git
-          tag-pattern: ^(v[\d\.]+)$
+          type: json
+          url: https://api.github.com/repos/OpenMathLib/OpenBLAS/releases/latest
+          tag-query: .tag_name
+          version-query: "$tag | sub(\"^v$\"; \"\")"
+          timestamp-query: .published_at
 
   - name: python3-build-dependencies
     buildsystem: simple
