@@ -269,8 +269,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/poppler/poppler.git
-        commit: 30927d02c1fd6dc02aae2e32334bb82315b24cbb
-        tag: poppler-26.02.0
+        commit: aa4f259428273ef93220f9e659962cc50787d1c1
+        tag: poppler-26.03.0
         x-checker-data:
           type: git
           tag-pattern: ^poppler-([\d\.]+)$
