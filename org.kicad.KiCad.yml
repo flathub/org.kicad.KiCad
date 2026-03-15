@@ -157,8 +157,6 @@ modules:
           url: https://www.swig.org/download.html
           version-pattern: The latest release is <a href=".+">swig-([\d\.]+)</a>
           url-template: https://sourceforge.net/projects/swig/files/swig/swig-$version/swig-$version.tar.gz
-          versions:
-            <: 4.4.0
 
   - name: ngspice
     cleanup:
