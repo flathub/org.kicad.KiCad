@@ -179,4 +179,4 @@ modules:
           type: git
           tag-pattern: ^([\d\.]+)$
           versions:
-            <: 9.99.0
+            <: 10.99.0
