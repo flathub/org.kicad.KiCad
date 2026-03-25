@@ -165,6 +165,7 @@ modules:
     buildsystem: cmake-ninja
     build-options:
       env:
+        CMAKE_BUILD_PARALLEL_LEVEL: "1"
         GEM_PATH: /app/lib/ruby/gems/2.7.1
         PERL5LIB: /app/lib
     config-opts:
