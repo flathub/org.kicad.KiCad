@@ -400,4 +400,6 @@ modules:
             done
           - exec /app/bin/pcbnew "$@"
 
-  - kicad-doc.yml
+# Disable kicad-doc for now, as it doesn't build properly. Needs more time
+# for investigation which I do not have right now, unfortunately.
+#  - kicad-doc.yml
