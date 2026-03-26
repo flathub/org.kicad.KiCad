@@ -162,7 +162,7 @@ modules:
           version-pattern: <i class="page__subheading">([\d\.]+)</i>
 
   - name: kicad-doc
-    buildsystem: cmake-ninja
+    buildsystem: cmake
     build-options:
       env:
         CMAKE_BUILD_PARALLEL_LEVEL: "1"
@@ -170,6 +170,7 @@ modules:
         PERL5LIB: /app/lib
     config-opts:
       - -DBUILD_FORMATS=html
+    no-parallel-make: true
     sources:
       - type: git
         url: https://gitlab.com/kicad/services/kicad-doc.git
