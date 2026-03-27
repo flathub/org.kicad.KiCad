@@ -1,7 +1,7 @@
 app-id: org.kicad.KiCad
-runtime: org.freedesktop.Sdk
-runtime-version: '25.08'
-sdk: org.freedesktop.Sdk
+runtime: org.gnome.Sdk
+runtime-version: '49'
+sdk: org.gnome.Sdk
 command: kicad-startup
 finish-args:
   - --device=dri
@@ -226,8 +226,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
-        tag: v34.0
-        commit: 6a6cd88c262ffdb1738167a47d5fcc7a3eb4edac
+        tag: v34.1
+        commit: 4b0c3aacf0657fbf38253b38918d3358dd4319ec
         x-checker-data:
           type: git
           tag-pattern: ^v([\d\.]+)$
@@ -249,6 +249,31 @@ modules:
           type: git
           tag-pattern: ^v([\d\.]+)$
 
+  - name: libspacenav
+    sources:
+      - type: git
+        url: https://github.com/FreeSpacenav/libspnav
+        tag: v1.2
+        commit: d641e5cbbe0d6d2381a2ee8d95c8c7273d005272
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d\.]+)$
+
+  - name: poppler
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DENABLE_QT5=OFF
+      - -DENABLE_QT6=OFF
+    sources:
+      - type: git
+        url: https://gitlab.freedesktop.org/poppler/poppler.git
+        commit: aa4f259428273ef93220f9e659962cc50787d1c1
+        tag: poppler-26.03.0
+        x-checker-data:
+          type: git
+          tag-pattern: ^poppler-([\d\.]+)$
+
   - python3-pytest.yml
 
   - name: kicad
@@ -262,8 +287,9 @@ modules:
       - -DOPENGL_glu_LIBRARY=/app/lib/libGLU.so
       - -DKICAD_BUILD_FLATPAK=ON
       - -DKICAD_BUILD_I18N=ON
-      - -DKICAD_USE_EGL=OFF
       - -DKICAD_LIBRARY_DATA=/app/extensions/Library
+      - -DKICAD_USE_EGL=OFF
+      - -DKICAD_USE_PCH=OFF  # https://bbs.archlinux.org/viewtopic.php?id=307900
     post-install:
       - install ../../flatpak-extra/kicad-startup /app/bin/kicad-startup
       - install ../../flatpak-extra/eeschema-startup /app/bin/eeschema-startup
@@ -303,14 +329,14 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: b09c98053a892ff12d5c4f3c2070ca9bfca20106
-        tag: 9.0.8
+        commit: 0feeca2a807f428ad2b3fa7c1e39625cb769f02c
+        tag: 10.0.0
         x-checker-data:
           is-main-source: true
           type: git
           tag-pattern: ^([\d\.]+)$
           versions:
-            <: 9.99.0
+            <: 10.99.0
       - type: script
         dest: flatpak-extra
         dest-filename: pip3
@@ -374,4 +400,6 @@ modules:
             done
           - exec /app/bin/pcbnew "$@"
 
-  - kicad-doc.yml
+# Disable kicad-doc for now, as it doesn't build properly. Needs more time
+# for investigation which I do not have right now, unfortunately.
+#  - kicad-doc.yml

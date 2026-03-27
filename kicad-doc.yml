@@ -162,21 +162,23 @@ modules:
           version-pattern: <i class="page__subheading">([\d\.]+)</i>
 
   - name: kicad-doc
-    buildsystem: cmake-ninja
+    buildsystem: cmake
     build-options:
       env:
+        CMAKE_BUILD_PARALLEL_LEVEL: "1"
         GEM_PATH: /app/lib/ruby/gems/2.7.1
         PERL5LIB: /app/lib
     config-opts:
       - -DBUILD_FORMATS=html
+    no-parallel-make: true
     sources:
       - type: git
         url: https://gitlab.com/kicad/services/kicad-doc.git
-        commit: 21ca451eedd7722dda6388a8ecaa4eb4501179b2
-        tag: 9.0.8
+        commit: 90e4b2289c3f424711f2fcd87f844ea11ce19331
+        tag: 10.0.0
         x-checker-data:
           is-important: true
           type: git
           tag-pattern: ^([\d\.]+)$
           versions:
-            <: 9.99.0
+            <: 10.99.0
