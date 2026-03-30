@@ -35,11 +35,13 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenMathLib/OpenBLAS
-        tag: v0.3.32
-        commit: 8cecf899e21d99f9d8766ed34bfeeb3e2992c844
+        tag: v0.3.31
+        commit: 76f1be470c9b9f80dc6e27407e13b975df436489
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d\.]+)$
+          versions:
+            <: '0.3.32' # Caused build errors on aarch64
 
   - name: python3-build-dependencies
     buildsystem: simple
