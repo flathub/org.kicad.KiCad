@@ -1,0 +1,113 @@
+From 35f44397aa7849e78a6038d578a9af6b378715ed Mon Sep 17 00:00:00 2001
+From: Johannes Maibaum <jmaibaum@gmail.com>
+Date: Mon, 30 Mar 2026 21:07:48 +0200
+Subject: [PATCH] Revert "update po4a.cfg"
+
+This partly reverts commit 0fa231905a640bc01e1a788a868f98679a3b8261 in
+order to succeed building on flathub again.
+---
+ CMakeModules/KiCadDocumentation.cmake | 64 +++++++++------------------
+ 1 file changed, 21 insertions(+), 43 deletions(-)
+
+diff --git a/CMakeModules/KiCadDocumentation.cmake b/CMakeModules/KiCadDocumentation.cmake
+index 9d9bd781..39aed098 100644
+--- a/CMakeModules/KiCadDocumentation.cmake
++++ b/CMakeModules/KiCadDocumentation.cmake
+@@ -57,9 +57,6 @@ macro( KiCadDocumentation DOCNAME )
+     endforeach()
+     separate_arguments( DOCCHAPTERMASTERS )
+ 
+-    # po4a.cfg path
+-    set( PO4A_CFG_FILE "${CMAKE_CURRENT_SOURCE_DIR}/po/po4a.cfg" )
+-
+     # Get a list of all po translation files so we know what languages can be built
+     file( GLOB AVAILABLE_PO RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/po ${CMAKE_CURRENT_SOURCE_DIR}/po/*.po )
+     foreach( L ${AVAILABLE_PO} )
+@@ -68,30 +65,6 @@ macro( KiCadDocumentation DOCNAME )
+     endforeach()
+     list( APPEND AVAILABLE en )
+ 
+-    # Generate po4a.cfg at configure time for updatepo with relative paths
+-    if( AVAILABLE_PO )
+-        file( WRITE ${PO4A_CFG_FILE} "[po4a_paths] ${DOCNAME}.pot" )
+-        foreach( PO_FILE ${AVAILABLE_PO} )
+-            string( REGEX REPLACE "^(.*)\\.po$" "\\1" LANG "${PO_FILE}" )
+-            file( APPEND ${PO4A_CFG_FILE} " ${LANG}:po/${PO_FILE}" )
+-        endforeach()
+-        file( APPEND ${PO4A_CFG_FILE} "\n\n" )
+-        file( APPEND ${PO4A_CFG_FILE} "[type:asciidoc] ${DOCNAME}.adoc" )
+-        foreach( PO_FILE ${AVAILABLE_PO} )
+-            string( REGEX REPLACE "^(.*)\\.po$" "\\1" LANG "${PO_FILE}" )
+-            file( APPEND ${PO4A_CFG_FILE} " ${LANG}:${LANG}/${DOCNAME}.adoc" )
+-        endforeach()
+-        file( APPEND ${PO4A_CFG_FILE} " opt:\"-k 80\"\n" )
+-        foreach( ADOC_FILE ${DOCCHAPTERFILES} )
+-            file( APPEND ${PO4A_CFG_FILE} "[type:asciidoc] ${ADOC_FILE}" )
+-            foreach( PO_FILE ${AVAILABLE_PO} )
+-                string( REGEX REPLACE "^(.*)\\.po$" "\\1" LANG "${PO_FILE}" )
+-                file( APPEND ${PO4A_CFG_FILE} " ${LANG}:${LANG}/${ADOC_FILE}" )
+-            endforeach()
+-            file( APPEND ${PO4A_CFG_FILE} " opt:\"-k 80\"\n" )
+-        endforeach()
+-    endif()
+-
+     # If we're not building a specific language, default to all languages
+     if( "${LANGUAGES}" STREQUAL "" )
+         set( TRANSLATIONS ${AVAILABLE} )
+@@ -138,32 +111,37 @@ macro( KiCadDocumentation DOCNAME )
+                     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${DOCNAME}_${CHAPTER}.adoc )
+             endforeach()
+         else()
+-            # Targets to update the translation files using po4a.cfg
+-            if( EXISTS ${PO4A_CFG_FILE} )
+-                add_custom_target( ${DOCNAME}_updatepo_${LANGUAGE}
+-                    COMMAND cd ${CMAKE_CURRENT_SOURCE_DIR} &&
+-                            ${PO4A_COMMAND}-updatepo -f po/po4a.cfg -v -M utf-8 )
+-
+-                add_dependencies( ${DOCNAME}_updatepo_all ${DOCNAME}_updatepo_${LANGUAGE} )
+-                add_dependencies( updatepo_${LANGUAGE} ${DOCNAME}_updatepo_${LANGUAGE} )
+-                add_dependencies( updatepo_all ${DOCNAME}_updatepo_${LANGUAGE} )
+-            endif()
++            # Targets to update the translation files - include individual language targets
++            # as well as an "all" target. Do not include updating the translations in the
++            # default all target
++            add_custom_target( ${DOCNAME}_updatepo_${LANGUAGE}
++                COMMAND cd ${CMAKE_CURRENT_SOURCE_DIR} &&
++                        ${PO4A_COMMAND}-updatepo -o tablecells -f asciidoc -v -M utf-8
++                            -m ${DOCNAME}.adoc ${DOCCHAPTERMASTERS}
++                            -p po/${LANGUAGE}.po )
++
++            add_dependencies( ${DOCNAME}_updatepo_all ${DOCNAME}_updatepo_${LANGUAGE} )
++
++            add_dependencies( updatepo_${LANGUAGE} ${DOCNAME}_updatepo_${LANGUAGE} )
++            add_dependencies( updatepo_all ${DOCNAME}_updatepo_${LANGUAGE} )
+ 
+-            # Translate using po4a with config file
+             add_custom_command( OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${LANGUAGE}/${DOCNAME}.adoc
+                 COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_CURRENT_BINARY_DIR}/${LANGUAGE}"
+                 COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/images ${CMAKE_CURRENT_BINARY_DIR}/${LANGUAGE}/images
+-                COMMAND cd ${CMAKE_CURRENT_SOURCE_DIR} && ${PO4A_COMMAND} -f po/po4a.cfg -v -M utf-8 -k 0
+-                COMMAND test -d ${CMAKE_CURRENT_SOURCE_DIR}/${LANGUAGE} && ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/${LANGUAGE} ${CMAKE_CURRENT_BINARY_DIR}/${LANGUAGE} || true
+-                COMMAND test -d ${CMAKE_CURRENT_SOURCE_DIR}/${LANGUAGE} && ${CMAKE_COMMAND} -E remove_directory ${CMAKE_CURRENT_SOURCE_DIR}/${LANGUAGE} || true
++                COMMAND ${PO4A_COMMAND}-translate -o tablecells -f asciidoc -a ${CMAKE_CURRENT_SOURCE_DIR}/po/addendum.${LANGUAGE} -A utf-8 -M utf-8 -m ${CMAKE_CURRENT_SOURCE_DIR}/${DOCNAME}.adoc -p ${CMAKE_CURRENT_SOURCE_DIR}/po/${LANGUAGE}.po -k -0 -l ${CMAKE_CURRENT_BINARY_DIR}/${LANGUAGE}/${DOCNAME}.adoc
+                 DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${DOCNAME}.adoc
+                 DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${DOCCHAPTERFILES}
+                 DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/po/${LANGUAGE}.po )
+ 
+-            # Deal with chapters for all languages
++            # Deal with chapters for all languages...
+             foreach( CHAPTER ${DOCCHAPTERS} )
+                 add_custom_command( OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${LANGUAGE}/${DOCNAME}_${CHAPTER}.adoc
+-                                    DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/${LANGUAGE}/${DOCNAME}.adoc )
++                                    COMMAND ${PO4A_COMMAND}-translate -o tablecells -f asciidoc -A utf-8 -M utf-8
++                                        -m ${CMAKE_CURRENT_SOURCE_DIR}/${DOCNAME}_${CHAPTER}.adoc
++                                        -p ${CMAKE_CURRENT_SOURCE_DIR}/po/${LANGUAGE}.po -k -0
++                                        -l ${CMAKE_CURRENT_BINARY_DIR}/${LANGUAGE}/${DOCNAME}_${CHAPTER}.adoc
++                                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/po/${LANGUAGE}.po
++                                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${DOCNAME}_${CHAPTER}.adoc )
+             endforeach()
+         endif()
+ 
+-- 
+2.53.0
+
