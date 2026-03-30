@@ -35,8 +35,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenMathLib/OpenBLAS
-        tag: v0.3.31
-        commit: 76f1be470c9b9f80dc6e27407e13b975df436489
+        tag: v0.3.32
+        commit: 8cecf899e21d99f9d8766ed34bfeeb3e2992c844
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d\.]+)$
@@ -78,8 +78,8 @@ modules:
         --prefix=${FLATPAK_DEST} numpy --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/57/fd/0005efbd0af48e55eb3c7208af93f2862d4b1a56cd78e84309a2d959208d/numpy-2.4.2.tar.gz
-        sha256: 659a6107e31a83c4e33f763942275fd278b21d095094044eb35569e86a21ddae
+        url: https://files.pythonhosted.org/packages/d7/9f/b8cef5bffa569759033adda9481211426f12f53299629b410340795c2514/numpy-2.4.4.tar.gz
+        sha256: 2d390634c5182175533585cc89f3608a4682ccb173cc9bb940b2881c8d6f8fa0
         x-checker-data:
           type: pypi
           name: numpy
