@@ -40,6 +40,8 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d\.]+)$
+          versions:
+            <: '0.3.32' # Caused build errors on aarch64
 
   - name: python3-build-dependencies
     buildsystem: simple
@@ -78,8 +80,8 @@ modules:
         --prefix=${FLATPAK_DEST} numpy --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/57/fd/0005efbd0af48e55eb3c7208af93f2862d4b1a56cd78e84309a2d959208d/numpy-2.4.2.tar.gz
-        sha256: 659a6107e31a83c4e33f763942275fd278b21d095094044eb35569e86a21ddae
+        url: https://files.pythonhosted.org/packages/d7/9f/b8cef5bffa569759033adda9481211426f12f53299629b410340795c2514/numpy-2.4.4.tar.gz
+        sha256: 2d390634c5182175533585cc89f3608a4682ccb173cc9bb940b2881c8d6f8fa0
         x-checker-data:
           type: pypi
           name: numpy
