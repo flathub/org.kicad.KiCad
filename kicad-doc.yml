@@ -182,3 +182,5 @@ modules:
           tag-pattern: ^([\d\.]+)$
           versions:
             <: 10.99.0
+      - type: patch
+        path: patches/kicad-doc_0001-Revert-update-po4a.cfg.patch
