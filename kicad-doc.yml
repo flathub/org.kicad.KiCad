@@ -165,7 +165,6 @@ modules:
     buildsystem: cmake
     build-options:
       env:
-        CMAKE_BUILD_PARALLEL_LEVEL: '1'
         GEM_PATH: /app/lib/ruby/gems/2.7.1
         PERL5LIB: /app/lib
     config-opts:
@@ -182,5 +181,3 @@ modules:
           tag-pattern: ^([\d\.]+)$
           versions:
             <: 10.99.0
-      - type: patch
-        path: patches/kicad-doc_0001-Revert-update-po4a.cfg.patch
