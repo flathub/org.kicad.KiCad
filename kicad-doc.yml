@@ -165,7 +165,6 @@ modules:
     buildsystem: cmake
     build-options:
       env:
-        CMAKE_BUILD_PARALLEL_LEVEL: "1"
         GEM_PATH: /app/lib/ruby/gems/2.7.1
         PERL5LIB: /app/lib
     config-opts:
@@ -174,13 +173,11 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/kicad/services/kicad-doc.git
-        commit: 90e4b2289c3f424711f2fcd87f844ea11ce19331
-        tag: 10.0.0
+        commit: 9992f51aadce7d41f97e95b4cb10e1508ce0e264
+        tag: 10.0.1
         x-checker-data:
           is-important: true
           type: git
           tag-pattern: ^([\d\.]+)$
           versions:
             <: 10.99.0
-      - type: patch
-        path: patches/kicad-doc_0001-Revert-update-po4a.cfg.patch
