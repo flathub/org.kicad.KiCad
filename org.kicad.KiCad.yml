@@ -111,8 +111,8 @@ modules:
       - /include
     sources:
       - type: archive
-        url: https://archives.boost.io/release/1.90.0/source/boost_1_90_0.tar.gz
-        sha256: 5e93d582aff26868d581a52ae78c7d8edf3f3064742c6e77901a1f18a437eea9
+        url: https://archives.boost.io/release/1.91.0/source/boost_1_91_0.tar.gz
+        sha256: 5734305f40a76c30f951c9abd409a45a2a19fb546efe4162119250bbe4d3a463
         x-checker-data:
           type: html
           url: https://www.boost.org/feed/downloads.rss
@@ -329,8 +329,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 8fc7cdca1571682412ddcc87df40ca74e717e8a2
-        tag: 10.0.1-rc1
+        commit: 895c0c3779c43e4c6b368d1596a735d25e27e108
+        tag: 10.0.2-rc1
         x-checker-data:
           is-main-source: true
           type: git
