@@ -172,11 +172,11 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/kicad/services/kicad-doc.git
-        commit: ad975ea3da419ce3d5e365c974bcc8a93e4ab809
-        tag: 9.0.9-rc1
+        commit: c59ba062eed41b6676990c2ea759037cbe3e5488
+        tag: 10.0.2-rc1
         x-checker-data:
           is-important: true
           type: git
           tag-pattern: ^([\d\.]+-rc\d+)$
           versions:
-            <: 9.99.0
+            <: 10.99.0
