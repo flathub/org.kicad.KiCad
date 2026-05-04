@@ -1,6 +1,6 @@
 app-id: org.kicad.KiCad
 runtime: org.gnome.Sdk
-runtime-version: '49'
+runtime-version: '50'
 sdk: org.gnome.Sdk
 command: kicad-startup
 finish-args:
