@@ -114,9 +114,9 @@ modules:
       - -DINSTALL_TEST_CASES=OFF
     sources:
       - type: git
-        commit: d3056ef80c9668f395da40f5fd7be186cae4501f
+        commit: a016080bf6738d6aeae020badee4e888ad1540a5
         url: https://github.com/Open-Cascade-SAS/OCCT
-        tag: V8_0_0
+        tag: V7_9_3
         x-checker-data:
           type: git
           tag-pattern: ^V([\d_]+)$
