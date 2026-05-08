@@ -72,6 +72,22 @@ modules:
           type: git
           tag-pattern: ^libXmu-([\d\.]+)$
 
+  - name: rapidjson
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DRAPIDJSON_BUILD_DOC=OFF
+      - -DRAPIDJSON_BUILD_EXAMPLES=OFF
+      - -DRAPIDJSON_BUILD_TESTS=OFF
+    cleanup:
+      - /include
+      - /lib/cmake
+      - /lib/pkgconfig
+      - /share
+    sources:
+      - type: git
+        url: https://github.com/Tencent/rapidjson.git
+        commit: 24b5e7a8b27f42fa16b96fc70aade9106cf7102f
+
   - name: OCCT
     buildsystem: cmake-ninja
     cleanup:
@@ -92,14 +108,15 @@ modules:
       - -DBUILD_MODULE_Visualization=ON
       - -DUSE_VTK=OFF
       - -DUSE_TBB=OFF
+      - -DUSE_RAPIDJSON=ON
       - -DINSTALL_FREETYPE=OFF
       - -DINSTALL_SAMPLES=OFF
       - -DINSTALL_TEST_CASES=OFF
     sources:
       - type: git
-        commit: d3056ef80c9668f395da40f5fd7be186cae4501f
+        commit: a016080bf6738d6aeae020badee4e888ad1540a5
         url: https://github.com/Open-Cascade-SAS/OCCT
-        tag: V8_0_0
+        tag: V7_9_3
         x-checker-data:
           type: git
           tag-pattern: ^V([\d_]+)$
