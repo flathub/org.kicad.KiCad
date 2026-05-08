@@ -1,6 +1,6 @@
 app-id: org.kicad.KiCad
 runtime: org.gnome.Sdk
-runtime-version: '49'
+runtime-version: '50'
 sdk: org.gnome.Sdk
 command: kicad-startup
 finish-args:
@@ -72,6 +72,22 @@ modules:
           type: git
           tag-pattern: ^libXmu-([\d\.]+)$
 
+  - name: rapidjson
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DRAPIDJSON_BUILD_DOC=OFF
+      - -DRAPIDJSON_BUILD_EXAMPLES=OFF
+      - -DRAPIDJSON_BUILD_TESTS=OFF
+    cleanup:
+      - /include
+      - /lib/cmake
+      - /lib/pkgconfig
+      - /share
+    sources:
+      - type: git
+        url: https://github.com/Tencent/rapidjson.git
+        commit: 24b5e7a8b27f42fa16b96fc70aade9106cf7102f
+
   - name: OCCT
     buildsystem: cmake-ninja
     cleanup:
@@ -92,6 +108,7 @@ modules:
       - -DBUILD_MODULE_Visualization=ON
       - -DUSE_VTK=OFF
       - -DUSE_TBB=OFF
+      - -DUSE_RAPIDJSON=ON
       - -DINSTALL_FREETYPE=OFF
       - -DINSTALL_SAMPLES=OFF
       - -DINSTALL_TEST_CASES=OFF
@@ -103,6 +120,8 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^V([\d_]+)$
+          versions:
+            <: '8_0_0'
 
   - name: boost
     buildsystem: simple
@@ -113,8 +132,8 @@ modules:
       - /include
     sources:
       - type: archive
-        url: https://archives.boost.io/release/1.90.0/source/boost_1_90_0.tar.gz
-        sha256: 5e93d582aff26868d581a52ae78c7d8edf3f3064742c6e77901a1f18a437eea9
+        url: https://archives.boost.io/release/1.91.0/source/boost_1_91_0.tar.gz
+        sha256: 5734305f40a76c30f951c9abd409a45a2a19fb546efe4162119250bbe4d3a463
         x-checker-data:
           type: html
           url: https://www.boost.org/feed/downloads.rss
@@ -206,8 +225,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: git
-        commit: ca225744b992bf2bf24e9a2eb357ddef78179667
-        tag: v1.9.2
+        commit: 1affb8b19346c4f90e163a9a0364959ff1410f64
+        tag: v1.9.3
         url: https://github.com/libgit2/libgit2
         x-checker-data:
           type: git
@@ -268,8 +287,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/poppler/poppler.git
-        commit: b3a22fbfc627409044959a11a2c51afc555ac718
-        tag: poppler-26.04.0
+        commit: b0091f08803ffe7784e365db45abd003159bf45d
+        tag: poppler-26.05.0
         x-checker-data:
           type: git
           tag-pattern: ^poppler-([\d\.]+)$
@@ -329,8 +348,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 2db9e5a72b7cf1e71bb8dff5257a88d4b41f812f
-        tag: 10.0.1
+        commit: f2a645f7f9db629e9fd64652611226eb731e87a1
+        tag: 10.0.2
         x-checker-data:
           is-main-source: true
           type: git
