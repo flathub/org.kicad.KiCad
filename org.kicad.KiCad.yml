@@ -75,6 +75,9 @@ modules:
   - name: rapidjson
     buildsystem: cmake-ninja
     config-opts:
+        # Even if it's build as RelWithDebInfo by default,
+        # we prefer to be explicit.
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DRAPIDJSON_BUILD_DOC=OFF
       - -DRAPIDJSON_BUILD_EXAMPLES=OFF
       - -DRAPIDJSON_BUILD_TESTS=OFF
@@ -86,6 +89,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/Tencent/rapidjson.git
+        # We don't tag a release, because latest release (v1.1.0) is 10
+        # years old. Use tip of their master instead (1 year old) at the
+        # time of writing.
         commit: 24b5e7a8b27f42fa16b96fc70aade9106cf7102f
 
   - name: OCCT
