@@ -155,8 +155,8 @@ modules:
       - --disable-glcanvasegl
     sources:
       - type: git
-        commit: aa1a25e7b511c0a4e341a3c722e6eac2aa159ab6
-        tag: v3.2.10
+        commit: 749625e0ea4d70d1f75494aa52231d835531a618
+        tag: v3.2.11
         url: https://github.com/wxWidgets/wxWidgets
         x-checker-data:
           is-important: true
@@ -268,8 +268,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/nanomsg/nng.git
-        tag: v1.11
-        commit: 84aa701f42968bf536141a24e826da66963b571a
+        tag: v1.12.0
+        commit: 45f8116f2dd1b0438ab77344a75628d77656c61a
         x-checker-data:
           type: git
           tag-pattern: ^v([\d\.]+)$
@@ -293,8 +293,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/poppler/poppler.git
-        commit: 1fe40984214a729350da11950fc7f09343247202
-        tag: poppler-26.06.0
+        commit: b7989c187daee307b782ac4592cddb1ae0677b76
+        tag: poppler-26.07.0
         x-checker-data:
           type: git
           tag-pattern: ^poppler-([\d\.]+)$
