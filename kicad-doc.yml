@@ -132,8 +132,8 @@ modules:
       - --disable-rpath
     sources:
       - type: archive
-        url: https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.9.tar.gz
-        sha256: 7bb4d4f5e807cc27251d14d9d6086d182c5b25875191e44ab15b709cd7a7dd9c
+        url: https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.10.tar.gz
+        sha256: ecee2d072a14f2d14347dd56dfd8fe5c3130abf5117bfaacbda0f4ef9cc429ec
         x-checker-data:
           type: html
           url: https://cache.ruby-lang.org/pub/ruby/index.txt
