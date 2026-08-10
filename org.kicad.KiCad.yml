@@ -175,8 +175,8 @@ modules:
       - /share
     sources:
       - type: archive
-        url: https://sourceforge.net/projects/swig/files/swig/swig-4.4.1/swig-4.4.1.tar.gz
-        sha256: 40162a706c56f7592d08fd52ef5511cb7ac191f3593cf07306a0a554c6281fcf
+        url: https://sourceforge.net/projects/swig/files/swig/swig-4.5.0/swig-4.5.0.tar.gz
+        sha256: 22ae0e887f8cca8031a325c67d005207653200b40e71edb3f88780e28e47d0ff
         x-checker-data:
           type: html
           url: https://www.swig.org/download.html
@@ -293,8 +293,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/poppler/poppler.git
-        commit: b7989c187daee307b782ac4592cddb1ae0677b76
-        tag: poppler-26.07.0
+        commit: d663f8fe0237073fadf43e4e19acc46b3ba3e80a
+        tag: poppler-26.08.0
         x-checker-data:
           type: git
           tag-pattern: ^poppler-([\d\.]+)$
