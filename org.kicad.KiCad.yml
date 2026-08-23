@@ -247,8 +247,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
-        tag: v35.1
-        commit: 35cd01f9fe9afbeea38cc7b979a3b6bfcde82c03
+        tag: v36.0
+        commit: 3f17acbf7ffbda81db8be17505554c726e558bb2
         x-checker-data:
           type: git
           tag-pattern: ^v([\d\.]+)$
@@ -345,8 +345,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 6a3b20d4801a314898c6c90b69cd8a05ac7f9bd1
-        tag: 10.0.6-rc1
+        commit: 89250779b1d604dcc21a3960ffce5f2fa172ef17
+        tag: 10.0.6-rc2
         x-checker-data:
           is-main-source: true
           type: git
