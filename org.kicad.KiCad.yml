@@ -246,8 +246,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
-        tag: v35.1
-        commit: 35cd01f9fe9afbeea38cc7b979a3b6bfcde82c03
+        tag: v36.0
+        commit: 3f17acbf7ffbda81db8be17505554c726e558bb2
         x-checker-data:
           type: git
           tag-pattern: ^v([\d\.]+)$
@@ -263,8 +263,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/nanomsg/nng.git
-        tag: v1.12.0
-        commit: 45f8116f2dd1b0438ab77344a75628d77656c61a
+        tag: v1.12.3
+        commit: 73f715235967afc783e0b99c52d015dc10897fda
         x-checker-data:
           type: git
           tag-pattern: ^v([\d\.]+)$
@@ -346,8 +346,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 18fb9289ff0efdca53c0352ed81a0973f0a6b58c
-        tag: 10.0.5
+        commit: caf7377e9cb6fa1535ec3596dcb8c99bf44a996e
+        tag: 10.0.6
         x-checker-data:
           is-main-source: true
           type: git
