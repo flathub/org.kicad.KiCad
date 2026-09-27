@@ -109,14 +109,13 @@ modules:
     cleanup:
       - '*'
     sources:
-      - type: archive
-        url: https://github.com/mquinson/po4a/releases/download/v0.74/po4a-0.74.tar.gz
-        sha256: 25fc323f2ba37bbd48c3af0ebf49952644b0e468261f98633e91219a838fe7c2
+      - type: git
+        commit: 5d4c70797ee716aefe259fb57bb9c9c416fd2782
+        tag: v0.74
+        url: https://github.com/mquinson/po4a
         x-checker-data:
-          type: html
-          url: https://po4a.org
-          url-template: https://github.com/mquinson/po4a/releases/download/v$version/po4a-$version.tar.gz
-          version-pattern: <h2>\d{4}-\d{2}-\d{2} - po4a ([\d\.]+) .+</h2>
+          type: git
+          tag-pattern: ^v([\d\.]+)$
 
   # Since Ruby was removed from FDO SDK 25.08, we build it ourselves.
   # Copied from https://gitlab.com/freedesktop-sdk/freedesktop-sdk/-/blob/54d47990fe9c48ef68fc6355c84a57f3dff9469b/elements/components/ruby.bst
