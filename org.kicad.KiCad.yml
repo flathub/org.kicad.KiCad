@@ -170,13 +170,9 @@ modules:
       - type: archive
         url: https://sourceforge.net/projects/swig/files/swig/swig-4.4.1/swig-4.4.1.tar.gz
         sha256: 40162a706c56f7592d08fd52ef5511cb7ac191f3593cf07306a0a554c6281fcf
-        x-checker-data:
-          type: html
-          url: https://www.swig.org/download.html
-          version-pattern: The latest release is <a href=".+">swig-([\d\.]+)</a>
-          url-template: https://sourceforge.net/projects/swig/files/swig/swig-$version/swig-$version.tar.gz
-          versions:
-            <: 4.5.0  # Should not be required anymore once KiCad 10.0.6 gets released
+        # We don't check for new versions of swig anymore, because 4.5.x is
+        # causing build issues, and swig will not be needed anymore with
+        # KiCad 11.
 
   - name: ngspice
     cleanup:
