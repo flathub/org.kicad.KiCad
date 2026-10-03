@@ -9,8 +9,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/NixOS/patchelf
-        commit: 7688b17c18d16f67fa8d5a82a2404c2e3a18648d
-        tag: 0.19.1
+        commit: 382d8bc12db9e720515da49d9c272ef4a622c3c0
+        tag: 0.19.2
         x-checker-data:
           type: git
           tag-pattern: ^([\d\.]+)$
@@ -50,8 +50,8 @@ modules:
       - /lib
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/37/35/26a6c96ed91fa3baacd64da82f279bc282eade45003c00d99293332b45e1/meson_python-0.22.0-py3-none-any.whl
-        sha256: 0ce9fa40bb8bfaecccba97347063970e1a18cca2730d6e68a341dc0b73b284a4
+        url: https://files.pythonhosted.org/packages/96/62/0c1cf20fe158b0e623e78acbf5fb6de5f1410a408f65f727e4090497627b/meson_python-0.22.1-py3-none-any.whl
+        sha256: 258fde948cf45aab5df23fcc9e17a9050ee73d4e1002fe6cf86519f61c414778
         x-checker-data:
           type: pypi
           packagetype: bdist_wheel
