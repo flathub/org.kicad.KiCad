@@ -242,8 +242,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
-        tag: v36.0
-        commit: 3f17acbf7ffbda81db8be17505554c726e558bb2
+        tag: v36.2
+        commit: 2c74169b34066ceb8ddb6b882fcb3fb32d737a55
         x-checker-data:
           type: git
           tag-pattern: ^v([\d\.]+)$
@@ -259,8 +259,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/nanomsg/nng.git
-        tag: v1.12.3
-        commit: 73f715235967afc783e0b99c52d015dc10897fda
+        tag: v1.12.4
+        commit: d504cf08ae8c87885d3dc07214b47a6b9a95c4bc
         x-checker-data:
           type: git
           tag-pattern: ^v([\d\.]+)$
@@ -284,8 +284,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/poppler/poppler.git
-        commit: d663f8fe0237073fadf43e4e19acc46b3ba3e80a
-        tag: poppler-26.08.0
+        commit: 2703be11769c1f86f4d0dc3b276ec94bba5ac6d3
+        tag: poppler-26.10.0
         x-checker-data:
           type: git
           tag-pattern: ^poppler-([\d\.]+)$
@@ -342,8 +342,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: caf7377e9cb6fa1535ec3596dcb8c99bf44a996e
-        tag: 10.0.6
+        commit: 69cafb907ebc09e7722a2a464b1d466fc2e3608d
+        tag: 10.0.7
         x-checker-data:
           is-main-source: true
           type: git
