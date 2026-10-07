@@ -9,8 +9,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/NixOS/patchelf
-        commit: 7688b17c18d16f67fa8d5a82a2404c2e3a18648d
-        tag: 0.19.1
+        commit: 382d8bc12db9e720515da49d9c272ef4a622c3c0
+        tag: 0.19.2
         x-checker-data:
           type: git
           tag-pattern: ^([\d\.]+)$
@@ -50,8 +50,8 @@ modules:
       - /lib
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/90/ad/77f9483e180cabab2772ac222aedd3dfab858e60d992f40414a3f08e7494/meson_python-0.20.0-py3-none-any.whl
-        sha256: 6a744cf0c09e76ecbdc58cfa374b48c8902dac1b74479628238634efbf36aec9
+        url: https://files.pythonhosted.org/packages/96/62/0c1cf20fe158b0e623e78acbf5fb6de5f1410a408f65f727e4090497627b/meson_python-0.22.1-py3-none-any.whl
+        sha256: 258fde948cf45aab5df23fcc9e17a9050ee73d4e1002fe6cf86519f61c414778
         x-checker-data:
           type: pypi
           packagetype: bdist_wheel
@@ -78,8 +78,8 @@ modules:
         --prefix=${FLATPAK_DEST} numpy --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/9a/80/db0b4559e57ec36362bedbb05530a87fafbcb6067708c946967a41d449e7/numpy-2.5.2.tar.gz
-        sha256: d482d171c406ae88c5b19cad3b6a1c4c5209f886ab74bc44c2c865c23f52d860
+        url: https://files.pythonhosted.org/packages/13/01/11703282db468b85f6f7b8c7f22d058de5970d5c7e60a3a8aaa313c3de36/numpy-2.5.3.tar.gz
+        sha256: df2d5874ff183595a4ba404edd04f6bd9b5505c1d7708573f6a6c17489a67563
         x-checker-data:
           type: pypi
           name: numpy
