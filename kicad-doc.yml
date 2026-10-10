@@ -160,14 +160,13 @@ modules:
           version-query: .version
 
   - name: kicad-doc
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     build-options:
       env:
         GEM_PATH: /app/lib/ruby/gems/4.0.0
         PERL5LIB: /app/lib
     config-opts:
       - -DBUILD_FORMATS=html
-    no-parallel-make: true
     sources:
       - type: git
         url: https://gitlab.com/kicad/services/kicad-doc.git
