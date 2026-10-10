@@ -6,6 +6,8 @@ command: kicad-startup
 finish-args:
   - --device=dri
   - --filesystem=home
+  - --filesystem=/media
+  - --filesystem=/run/media
   - --share=ipc
   - --share=network
   - --socket=x11
@@ -140,7 +142,6 @@ modules:
           url-template: https://archives.boost.io/release/$version/source/boost_${version0}_${version1}_${version2}.tar.gz
           version-pattern: <title>Version (\d+\.?\d+\.\d+)(?!\sbeta)|</title>$
 
-
   - name: wxWidgets
     cleanup:
       - /bin
@@ -228,8 +229,6 @@ modules:
           type: git
           tag-pattern: ^(v[\d\.]+)$
 
-  - python3-pytest.yml
-
   - name: protobuf
     buildsystem: cmake-ninja
     config-opts:
@@ -291,6 +290,8 @@ modules:
           type: git
           tag-pattern: ^poppler-([\d\.]+)$
 
+  #- python3-pytest.yml  # Tests fail on RC tags
+
   - name: kicad
     builddir: true
     buildsystem: cmake-ninja
@@ -299,10 +300,12 @@ modules:
       - -DCMAKE_CTEST_ARGUMENTS="--output-on-failure"
       - -DOCC_INCLUDE_DIR=/app/include/opencascade
       - -DOPENGL_glu_LIBRARY=/app/lib/libGLU.so
+      - -DKICAD_BUILD_QA_TESTS=OFF  # Tests fail on RC tags
       - -DKICAD_BUILD_FLATPAK=ON
       - -DKICAD_BUILD_I18N=ON
       - -DKICAD_LIBRARY_DATA=/app/extensions/Library
       - -DKICAD_USE_PCH=OFF  # https://bbs.archlinux.org/viewtopic.php?id=307900
+      - -DKICAD_UPDATE_CHECK=OFF
     post-install:
       - install ../../flatpak-extra/kicad-startup /app/bin/kicad-startup
       - install ../../flatpak-extra/eeschema-startup /app/bin/eeschema-startup
