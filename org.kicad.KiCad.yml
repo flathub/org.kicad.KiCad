@@ -142,7 +142,6 @@ modules:
           url-template: https://archives.boost.io/release/$version/source/boost_${version0}_${version1}_${version2}.tar.gz
           version-pattern: <title>Version (\d+\.?\d+\.\d+)(?!\sbeta)|</title>$
 
-
   - name: wxWidgets
     cleanup:
       - /bin
