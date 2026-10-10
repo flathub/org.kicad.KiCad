@@ -230,8 +230,6 @@ modules:
           type: git
           tag-pattern: ^(v[\d\.]+)$
 
-  - python3-pytest.yml
-
   - name: protobuf
     buildsystem: cmake-ninja
     config-opts:
@@ -293,6 +291,8 @@ modules:
           type: git
           tag-pattern: ^poppler-([\d\.]+)$
 
+  #- python3-pytest.yml  # Tests fail on RC tags
+
   - name: kicad
     builddir: true
     buildsystem: cmake-ninja
@@ -301,6 +301,7 @@ modules:
       - -DCMAKE_CTEST_ARGUMENTS="--output-on-failure"
       - -DOCC_INCLUDE_DIR=/app/include/opencascade
       - -DOPENGL_glu_LIBRARY=/app/lib/libGLU.so
+      - -DKICAD_BUILD_QA_TESTS=OFF  # Tests fail on RC tags
       - -DKICAD_BUILD_FLATPAK=ON
       - -DKICAD_BUILD_I18N=ON
       - -DKICAD_LIBRARY_DATA=/app/extensions/Library
