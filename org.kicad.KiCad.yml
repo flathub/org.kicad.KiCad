@@ -150,8 +150,8 @@ modules:
       - --with-opengl
     sources:
       - type: git
-        commit: 565553ee980e925bbd8b3cdaeea0eb9f453d7dfd
-        tag: v3.3.3.1
+        commit: 6a42a4b999b127cf28a8b5fe686da6b8ca93a9b8
+        tag: v3.3.4
         url: https://github.com/wxWidgets/wxWidgets
         x-checker-data:
           is-important: true
@@ -284,8 +284,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/poppler/poppler.git
-        commit: d663f8fe0237073fadf43e4e19acc46b3ba3e80a
-        tag: poppler-26.08.0
+        commit: 2703be11769c1f86f4d0dc3b276ec94bba5ac6d3
+        tag: poppler-26.10.0
         x-checker-data:
           type: git
           tag-pattern: ^poppler-([\d\.]+)$
