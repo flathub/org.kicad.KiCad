@@ -150,8 +150,8 @@ modules:
       - --with-opengl
     sources:
       - type: git
-        commit: 565553ee980e925bbd8b3cdaeea0eb9f453d7dfd
-        tag: v3.3.3.1
+        commit: 6a42a4b999b127cf28a8b5fe686da6b8ca93a9b8
+        tag: v3.3.4
         url: https://github.com/wxWidgets/wxWidgets
         x-checker-data:
           is-important: true
