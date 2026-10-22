@@ -259,11 +259,13 @@ modules:
     sources:
       - type: git
         url: https://github.com/nanomsg/nng.git
-        tag: v2.1.0
-        commit: 0912dcbd63f2f44324fa974e9fc9695c7621abb9
+        tag: v1.12.5
+        commit: 437a5f746722dee04020dc8869894c1f1f02b177
         x-checker-data:
           type: git
           tag-pattern: ^v([\d\.]+)$
+          versions:
+            <: 2.0.0
 
   - name: libspacenav
     sources:
