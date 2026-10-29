@@ -259,8 +259,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/nanomsg/nng.git
-        tag: v1.12.4
-        commit: d504cf08ae8c87885d3dc07214b47a6b9a95c4bc
+        tag: v2.1.0
+        commit: 0912dcbd63f2f44324fa974e9fc9695c7621abb9
         x-checker-data:
           type: git
           tag-pattern: ^v([\d\.]+)$
@@ -343,8 +343,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 69cafb907ebc09e7722a2a464b1d466fc2e3608d
-        tag: 10.0.7
+        commit: e432beac2668303194ba2040274f9e5efe773fc0
+        tag: 10.0.8
         x-checker-data:
           is-main-source: true
           type: git
