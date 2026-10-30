@@ -259,11 +259,13 @@ modules:
     sources:
       - type: git
         url: https://github.com/nanomsg/nng.git
-        tag: v1.12.4
-        commit: d504cf08ae8c87885d3dc07214b47a6b9a95c4bc
+        tag: v1.12.5
+        commit: 437a5f746722dee04020dc8869894c1f1f02b177
         x-checker-data:
           type: git
           tag-pattern: ^v([\d\.]+)$
+          versions:
+            <: 2.0.0
 
   - name: libspacenav
     sources:
@@ -343,8 +345,8 @@ modules:
       - type: git
         dest: kicad-git
         url: https://gitlab.com/kicad/code/kicad.git
-        commit: 69cafb907ebc09e7722a2a464b1d466fc2e3608d
-        tag: 10.0.7
+        commit: e432beac2668303194ba2040274f9e5efe773fc0
+        tag: 10.0.8
         x-checker-data:
           is-main-source: true
           type: git

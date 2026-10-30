@@ -34,22 +34,22 @@ modules:
           packagetype: bdist_wheel
           type: pypi
       - type: file
-        url: https://files.pythonhosted.org/packages/54/20/4d324d65cc6d9205fabedc306948156824eb9f0ee1633355a8f7ec5c66bf/pluggy-1.6.0-py3-none-any.whl
-        sha256: e920276dd6813095e9377c0bc5566d94c932c33b27a3e3945d8389c374dd4746
+        url: https://files.pythonhosted.org/packages/40/9e/2b38731e0fc536806f16490e1a12d7f0dc2a1235aa8cc07bcc75416a7daa/pluggy-1.7.0-py3-none-any.whl
+        sha256: 7dd7b0d8832ba3cb632c306926ded123429211b83641b35dc5c41ad2d34f9bec
         x-checker-data:
           name: pluggy
           packagetype: bdist_wheel
           type: pypi
       - type: file
-        url: https://files.pythonhosted.org/packages/24/25/1de2678b631f5a49215c6c96fff41ba892b0a34df68d6d80292b1b48aa7f/pytest-9.1.1-py3-none-any.whl
-        sha256: 37a86b45efb9a47a61a36449063e8e18d0cab3161329fc099eb21783169c4f0c
+        url: https://files.pythonhosted.org/packages/51/39/1f5d8c8877a0fa327db959c19341d4be61660de1ab6b7391f9eb805bcd67/pytest-9.2.0-py3-none-any.whl
+        sha256: 07acdcf88ec174f907dc01af70bf52d49b014bbab03faeeade31c96b18c2e588
         x-checker-data:
           name: pytest
           packagetype: bdist_wheel
           type: pypi
       - type: file
-        url: https://files.pythonhosted.org/packages/1c/3d/bb7fca845737cf9d7dbde16ed1843984665ff2e0a518f5db43e77ec540b9/pillow-12.3.0.tar.gz
-        sha256: 3b8182a766685eaa002637e28b4ec8d6b18819a0c71f579bf0dbaa5830297cce
+        url: https://files.pythonhosted.org/packages/ce/a4/9cc30690a394a8305e8be4c9036aa16d0dfddadd09079860b582f562496d/pillow-13.0.0.tar.gz
+        sha256: cdcd1ba258178f7356d74170c9a81ba4eab6a5d55748bc402a5a2a6fe6be3510
         x-checker-data:
           type: pypi
           name: Pillow
@@ -88,8 +88,8 @@ modules:
           packagetype: bdist_wheel
           type: pypi
       - type: file
-        url: https://files.pythonhosted.org/packages/90/11/0e6f11117525ff0eec40ebac3d313376f102df93ca44ad9e893ee85e4f89/pycparser-3.11-py3-none-any.whl
-        sha256: 51d5a8ba2be0bbe440b99d2112604c95bbbc3c2748a64260186c541e1729cd80
+        url: https://files.pythonhosted.org/packages/b6/ae/315bbeee126a769cbde43cf4908acb4b40408d8bf8bbf334dd7368d8dadf/pycparser-3.12-py3-none-any.whl
+        sha256: a076f3f489b39b43ed13563a1dafe42447445bec2e294154ec5c57fcdda4c85e
         x-checker-data:
           name: pycparser
           packagetype: bdist_wheel
